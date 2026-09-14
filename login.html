@@ -84,8 +84,39 @@
 
 
     <script>
+
+const accounts = {
+
+    "ARCHIVE-01": {
+        password: "adelia123",
+        name: "ADELIA",
+        archive: "archive-adelia.html"
+    },
+
+    "ARCHIVE-02": {
+        password: "denis123",
+        name: "DENIS",
+        archive: "archive-natalia.html"
+    },
+
+    "ARCHIVE-03": {
+        password: "gene123",
+        name: "SHANI",
+        archive: "archive-gene.html"
+    },
+
+    "ARCHIVE-04": {
+        password: "galang123",
+        name: "GALANG",
+        archive: "archive-galang.html"
+    }
+
+};
+
+
 const loginForm = document.getElementById("loginForm");
 const loginMessage = document.getElementById("loginMessage");
+
 
 loginForm.addEventListener("submit", function(event) {
 
@@ -101,14 +132,24 @@ loginForm.addEventListener("submit", function(event) {
         .getElementById("accessKey")
         .value;
 
-    if (archiveId === "ARCHIVE-02" && accessKey === "12345") {
 
-        loginMessage.textContent = "ARCHIVE ACCESS GRANTED.";
+    const account = accounts[archiveId];
+
+
+    if (account && account.password === accessKey) {
+
+        loginMessage.textContent =
+            "ARCHIVE ACCESS GRANTED.";
+
         loginMessage.classList.add("success");
 
+
         setTimeout(function() {
-            window.location.href = "./archive.html";
+
+            window.location.href = account.archive;
+
         }, 1000);
+
 
     } else {
 
@@ -116,9 +157,11 @@ loginForm.addEventListener("submit", function(event) {
             "ACCESS DENIED — INVALID ARCHIVE KEY.";
 
         loginMessage.classList.remove("success");
+
     }
 
 });
+
 </script>
 
 </body>
