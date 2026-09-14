@@ -2002,3 +2002,55 @@ h1 {
         letter-spacing: 6px;
     }
 }
+/* =========================================================
+   GENERAL ARCHIVE — VISIBILITY FIX ONLY
+   Tidak menyentuh Login / Password / Personal Archive
+========================================================= */
+
+.general-page {
+    overflow: visible !important;
+}
+
+.general-page .archive-overlay {
+    pointer-events: none !important;
+}
+
+.general-page .general-collection {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.general-page .archive-item,
+.general-page .archive-item.reverse {
+    display: grid !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    width: 100% !important;
+}
+
+.general-page .archive-item-info {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.general-page .archive-illustration {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.general-page .personal-access {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+}
+
+.general-page .archive-footer {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
