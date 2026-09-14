@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Letters | The Last Archive</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="letters-page">
+
+        <header class="section-header">
+
+            <a href="archive.html" class="back-link">
+                ← BACK TO ARCHIVE
+            </a>
+
+            <p class="section-label">
+                THE LAST ARCHIVE / ARCHIVE-02
+            </p>
+
+            <h1>LETTERS</h1>
+
+            <p class="section-description">
+                Three voices from three different memories,
+                written before we knew how much we would miss them.
+            </p>
+
+        </header>
+
+
+        <section class="letters-list">
+
+            <!-- LETTER 1 -->
+
+            <article class="letter-card">
+
+                <div class="letter-top">
+                    <span>LETTER 01</span>
+                    <span>FROM ADElIA</span>
+                </div>
+
+                <div class="letter-seal">
+                    ✦
+                </div>
+
+                <h2>
+                    A Letter Waiting For You
+                </h2>
+
+                <p class="letter-preview">
+                    There are probably things I never got
+                    the chance to say...
+                </p>
+
+                <button
+                    class="read-letter"
+                    onclick="openLetter('letter1')">
+
+                    OPEN LETTER
+
+                </button>
+
+            </article>
+
+
+            <!-- LETTER 2 -->
+
+            <article class="letter-card">
+
+                <div class="letter-top">
+                    <span>LETTER 02</span>
+                    <span>FROM GENE</span>
+                </div>
+
+                <div class="letter-seal">
+                    ✦
+                </div>
+
+                <h2>
+                    Before We Leave This Chapter
+                </h2>
+
+                <p class="letter-preview">
+                    Maybe one day we will look back
+                    and realize how strange this time was...
+                </p>
+
+                <button
+                    class="read-letter"
+                    onclick="openLetter('letter2')">
+
+                    OPEN LETTER
+
+                </button>
+
+            </article>
+
+
+            <!-- LETTER 3 -->
+
+            <article class="letter-card">
+
+                <div class="letter-top">
+                    <span>LETTER 03</span>
+                    <span>FROM GALANG</span>
+                </div>
+
+                <div class="letter-seal">
+                    ✦
+                </div>
+
+                <h2>
+                    For The Last Time, Probably.
+                </h2>
+
+                <p class="letter-preview">
+                    If life gets too busy someday,
+                    I hope you still remember...
+                </p>
+
+                <button
+                    class="read-letter"
+                    onclick="openLetter('letter3')">
+
+                    OPEN LETTER
+
+                </button>
+
+            </article>
+
+        </section>
+
+
+        <!-- LETTER MODAL -->
+
+        <div id="letterModal" class="letter-modal">
+
+            <div class="letter-paper">
+
+                <button
+                    class="close-letter"
+                    onclick="closeLetter()">
+
+                    ×
+
+                </button>
+
+                <p id="modalFrom" class="modal-from"></p>
+
+                <h2 id="modalTitle"></h2>
+
+                <div class="paper-line"></div>
+
+                <p id="modalContent"></p>
+
+                <p class="letter-signature">
+                    — someone who was there
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <script>
+
+        const letters = {
+
+            letter1: {
+                from: "FROM ADElIA",
+                title: "A Letter Waiting For You",
+                content:
+                    "Dear Natalia,\\n\\n" +
+                    "This is where the memories we made together " +
+                    "are kept for a little while longer.\\n\\n" +
+                    "I hope wherever life takes us after this, " +
+                    "you remember that there was once a time " +
+                    "when the four of us shared the same chapter.\\n\\n" +
+                    "Thank you for being part of it."
+            },
+
+            letter2: {
+                from: "FROM GENE",
+                title: "Before We Leave This Chapter",
+                content:
+                    "Dear Natalia,\\n\\n" +
+                    "Maybe we never realized that ordinary days " +
+                    "would eventually become memories.\\n\\n" +
+                    "The jokes, the chaos, the random conversations—" +
+                    "all of them somehow became part of our story.\\n\\n" +
+                    "Don't forget us."
+            },
+
+            letter3: {
+                from: "FROM GALANG",
+                title: "For The Last Time, Probably.",
+                content:
+                    "Natalia,\\n\\n" +
+                    "If someday we barely talk anymore, " +
+                    "I hope this archive reminds you that " +
+                    "we once existed in the same place, " +
+                    "at the same time, making memories together.\\n\\n" +
+                    "Take care out there."
+            }
+
+        };
+
+
+        function openLetter(id) {
+
+            const letter = letters[id];
+
+            document.getElementById("modalFrom").textContent =
+                letter.from;
+
+            document.getElementById("modalTitle").textContent =
+                letter.title;
+
+            document.getElementById("modalContent").textContent =
+                letter.content;
+
+            document.getElementById("letterModal")
+                .classList.add("active");
+
+        }
+
+
+        function closeLetter() {
+
+            document.getElementById("letterModal")
+                .classList.remove("active");
+
+        }
+
+    </script>
+
+</body>
+
+</html>
