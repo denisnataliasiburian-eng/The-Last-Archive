@@ -84,43 +84,42 @@
 
 
     <script>
+const loginForm = document.getElementById("loginForm");
+const loginMessage = document.getElementById("loginMessage");
 
-        const loginForm = document.getElementById("loginForm");
-        const loginMessage = document.getElementById("loginMessage");
+loginForm.addEventListener("submit", function(event) {
 
-        loginForm.addEventListener("submit", function(event) {
+    event.preventDefault();
 
-            event.preventDefault();
+    const archiveId = document
+        .getElementById("archiveId")
+        .value
+        .trim()
+        .toUpperCase();
 
-            const archiveId =
-                document.getElementById("archiveId").value.trim();
+    const accessKey = document
+        .getElementById("accessKey")
+        .value;
 
-            const accessKey =
-                document.getElementById("accessKey").value;
+    if (archiveId === "ARCHIVE-02" && accessKey === "12345") {
 
-            if (archiveId && accessKey) {
+        loginMessage.textContent = "ARCHIVE ACCESS GRANTED.";
+        loginMessage.classList.add("success");
 
-                loginMessage.textContent =
-                    "ARCHIVE ACCESS GRANTED.";
+        setTimeout(function() {
+            window.location.href = "./archive.html";
+        }, 1000);
 
-                loginMessage.classList.add("success");
+    } else {
 
-                setTimeout(() => {
+        loginMessage.textContent =
+            "ACCESS DENIED — INVALID ARCHIVE KEY.";
 
-                    window.location.href = "archive.html";
+        loginMessage.classList.remove("success");
+    }
 
-                }, 1000);
-
-            } else {
-
-                loginMessage.textContent =
-                    "ACCESS DENIED — INVALID ARCHIVE KEY.";
-
-            }
-
-        });
-
-    </script>
+});
+</script>
 
 </body>
 
