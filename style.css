@@ -1,14 +1,19 @@
-/* ================================
+/* =========================================================
    THE LAST ARCHIVE
-   LANDING PAGE
-================================ */
-
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap');
+   FINAL STYLE.CSS
+========================================================= */
 
 
-/* ================================
+/* =========================================================
+   GOOGLE FONTS
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+
+
+/* =========================================================
    RESET
-================================ */
+========================================================= */
 
 * {
     margin: 0;
@@ -16,22 +21,27 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background: #0b090b;
     color: #eee8dc;
     font-family: "Cormorant Garamond", serif;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 
-/* ================================
-   LANDING
-================================ */
+/* =========================================================
+   LANDING PAGE
+========================================================= */
 
 .landing {
     position: relative;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 
     display: flex;
     justify-content: center;
@@ -46,17 +56,11 @@ body {
         #0b090b;
 }
 
-
-/* ================================
-   GRAIN
-================================ */
-
 .grain {
     position: absolute;
     inset: 0;
 
     pointer-events: none;
-
     opacity: 0.08;
 
     background-image:
@@ -65,31 +69,18 @@ body {
     z-index: 5;
 }
 
-
-/* ================================
-   MAIN CONTENT
-================================ */
-
 .archive-content {
     position: relative;
+    z-index: 10;
 
     text-align: center;
-
-    z-index: 10;
 
     transform: translateY(-40px);
 }
 
-
-/* ================================
-   STATUS
-================================ */
-
 .status {
     font-family: "Cinzel", serif;
-
     font-size: 10px;
-
     letter-spacing: 4px;
 
     color: #a99b83;
@@ -97,16 +88,10 @@ body {
     margin-bottom: 25px;
 }
 
-
-/* ================================
-   TITLE
-================================ */
-
 h1 {
     font-family: "Cinzel", serif;
 
     font-size: clamp(42px, 6vw, 86px);
-
     font-weight: 500;
 
     letter-spacing: 12px;
@@ -119,35 +104,22 @@ h1 {
     margin-left: 12px;
 }
 
-
-/* ================================
-   SUBTITLE
-================================ */
-
 .subtitle {
+    display: block;
+
     margin-top: 20px;
 
     font-size: 19px;
-
     font-style: italic;
-
     letter-spacing: 2px;
 
     color: #bdb3a5;
-
-    display: block;
 }
-
-
-/* ================================
-   ENTER BUTTON
-================================ */
 
 .enter-btn {
     display: inline-block;
 
     margin-top: 45px;
-
     padding: 14px 32px;
 
     background: transparent;
@@ -157,9 +129,7 @@ h1 {
     color: #d8cbb7;
 
     font-family: "Cinzel", serif;
-
     font-size: 11px;
-
     letter-spacing: 3px;
 
     text-decoration: none;
@@ -167,9 +137,13 @@ h1 {
     cursor: pointer;
 
     transition:
-        0.4s ease,
-        box-shadow 0.4s ease;
+        background 0.4s ease,
+        border-color 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
 }
+
 .enter-btn:hover {
     background: rgba(142, 119, 85, 0.08);
 
@@ -183,55 +157,40 @@ h1 {
     transform: translateY(-2px);
 }
 
-/* ================================
-   QUOTE
-================================ */
-
 .quote {
     margin-top: 55px;
 
     font-size: 16px;
-
     font-style: italic;
+    letter-spacing: 1px;
 
     color: #81786d;
-
-    letter-spacing: 1px;
 }
-
-
-/* ================================
-   EST
-================================ */
 
 .est {
     position: fixed;
 
     bottom: 25px;
-
     left: 50%;
 
     transform: translateX(-50%);
 
     font-family: "Cinzel", serif;
-
     font-size: 9px;
-
     letter-spacing: 4px;
 
     color: #655d55;
 }
 
 
-/* ================================
+/* =========================================================
    ARCHIVE BOX
-================================ */
+========================================================= */
 
 .archive-box {
     position: absolute;
 
     right: 8%;
-
     bottom: 10%;
 
     width: 150px;
@@ -258,11 +217,6 @@ h1 {
         );
 }
 
-
-/* ================================
-   BOX BODY
-================================ */
-
 .box-body {
     position: absolute;
 
@@ -283,19 +237,13 @@ h1 {
     border-radius: 4px 4px 8px 8px;
 
     box-shadow:
-        inset 0 0 25px rgba(0,0,0,0.8);
+        inset 0 0 25px rgba(0, 0, 0, 0.8);
 }
-
-
-/* ================================
-   BOX LID
-================================ */
 
 .box-lid {
     position: absolute;
 
     top: 10px;
-
     left: -5px;
 
     width: 160px;
@@ -317,22 +265,17 @@ h1 {
         rotateX(5deg);
 
     box-shadow:
-        inset 0 0 15px rgba(0,0,0,0.7);
+        inset 0 0 15px rgba(0, 0, 0, 0.7);
 }
-
-
-/* ================================
-   LOCK
-================================ */
 
 .lock {
     position: absolute;
 
     left: 50%;
-
     top: 50%;
 
-    transform: translate(-50%, -30%);
+    transform:
+        translate(-50%, -30%);
 
     width: 18px;
     height: 22px;
@@ -357,68 +300,26 @@ h1 {
 
     border-bottom: none;
 
-    border-radius: 8px 8px 0 0;
+    border-radius:
+        8px 8px 0 0;
 }
 
 
-/* ================================
-   MOBILE
-================================ */
-
-@media (max-width: 768px) {
-
-    .archive-content {
-        transform: translateY(-30px);
-
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 38px;
-
-        letter-spacing: 6px;
-    }
-
-    .subtitle {
-        font-size: 16px;
-
-        line-height: 1.5;
-    }
-
-    .archive-box {
-        right: 50%;
-
-        transform:
-            translateX(50%)
-            scale(0.7);
-
-        bottom: 3%;
-    }
-
-    .archive-box:hover {
-        transform:
-            translateX(50%)
-            translateY(-5px)
-            scale(0.7);
-    }
-
-    .quote {
-        margin-top: 35px;
-    }
-}
-/* ================================
+/* =========================================================
    LOGIN PAGE
-================================ */
+========================================================= */
 
 .login-page {
     position: relative;
 
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    padding: 30px;
 
     background:
         radial-gradient(
@@ -428,7 +329,6 @@ h1 {
         ),
         #0b090b;
 }
-
 
 .login-container {
     position: relative;
@@ -446,7 +346,8 @@ h1 {
             rgba(16, 13, 15, 0.96)
         );
 
-    border: 1px solid rgba(142, 119, 85, 0.45);
+    border:
+        1px solid rgba(142, 119, 85, 0.45);
 
     box-shadow:
         0 25px 70px rgba(0, 0, 0, 0.65),
@@ -455,21 +356,17 @@ h1 {
     z-index: 10;
 }
 
-
 .login-label {
     font-family: "Cinzel", serif;
 
     font-size: 9px;
-
     letter-spacing: 4px;
 
     color: #a99b83;
 }
 
-
 .divider {
     width: 55px;
-
     height: 1px;
 
     margin: 22px auto;
@@ -477,28 +374,23 @@ h1 {
     background: #806341;
 }
 
-
 .login-container h1 {
     font-family: "Cinzel", serif;
 
     font-size: 38px;
-
     letter-spacing: 8px;
 
     margin-left: 8px;
 }
 
-
 .login-description {
     margin-top: 15px;
 
     font-size: 17px;
-
     font-style: italic;
 
     color: #81786d;
 }
-
 
 #loginForm {
     margin-top: 40px;
@@ -506,11 +398,9 @@ h1 {
     text-align: left;
 }
 
-
 .input-group {
     margin-bottom: 25px;
 }
-
 
 .input-group label {
     display: block;
@@ -518,14 +408,11 @@ h1 {
     margin-bottom: 9px;
 
     font-family: "Cinzel", serif;
-
     font-size: 9px;
-
     letter-spacing: 3px;
 
     color: #a99b83;
 }
-
 
 .input-group input {
     width: 100%;
@@ -536,21 +423,21 @@ h1 {
 
     border: none;
 
-    border-bottom: 1px solid #5d4b39;
+    border-bottom:
+        1px solid #5d4b39;
 
     outline: none;
 
     color: #eee8dc;
 
-    font-family: "Cormorant Garamond", serif;
+    font-family:
+        "Cormorant Garamond", serif;
 
     font-size: 16px;
-
     letter-spacing: 1px;
 
     transition: 0.3s ease;
 }
-
 
 .input-group input:focus {
     border-bottom-color: #b49a70;
@@ -559,29 +446,78 @@ h1 {
         0 5px 15px rgba(170, 130, 75, 0.08);
 }
 
-
 .input-group input::placeholder {
     color: #4f4842;
 }
 
 
+/* PASSWORD */
+
+.password-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+.password-wrapper input {
+    width: 100%;
+
+    padding-right: 50px;
+}
+
+.toggle-password {
+    position: absolute;
+
+    right: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: auto;
+    height: auto;
+
+    padding: 0;
+
+    background: transparent !important;
+
+    border: none !important;
+
+    color: #a99b83;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    line-height: 1;
+
+    z-index: 10;
+
+    user-select: none;
+}
+
+.toggle-password:hover {
+    color: #d8cbb7;
+}
+
+
+/* UNLOCK BUTTON */
+
 .unlock-btn {
     width: 100%;
 
     margin-top: 15px;
-
     padding: 14px;
 
     background: transparent;
 
-    border: 1px solid #806341;
+    border:
+        1px solid #806341;
 
     color: #d8cbb7;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 10px;
-
     letter-spacing: 4px;
 
     cursor: pointer;
@@ -589,73 +525,54 @@ h1 {
     transition: 0.4s ease;
 }
 
-
 .unlock-btn:hover {
-    background: rgba(142, 119, 85, 0.08);
+    background:
+        rgba(142, 119, 85, 0.08);
 
-    border-color: #c4a878;
+    border-color:
+        #c4a878;
 
-    color: #fff3dc;
+    color:
+        #fff3dc;
 
     box-shadow:
         0 0 25px rgba(170, 130, 75, 0.15);
 }
-
 
 .login-message {
     min-height: 18px;
 
     margin-top: 22px;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 9px;
-
     letter-spacing: 2px;
 
     color: #9b625f;
 }
 
-
 .login-message.success {
     color: #b8a37e;
 }
 
-
 .login-status {
     margin-top: 35px;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 8px;
-
     letter-spacing: 3px;
 
     color: #514b46;
 }
 
 
-/* ================================
-   LOGIN MOBILE
-================================ */
-
-@media (max-width: 600px) {
-
-    .login-container {
-        width: calc(100% - 35px);
-
-        padding: 45px 30px;
-    }
-
-    .login-container h1 {
-        font-size: 32px;
-    }
-
-}
-style.css
-/* ================================
+/* =========================================================
    PERSONAL ARCHIVE
-================================ */
+========================================================= */
 
 .archive-page {
     position: relative;
@@ -677,36 +594,33 @@ style.css
     overflow-x: hidden;
 }
 
-
-/* HEADER */
-
 .archive-header {
     position: relative;
 
     display: flex;
+
     justify-content: space-between;
     align-items: flex-start;
 
-    border-bottom: 1px solid rgba(142, 119, 85, 0.25);
+    border-bottom:
+        1px solid rgba(142, 119, 85, 0.25);
 
     padding-bottom: 25px;
 
     z-index: 2;
 }
 
-
 .archive-small {
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 9px;
-
     letter-spacing: 4px;
 
     color: #8f806d;
 
     margin-bottom: 15px;
 }
-
 
 .archive-header h1 {
     font-size: 32px;
@@ -716,26 +630,22 @@ style.css
     margin-left: 0;
 }
 
-
 .archive-number {
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 9px;
-
     letter-spacing: 3px;
 
     color: #756b61;
 }
 
-
-/* INTRO */
-
 .archive-intro {
     max-width: 600px;
 
-    margin: 55px 0 40px;
+    margin:
+        55px 0 40px;
 }
-
 
 .archive-intro p {
     font-size: 21px;
@@ -747,9 +657,6 @@ style.css
     color: #aaa096;
 }
 
-
-/* GRID */
-
 .archive-grid {
     display: grid;
 
@@ -760,9 +667,6 @@ style.css
 
     max-width: 1100px;
 }
-
-
-/* CARD */
 
 .archive-card {
     position: relative;
@@ -788,13 +692,13 @@ style.css
             rgba(17, 14, 16, 0.9)
         );
 
-    border: 1px solid rgba(142, 119, 85, 0.25);
+    border:
+        1px solid rgba(142, 119, 85, 0.25);
 
     transition: 0.45s ease;
 
     overflow: hidden;
 }
-
 
 .archive-card::before {
     content: "";
@@ -815,37 +719,38 @@ style.css
     transition: 0.45s ease;
 }
 
-
 .archive-card:hover {
-    transform: translateY(-6px);
+    transform:
+        translateY(-6px);
 
-    border-color: rgba(183, 145, 90, 0.55);
+    border-color:
+        rgba(183, 145, 90, 0.55);
 
     box-shadow:
         0 15px 40px rgba(0, 0, 0, 0.45);
 }
 
-
 .archive-card:hover::before {
     opacity: 1;
 }
 
-
 .card-icon {
+    position: relative;
+
     font-size: 25px;
 
     color: #a88d62;
 
-    position: relative;
-
     z-index: 1;
 }
-
 
 .archive-card h2 {
     position: relative;
 
-    font-family: "Cinzel", serif;
+    margin-top: 15px;
+
+    font-family:
+        "Cinzel", serif;
 
     font-size: 17px;
 
@@ -853,11 +758,8 @@ style.css
 
     letter-spacing: 3px;
 
-    margin-top: 15px;
-
     z-index: 1;
 }
-
 
 .archive-card p {
     position: relative;
@@ -871,11 +773,11 @@ style.css
     z-index: 1;
 }
 
-
 .card-count {
     position: relative;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 8px;
 
@@ -886,83 +788,22 @@ style.css
     z-index: 1;
 }
 
-
-/* FUTURE */
-
 .future-card {
-    grid-column: span 2;
+    grid-column:
+        span 2;
 
     border-color:
         rgba(126, 82, 143, 0.25);
 }
-
 
 .future-card .card-count {
     color: #8b7890;
 }
 
 
-/* FOOTER */
-
-.archive-footer {
-    position: relative;
-
-    margin-top: 55px;
-
-    padding-top: 20px;
-
-    border-top:
-        1px solid rgba(142, 119, 85, 0.18);
-
-    display: flex;
-
-    justify-content: space-between;
-
-    font-family: "Cinzel", serif;
-
-    font-size: 8px;
-
-    letter-spacing: 3px;
-
-    color: #514b46;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 800px) {
-
-    .archive-page {
-        padding: 35px 25px;
-    }
-
-    .archive-header h1 {
-        font-size: 25px;
-
-        letter-spacing: 3px;
-    }
-
-    .archive-number {
-        display: none;
-    }
-
-    .archive-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .future-card {
-        grid-column: span 1;
-    }
-
-    .archive-footer {
-        gap: 15px;
-
-        flex-direction: column;
-    }
-}
-/* ================================
+/* =========================================================
    LETTERS
-================================ */
+========================================================= */
 
 .letters-page {
     min-height: 100vh;
@@ -980,13 +821,11 @@ style.css
     color: #eee8dc;
 }
 
-
 .section-header {
     max-width: 800px;
 
     margin-bottom: 55px;
 }
-
 
 .back-link {
     display: inline-block;
@@ -995,10 +834,10 @@ style.css
 
     text-decoration: none;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 9px;
-
     letter-spacing: 3px;
 
     color: #81786d;
@@ -1006,24 +845,21 @@ style.css
     transition: 0.3s;
 }
 
-
 .back-link:hover {
     color: #c4a878;
 }
 
-
 .section-label {
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 9px;
-
     letter-spacing: 3px;
 
     color: #806341;
 
     margin-bottom: 18px;
 }
-
 
 .section-header h1 {
     font-size: 52px;
@@ -1032,7 +868,6 @@ style.css
 
     margin-left: 0;
 }
-
 
 .section-description {
     margin-top: 18px;
@@ -1046,9 +881,6 @@ style.css
     color: #81786d;
 }
 
-
-/* LETTER CARDS */
-
 .letters-list {
     display: grid;
 
@@ -1059,7 +891,6 @@ style.css
 
     max-width: 1100px;
 }
-
 
 .letter-card {
     position: relative;
@@ -1079,58 +910,60 @@ style.css
             rgba(17, 14, 16, 0.95)
         );
 
-    border: 1px solid rgba(142, 119, 85, 0.28);
+    border:
+        1px solid rgba(142, 119, 85, 0.28);
 
     transition: 0.45s ease;
 }
 
-
 .letter-card:hover {
-    transform: translateY(-7px);
+    transform:
+        translateY(-7px);
 
     border-color:
         rgba(183, 145, 90, 0.6);
 
     box-shadow:
-        0 20px 45px rgba(0,0,0,0.45);
+        0 20px 45px rgba(0, 0, 0, 0.45);
 }
-
 
 .letter-top {
     display: flex;
 
     justify-content: space-between;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 8px;
-
     letter-spacing: 2px;
 
     color: #756957;
 }
 
-
 .letter-seal {
     width: 42px;
     height: 42px;
 
-    margin: 35px auto 25px;
+    margin:
+        35px auto 25px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
-    border: 1px solid #806341;
+    border:
+        1px solid #806341;
 
     border-radius: 50%;
 
     color: #b49a70;
 }
 
-
 .letter-card h2 {
-    font-family: "Cormorant Garamond", serif;
+    font-family:
+        "Cormorant Garamond", serif;
 
     font-size: 25px;
 
@@ -1140,7 +973,6 @@ style.css
 
     line-height: 1.2;
 }
-
 
 .letter-preview {
     margin-top: 15px;
@@ -1154,7 +986,6 @@ style.css
     color: #81786d;
 }
 
-
 .read-letter {
     margin-top: auto;
 
@@ -1162,14 +993,15 @@ style.css
 
     background: transparent;
 
-    border: 1px solid #66543f;
+    border:
+        1px solid #66543f;
 
     color: #a99b83;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 8px;
-
     letter-spacing: 3px;
 
     cursor: pointer;
@@ -1177,19 +1009,21 @@ style.css
     transition: 0.3s;
 }
 
-
 .read-letter:hover {
-    border-color: #b49a70;
+    border-color:
+        #b49a70;
 
-    color: #eee8dc;
+    color:
+        #eee8dc;
 
-    background: rgba(142,119,85,0.07);
+    background:
+        rgba(142,119,85,0.07);
 }
 
 
-/* ================================
+/* =========================================================
    LETTER MODAL
-================================ */
+========================================================= */
 
 .letter-modal {
     position: fixed;
@@ -1203,9 +1037,11 @@ style.css
 
     padding: 25px;
 
-    background: rgba(5, 4, 5, 0.88);
+    background:
+        rgba(5, 4, 5, 0.88);
 
-    backdrop-filter: blur(6px);
+    backdrop-filter:
+        blur(6px);
 
     opacity: 0;
 
@@ -1216,18 +1052,17 @@ style.css
     z-index: 100;
 }
 
-
 .letter-modal.active {
     opacity: 1;
 
     pointer-events: auto;
 }
 
-
 .letter-paper {
     position: relative;
 
-    width: min(650px, 100%);
+    width:
+        min(650px, 100%);
 
     max-height: 80vh;
 
@@ -1242,12 +1077,12 @@ style.css
             #171214
         );
 
-    border: 1px solid #806341;
+    border:
+        1px solid #806341;
 
     box-shadow:
         0 30px 80px rgba(0,0,0,0.7);
 }
-
 
 .close-letter {
     position: absolute;
@@ -1266,17 +1101,15 @@ style.css
     cursor: pointer;
 }
 
-
 .modal-from {
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
 
     font-size: 9px;
-
     letter-spacing: 3px;
 
     color: #a88d62;
 }
-
 
 .letter-paper h2 {
     margin-top: 18px;
@@ -1286,17 +1119,14 @@ style.css
     font-weight: 400;
 }
 
-
 .paper-line {
     width: 60px;
-
     height: 1px;
 
     margin: 25px 0;
 
     background: #806341;
 }
-
 
 #modalContent {
     white-space: pre-line;
@@ -1308,7 +1138,6 @@ style.css
     color: #c0b6aa;
 }
 
-
 .letter-signature {
     margin-top: 35px;
 
@@ -1318,78 +1147,18 @@ style.css
 }
 
 
-/* MOBILE */
-
-@media (max-width: 800px) {
-
-    .letters-page {
-        padding: 35px 25px;
-    }
-
-    .section-header h1 {
-        font-size: 38px;
-
-        letter-spacing: 5px;
-    }
-
-    .letters-list {
-        grid-template-columns: 1fr;
-    }
-
-    .letter-paper {
-        padding: 40px 25px;
-    }
-
-}
-.password-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.password-wrapper input {
-    width: 100%;
-    padding-right: 50px;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    color: #a99b83;
-    cursor: pointer;
-    font-size: 16px;
-}
-.password-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.password-wrapper input {
-    width: 100%;
-    padding-right: 50px;
-}
-
-.toggle-password {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 16px;
-    z-index: 10;
-    user-select: none;
-}
-/* =========================
+/* =========================================================
    GENERAL ARCHIVE
-========================= */
+========================================================= */
 
 .general-page {
     position: relative;
+
     min-height: 100vh;
-    padding: 70px 8% 40px;
+
+    padding:
+        70px 8% 40px;
+
     background:
         radial-gradient(
             circle at 50% 20%,
@@ -1397,49 +1166,92 @@ style.css
             transparent 55%
         ),
         #0b090b;
-    overflow: hidden;
+
+    overflow-x: hidden;
 }
+
+
+/* OVERLAY */
+
+.general-page .archive-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at center,
+            transparent 30%,
+            rgba(0, 0, 0, 0.25)
+        );
+
+    z-index: 1;
+}
+
+
+/* HEADER */
 
 .general-header {
     position: relative;
+
     z-index: 5;
 
     display: flex;
+
     justify-content: space-between;
     align-items: flex-start;
 
     max-width: 1200px;
+
     margin: 0 auto;
 }
 
 .general-header h1 {
     margin-top: 15px;
-    font-size: clamp(38px, 5vw, 70px);
+
+    font-size:
+        clamp(38px, 5vw, 70px);
+
     letter-spacing: 8px;
 }
 
 .general-subtitle {
     margin-top: 15px;
+
     color: #8d8479;
+
     font-size: 17px;
+
     font-style: italic;
+
     letter-spacing: 1px;
 }
 
+
+/* INTRO */
+
 .general-intro {
     position: relative;
+
     z-index: 5;
 
     max-width: 600px;
-    margin: 70px auto 100px;
+
+    margin:
+        70px auto 100px;
 
     text-align: center;
 }
 
 .general-intro p {
     color: #a9a095;
+
     font-size: 18px;
+
     line-height: 1.8;
+
     font-style: italic;
 }
 
@@ -1448,21 +1260,31 @@ style.css
 
 .general-collection {
     position: relative;
+
     z-index: 5;
 
     max-width: 1050px;
+
     margin: 0 auto;
 }
 
+
+/* ARCHIVE ITEM */
+
 .archive-item {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     align-items: center;
+
     gap: 80px;
 
     margin-bottom: 120px;
 
     color: inherit;
+
     text-decoration: none;
 }
 
@@ -1485,25 +1307,40 @@ style.css
 
     margin: auto;
 
-    transition: transform 0.6s ease;
+    transition:
+        transform 0.6s ease,
+        filter 0.6s ease;
 }
 
 .archive-item:hover .archive-illustration {
-    transform: translateY(-8px) scale(1.03);
+    transform:
+        translateY(-8px)
+        scale(1.03);
+
+    filter:
+        drop-shadow(
+            0 15px 30px rgba(170, 130, 75, 0.08)
+        );
 }
 
 
 /* ITEM TEXT */
 
 .archive-item-info {
-    border-left: 1px solid #4d4032;
+    border-left:
+        1px solid #4d4032;
+
     padding-left: 35px;
 }
 
 .archive-index {
     color: #756653;
-    font-family: "Cinzel", serif;
+
+    font-family:
+        "Cinzel", serif;
+
     font-size: 10px;
+
     letter-spacing: 3px;
 }
 
@@ -1512,11 +1349,15 @@ style.css
 
     color: #ddd2c0;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
+
     font-size: 28px;
+
     letter-spacing: 5px;
 
-    transition: color 0.4s ease;
+    transition:
+        color 0.4s ease;
 }
 
 .archive-item:hover h2 {
@@ -1529,16 +1370,18 @@ style.css
     color: #8f877d;
 
     font-size: 17px;
+
     line-height: 1.7;
 }
 
 
-/* =========================
+/* =========================================================
    BOOK
-========================= */
+========================================================= */
 
 .book-illustration {
     display: flex;
+
     justify-content: center;
     align-items: center;
 
@@ -1550,27 +1393,36 @@ style.css
     width: 125px;
     height: 175px;
 
-    background: #171218;
+    background:
+        #171218;
 
-    border: 1px solid #765f42;
+    border:
+        1px solid #765f42;
 
     box-shadow:
         0 15px 35px rgba(0,0,0,.6);
 }
 
 .book-left {
-    transform: rotateY(18deg);
-    border-radius: 5px 0 0 5px;
+    transform:
+        rotateY(18deg);
+
+    border-radius:
+        5px 0 0 5px;
 }
 
 .book-right {
-    transform: rotateY(-18deg);
-    border-radius: 0 5px 5px 0;
+    transform:
+        rotateY(-18deg);
+
+    border-radius:
+        0 5px 5px 0;
 }
 
 .book-left::after,
 .book-right::after {
     content: "";
+
     display: block;
 
     width: 45%;
@@ -1578,18 +1430,21 @@ style.css
 
     margin: 45px auto;
 
-    border: 1px solid #806847;
+    border:
+        1px solid #806847;
 
-    transform: rotate(45deg);
+    transform:
+        rotate(45deg);
 }
 
 
-/* =========================
+/* =========================================================
    CLOCK
-========================= */
+========================================================= */
 
 .clock-illustration {
     display: flex;
+
     justify-content: center;
     align-items: center;
 }
@@ -1600,11 +1455,38 @@ style.css
     width: 190px;
     height: 190px;
 
-    border: 2px solid #806847;
+    border:
+        2px solid #806847;
+
     border-radius: 50%;
 
     box-shadow:
         0 0 35px rgba(170,130,75,.08);
+}
+
+.clock-face::before,
+.clock-face::after {
+    content: "";
+
+    position: absolute;
+
+    background: #806847;
+}
+
+.clock-face::before {
+    width: 1px;
+    height: 10px;
+
+    top: 8px;
+    left: 50%;
+}
+
+.clock-face::after {
+    width: 10px;
+    height: 1px;
+
+    top: 50%;
+    right: 8px;
 }
 
 .clock-hand {
@@ -1615,28 +1497,35 @@ style.css
 
     width: 2px;
 
-    transform-origin: bottom;
+    transform-origin:
+        bottom;
 
-    background: #b29a72;
+    background:
+        #b29a72;
 }
 
 .clock-hand.hour {
     height: 50px;
-    transform: rotate(40deg);
+
+    transform:
+        rotate(40deg);
 }
 
 .clock-hand.minute {
     height: 70px;
-    transform: rotate(130deg);
+
+    transform:
+        rotate(130deg);
 }
 
 
-/* =========================
+/* =========================================================
    PHOTOS
-========================= */
+========================================================= */
 
 .photo-illustration {
     display: flex;
+
     justify-content: center;
     align-items: center;
 }
@@ -1647,11 +1536,14 @@ style.css
 
     padding: 10px;
 
-    background: #ddd2c0;
+    background:
+        #ddd2c0;
 
-    transform: rotate(-6deg);
+    transform:
+        rotate(-6deg);
 
-    box-shadow: 0 20px 35px rgba(0,0,0,.6);
+    box-shadow:
+        0 20px 35px rgba(0,0,0,.6);
 }
 
 .photo-image {
@@ -1680,14 +1572,16 @@ style.css
 }
 
 
-/* =========================
+/* =========================================================
    PEOPLE
-========================= */
+========================================================= */
 
 .people-illustration {
     display: flex;
+
     justify-content: center;
     align-items: flex-end;
+
     gap: 8px;
 }
 
@@ -1695,11 +1589,14 @@ style.css
     width: 65px;
     height: 145px;
 
-    border: 1px solid #765f42;
+    border:
+        1px solid #765f42;
 
-    background: #171218;
+    background:
+        #171218;
 
-    box-shadow: 0 15px 30px rgba(0,0,0,.5);
+    box-shadow:
+        0 15px 30px rgba(0,0,0,.5);
 }
 
 .portrait-one {
@@ -1719,12 +1616,13 @@ style.css
 }
 
 
-/* =========================
+/* =========================================================
    FINAL CHAPTER
-========================= */
+========================================================= */
 
 .final-illustration {
     display: flex;
+
     justify-content: center;
     align-items: center;
 }
@@ -1735,40 +1633,51 @@ style.css
     width: 190px;
     height: 220px;
 
-    background: #d8cdbb;
+    background:
+        #d8cdbb;
 
-    transform: rotate(-5deg);
+    transform:
+        rotate(-5deg);
 
-    box-shadow: 0 20px 40px rgba(0,0,0,.6);
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.6);
 }
 
 .graduation-cap {
     position: relative;
+
     z-index: 2;
 
-    transform: rotate(-8deg);
+    transform:
+        rotate(-8deg);
 }
 
 .cap-top {
     width: 115px;
     height: 55px;
 
-    background: #151116;
+    background:
+        #151116;
 
-    border: 1px solid #806847;
+    border:
+        1px solid #806847;
 
-    transform: skew(-25deg);
+    transform:
+        skew(-25deg);
 }
 
 .cap-base {
     width: 80px;
     height: 15px;
 
-    margin: -3px auto;
+    margin:
+        -3px auto;
 
-    background: #151116;
+    background:
+        #151116;
 
-    border: 1px solid #806847;
+    border:
+        1px solid #806847;
 }
 
 .tassel {
@@ -1777,94 +1686,162 @@ style.css
 
     margin-left: 95px;
 
-    background: #b29a72;
+    background:
+        #b29a72;
 
-    transform: rotate(-20deg);
+    transform:
+        rotate(-20deg);
 }
 
 
-/* =========================
+/* =========================================================
    PERSONAL ACCESS
-========================= */
+========================================================= */
 
 .personal-access {
     position: relative;
+
     z-index: 5;
 
     max-width: 700px;
 
-    margin: 40px auto 100px;
+    margin:
+        40px auto 100px;
 
-    padding: 70px 30px;
+    padding:
+        70px 30px;
 
     text-align: center;
 
-    border-top: 1px solid #3e3429;
-    border-bottom: 1px solid #3e3429;
+    border-top:
+        1px solid #3e3429;
+
+    border-bottom:
+        1px solid #3e3429;
 }
 
 .personal-access h2 {
-    margin: 15px 0;
+    margin:
+        15px 0;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
+
     font-size: 28px;
+
     letter-spacing: 5px;
 
-    color: #ddd2c0;
+    color:
+        #ddd2c0;
 }
 
 .personal-access > p:not(.archive-small) {
-    margin: 15px auto 30px;
+    margin:
+        15px auto 30px;
 
     max-width: 450px;
 
-    color: #827a71;
+    color:
+        #827a71;
 
     font-size: 16px;
+
     line-height: 1.7;
 }
 
 .personal-btn {
     display: inline-block;
 
-    padding: 13px 28px;
+    padding:
+        13px 28px;
 
-    border: 1px solid #765f42;
+    border:
+        1px solid #765f42;
 
-    color: #c8b99f;
+    color:
+        #c8b99f;
 
-    font-family: "Cinzel", serif;
+    font-family:
+        "Cinzel", serif;
+
     font-size: 10px;
+
     letter-spacing: 3px;
 
     text-decoration: none;
 
-    transition: .4s ease;
+    transition:
+        0.4s ease;
 }
 
 .personal-btn:hover {
-    border-color: #c4a878;
+    border-color:
+        #c4a878;
 
-    color: #fff0d2;
+    color:
+        #fff0d2;
 
     box-shadow:
         0 0 25px rgba(170,130,75,.15);
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 
-/* MOBILE */
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.archive-footer {
+    position: relative;
+
+    z-index: 5;
+
+    margin-top: 55px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid rgba(142,119,85,0.18);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-family:
+        "Cinzel", serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color:
+        #514b46;
+}
+
+
+/* =========================================================
+   GENERAL ARCHIVE MOBILE
+========================================================= */
 
 @media (max-width: 768px) {
 
     .general-page {
-        padding: 50px 25px 30px;
+        padding:
+            50px 25px 30px;
     }
 
     .general-header {
         display: block;
+
         text-align: center;
+    }
+
+    .general-header h1 {
+        font-size: 38px;
+
+        letter-spacing: 6px;
     }
 
     .archive-number {
@@ -1872,7 +1849,8 @@ style.css
     }
 
     .general-intro {
-        margin: 60px auto 80px;
+        margin:
+            60px auto 80px;
     }
 
     .archive-item,
@@ -1899,4 +1877,128 @@ style.css
         padding-left: 20px;
     }
 
+    .archive-item-info h2 {
+        font-size: 23px;
+
+        letter-spacing: 4px;
+    }
+
+    .archive-item-info p {
+        font-size: 16px;
+    }
+
+    .personal-access {
+        margin-bottom: 60px;
+
+        padding:
+            55px 20px;
+    }
+
+    .archive-footer {
+        gap: 15px;
+
+        flex-direction: column;
+
+        text-align: center;
+
+        align-items: center;
+    }
+}
+
+
+/* =========================================================
+   PERSONAL ARCHIVE MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .archive-page {
+        padding:
+            35px 25px;
+    }
+
+    .archive-header {
+        display: block;
+    }
+
+    .archive-header h1 {
+        font-size: 25px;
+
+        letter-spacing: 3px;
+    }
+
+    .archive-number {
+        display: none;
+    }
+
+    .archive-grid {
+        grid-template-columns:
+            1fr;
+    }
+
+    .future-card {
+        grid-column:
+            span 1;
+    }
+
+    .archive-footer {
+        gap: 15px;
+
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================================
+   LETTERS MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .letters-page {
+        padding:
+            35px 25px;
+    }
+
+    .section-header h1 {
+        font-size: 38px;
+
+        letter-spacing: 5px;
+    }
+
+    .letters-list {
+        grid-template-columns:
+            1fr;
+    }
+
+    .letter-paper {
+        padding:
+            40px 25px;
+    }
+}
+
+
+/* =========================================================
+   LOGIN MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .login-page {
+        padding: 20px;
+    }
+
+    .login-container {
+        width:
+            calc(100% - 10px);
+
+        padding:
+            45px 30px;
+    }
+
+    .login-container h1 {
+        font-size: 32px;
+
+        letter-spacing: 6px;
+    }
 }
