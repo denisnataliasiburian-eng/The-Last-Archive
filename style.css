@@ -649,3 +649,310 @@ h1 {
 
 }
 style.css
+/* ================================
+   PERSONAL ARCHIVE
+================================ */
+
+.archive-page {
+    position: relative;
+
+    min-height: 100vh;
+
+    padding: 55px 8%;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(69, 43, 77, 0.16),
+            transparent 55%
+        ),
+        #0b090b;
+
+    color: #eee8dc;
+
+    overflow-x: hidden;
+}
+
+
+/* HEADER */
+
+.archive-header {
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    border-bottom: 1px solid rgba(142, 119, 85, 0.25);
+
+    padding-bottom: 25px;
+
+    z-index: 2;
+}
+
+
+.archive-small {
+    font-family: "Cinzel", serif;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #8f806d;
+
+    margin-bottom: 15px;
+}
+
+
+.archive-header h1 {
+    font-size: 32px;
+
+    letter-spacing: 5px;
+
+    margin-left: 0;
+}
+
+
+.archive-number {
+    font-family: "Cinzel", serif;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    color: #756b61;
+}
+
+
+/* INTRO */
+
+.archive-intro {
+    max-width: 600px;
+
+    margin: 55px 0 40px;
+}
+
+
+.archive-intro p {
+    font-size: 21px;
+
+    font-style: italic;
+
+    line-height: 1.5;
+
+    color: #aaa096;
+}
+
+
+/* GRID */
+
+.archive-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    max-width: 1100px;
+}
+
+
+/* CARD */
+
+.archive-card {
+    position: relative;
+
+    min-height: 220px;
+
+    padding: 30px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    text-decoration: none;
+
+    color: #eee8dc;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(40, 31, 34, 0.8),
+            rgba(17, 14, 16, 0.9)
+        );
+
+    border: 1px solid rgba(142, 119, 85, 0.25);
+
+    transition: 0.45s ease;
+
+    overflow: hidden;
+}
+
+
+.archive-card::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(126, 82, 143, 0.12),
+            transparent 45%
+        );
+
+    opacity: 0;
+
+    transition: 0.45s ease;
+}
+
+
+.archive-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(183, 145, 90, 0.55);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.45);
+}
+
+
+.archive-card:hover::before {
+    opacity: 1;
+}
+
+
+.card-icon {
+    font-size: 25px;
+
+    color: #a88d62;
+
+    position: relative;
+
+    z-index: 1;
+}
+
+
+.archive-card h2 {
+    position: relative;
+
+    font-family: "Cinzel", serif;
+
+    font-size: 17px;
+
+    font-weight: 500;
+
+    letter-spacing: 3px;
+
+    margin-top: 15px;
+
+    z-index: 1;
+}
+
+
+.archive-card p {
+    position: relative;
+
+    font-size: 16px;
+
+    line-height: 1.4;
+
+    color: #81786d;
+
+    z-index: 1;
+}
+
+
+.card-count {
+    position: relative;
+
+    font-family: "Cinzel", serif;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #766957;
+
+    z-index: 1;
+}
+
+
+/* FUTURE */
+
+.future-card {
+    grid-column: span 2;
+
+    border-color:
+        rgba(126, 82, 143, 0.25);
+}
+
+
+.future-card .card-count {
+    color: #8b7890;
+}
+
+
+/* FOOTER */
+
+.archive-footer {
+    position: relative;
+
+    margin-top: 55px;
+
+    padding-top: 20px;
+
+    border-top:
+        1px solid rgba(142, 119, 85, 0.18);
+
+    display: flex;
+
+    justify-content: space-between;
+
+    font-family: "Cinzel", serif;
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #514b46;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+    .archive-page {
+        padding: 35px 25px;
+    }
+
+    .archive-header h1 {
+        font-size: 25px;
+
+        letter-spacing: 3px;
+    }
+
+    .archive-number {
+        display: none;
+    }
+
+    .archive-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .future-card {
+        grid-column: span 1;
+    }
+
+    .archive-footer {
+        gap: 15px;
+
+        flex-direction: column;
+    }
+}
