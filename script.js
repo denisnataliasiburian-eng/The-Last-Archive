@@ -402,3 +402,15 @@ h1 {
         margin-top: 35px;
     }
 }
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("accessKey");
+
+togglePassword.addEventListener("click", function() {
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        togglePassword.textContent = "🙈";
+    } else {
+        passwordInput.type = "password";
+        togglePassword.textContent = "👁";
+    }
+});
