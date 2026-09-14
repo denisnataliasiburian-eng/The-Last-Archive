@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Access | The Last Archive</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="login-page">
+
+        <div class="login-grain"></div>
+
+        <section class="login-container">
+
+            <p class="login-label">
+                THE LAST ARCHIVE
+            </p>
+
+            <div class="divider"></div>
+
+            <h1>ACCESS</h1>
+
+            <p class="login-description">
+                Every archive has a key.
+            </p>
+
+            <form id="loginForm">
+
+                <div class="input-group">
+
+                    <label for="archiveId">
+                        ARCHIVE ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="archiveId"
+                        placeholder="ARCHIVE-XX"
+                        autocomplete="off"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label for="accessKey">
+                        ACCESS KEY
+                    </label>
+
+                    <input
+                        type="password"
+                        id="accessKey"
+                        placeholder="••••••••"
+                        required
+                    >
+
+                </div>
+
+
+                <button type="submit" class="unlock-btn">
+                    UNLOCK
+                </button>
+
+            </form>
+
+
+            <p id="loginMessage" class="login-message"></p>
+
+            <p class="login-status">
+                ARCHIVE STATUS: LOCKED
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        const loginForm = document.getElementById("loginForm");
+        const loginMessage = document.getElementById("loginMessage");
+
+        loginForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const archiveId =
+                document.getElementById("archiveId").value.trim();
+
+            const accessKey =
+                document.getElementById("accessKey").value;
+
+            if (archiveId && accessKey) {
+
+                loginMessage.textContent =
+                    "ARCHIVE ACCESS GRANTED.";
+
+                loginMessage.classList.add("success");
+
+                setTimeout(() => {
+
+                    window.location.href = "archive.html";
+
+                }, 1000);
+
+            } else {
+
+                loginMessage.textContent =
+                    "ACCESS DENIED — INVALID ARCHIVE KEY.";
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
