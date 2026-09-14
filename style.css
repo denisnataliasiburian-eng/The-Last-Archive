@@ -1382,3 +1382,521 @@ style.css
     z-index: 10;
     user-select: none;
 }
+/* =========================
+   GENERAL ARCHIVE
+========================= */
+
+.general-page {
+    position: relative;
+    min-height: 100vh;
+    padding: 70px 8% 40px;
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(65, 38, 72, 0.18),
+            transparent 55%
+        ),
+        #0b090b;
+    overflow: hidden;
+}
+
+.general-header {
+    position: relative;
+    z-index: 5;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.general-header h1 {
+    margin-top: 15px;
+    font-size: clamp(38px, 5vw, 70px);
+    letter-spacing: 8px;
+}
+
+.general-subtitle {
+    margin-top: 15px;
+    color: #8d8479;
+    font-size: 17px;
+    font-style: italic;
+    letter-spacing: 1px;
+}
+
+.general-intro {
+    position: relative;
+    z-index: 5;
+
+    max-width: 600px;
+    margin: 70px auto 100px;
+
+    text-align: center;
+}
+
+.general-intro p {
+    color: #a9a095;
+    font-size: 18px;
+    line-height: 1.8;
+    font-style: italic;
+}
+
+
+/* COLLECTION */
+
+.general-collection {
+    position: relative;
+    z-index: 5;
+
+    max-width: 1050px;
+    margin: 0 auto;
+}
+
+.archive-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 80px;
+
+    margin-bottom: 120px;
+
+    color: inherit;
+    text-decoration: none;
+}
+
+.archive-item.reverse {
+    direction: rtl;
+}
+
+.archive-item.reverse .archive-item-info {
+    direction: ltr;
+}
+
+
+/* ILLUSTRATION */
+
+.archive-illustration {
+    position: relative;
+
+    width: 330px;
+    height: 250px;
+
+    margin: auto;
+
+    transition: transform 0.6s ease;
+}
+
+.archive-item:hover .archive-illustration {
+    transform: translateY(-8px) scale(1.03);
+}
+
+
+/* ITEM TEXT */
+
+.archive-item-info {
+    border-left: 1px solid #4d4032;
+    padding-left: 35px;
+}
+
+.archive-index {
+    color: #756653;
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+}
+
+.archive-item-info h2 {
+    margin: 12px 0;
+
+    color: #ddd2c0;
+
+    font-family: "Cinzel", serif;
+    font-size: 28px;
+    letter-spacing: 5px;
+
+    transition: color 0.4s ease;
+}
+
+.archive-item:hover h2 {
+    color: #c5a878;
+}
+
+.archive-item-info p {
+    max-width: 400px;
+
+    color: #8f877d;
+
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+
+/* =========================
+   BOOK
+========================= */
+
+.book-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    perspective: 800px;
+}
+
+.book-left,
+.book-right {
+    width: 125px;
+    height: 175px;
+
+    background: #171218;
+
+    border: 1px solid #765f42;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.6);
+}
+
+.book-left {
+    transform: rotateY(18deg);
+    border-radius: 5px 0 0 5px;
+}
+
+.book-right {
+    transform: rotateY(-18deg);
+    border-radius: 0 5px 5px 0;
+}
+
+.book-left::after,
+.book-right::after {
+    content: "";
+    display: block;
+
+    width: 45%;
+    height: 45%;
+
+    margin: 45px auto;
+
+    border: 1px solid #806847;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================
+   CLOCK
+========================= */
+
+.clock-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock-face {
+    position: relative;
+
+    width: 190px;
+    height: 190px;
+
+    border: 2px solid #806847;
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 35px rgba(170,130,75,.08);
+}
+
+.clock-hand {
+    position: absolute;
+
+    left: 50%;
+    bottom: 50%;
+
+    width: 2px;
+
+    transform-origin: bottom;
+
+    background: #b29a72;
+}
+
+.clock-hand.hour {
+    height: 50px;
+    transform: rotate(40deg);
+}
+
+.clock-hand.minute {
+    height: 70px;
+    transform: rotate(130deg);
+}
+
+
+/* =========================
+   PHOTOS
+========================= */
+
+.photo-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-frame {
+    width: 170px;
+    height: 205px;
+
+    padding: 10px;
+
+    background: #ddd2c0;
+
+    transform: rotate(-6deg);
+
+    box-shadow: 0 20px 35px rgba(0,0,0,.6);
+}
+
+.photo-image {
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #272027,
+            #100d11
+        );
+}
+
+.small-photo {
+    position: absolute;
+
+    width: 125px;
+    height: 155px;
+
+    transform:
+        translate(80px, 45px)
+        rotate(8deg);
+
+    z-index: -1;
+}
+
+
+/* =========================
+   PEOPLE
+========================= */
+
+.people-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.portrait {
+    width: 65px;
+    height: 145px;
+
+    border: 1px solid #765f42;
+
+    background: #171218;
+
+    box-shadow: 0 15px 30px rgba(0,0,0,.5);
+}
+
+.portrait-one {
+    height: 170px;
+}
+
+.portrait-two {
+    height: 140px;
+}
+
+.portrait-three {
+    height: 160px;
+}
+
+.portrait-four {
+    height: 150px;
+}
+
+
+/* =========================
+   FINAL CHAPTER
+========================= */
+
+.final-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paper {
+    position: absolute;
+
+    width: 190px;
+    height: 220px;
+
+    background: #d8cdbb;
+
+    transform: rotate(-5deg);
+
+    box-shadow: 0 20px 40px rgba(0,0,0,.6);
+}
+
+.graduation-cap {
+    position: relative;
+    z-index: 2;
+
+    transform: rotate(-8deg);
+}
+
+.cap-top {
+    width: 115px;
+    height: 55px;
+
+    background: #151116;
+
+    border: 1px solid #806847;
+
+    transform: skew(-25deg);
+}
+
+.cap-base {
+    width: 80px;
+    height: 15px;
+
+    margin: -3px auto;
+
+    background: #151116;
+
+    border: 1px solid #806847;
+}
+
+.tassel {
+    width: 2px;
+    height: 55px;
+
+    margin-left: 95px;
+
+    background: #b29a72;
+
+    transform: rotate(-20deg);
+}
+
+
+/* =========================
+   PERSONAL ACCESS
+========================= */
+
+.personal-access {
+    position: relative;
+    z-index: 5;
+
+    max-width: 700px;
+
+    margin: 40px auto 100px;
+
+    padding: 70px 30px;
+
+    text-align: center;
+
+    border-top: 1px solid #3e3429;
+    border-bottom: 1px solid #3e3429;
+}
+
+.personal-access h2 {
+    margin: 15px 0;
+
+    font-family: "Cinzel", serif;
+    font-size: 28px;
+    letter-spacing: 5px;
+
+    color: #ddd2c0;
+}
+
+.personal-access > p:not(.archive-small) {
+    margin: 15px auto 30px;
+
+    max-width: 450px;
+
+    color: #827a71;
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.personal-btn {
+    display: inline-block;
+
+    padding: 13px 28px;
+
+    border: 1px solid #765f42;
+
+    color: #c8b99f;
+
+    font-family: "Cinzel", serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+
+    text-decoration: none;
+
+    transition: .4s ease;
+}
+
+.personal-btn:hover {
+    border-color: #c4a878;
+
+    color: #fff0d2;
+
+    box-shadow:
+        0 0 25px rgba(170,130,75,.15);
+
+    transform: translateY(-2px);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .general-page {
+        padding: 50px 25px 30px;
+    }
+
+    .general-header {
+        display: block;
+        text-align: center;
+    }
+
+    .archive-number {
+        margin-top: 20px;
+    }
+
+    .general-intro {
+        margin: 60px auto 80px;
+    }
+
+    .archive-item,
+    .archive-item.reverse {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 35px;
+
+        margin-bottom: 90px;
+
+        direction: ltr;
+    }
+
+    .archive-illustration {
+        width: 280px;
+        height: 220px;
+    }
+
+    .archive-item-info {
+        width: 100%;
+
+        padding-left: 20px;
+    }
+
+}
