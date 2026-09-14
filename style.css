@@ -143,19 +143,24 @@ h1 {
 
 .enter-btn {
     display: inline-block;
-    text-decoration: none;
 
     margin-top: 45px;
+
     padding: 14px 32px;
 
     background: transparent;
+
     border: 1px solid #8e7755;
 
     color: #d8cbb7;
 
     font-family: "Cinzel", serif;
+
     font-size: 11px;
+
     letter-spacing: 3px;
+
+    text-decoration: none;
 
     cursor: pointer;
 
@@ -163,7 +168,6 @@ h1 {
         0.4s ease,
         box-shadow 0.4s ease;
 }
-
 
 /* ================================
    QUOTE
