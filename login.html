@@ -164,6 +164,18 @@ loginForm.addEventListener("submit", function(event) {
     }
 
 });
+        function togglePassword() {
+    const password = document.getElementById("accessKey");
+    const eye = document.querySelector(".toggle-password");
+
+    if (password.type === "password") {
+        password.type = "text";
+        eye.textContent = "🙈";
+    } else {
+        password.type = "password";
+        eye.textContent = "👁";
+    }
+}
 
 </script>
 
