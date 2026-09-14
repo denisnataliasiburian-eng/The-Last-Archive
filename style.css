@@ -168,6 +168,18 @@ h1 {
         0.4s ease,
         box-shadow 0.4s ease;
 }
+.enter-btn:hover {
+    background: rgba(142, 119, 85, 0.08);
+
+    border-color: #c4a878;
+
+    color: #fff3dc;
+
+    box-shadow:
+        0 0 20px rgba(170, 130, 75, 0.18);
+
+    transform: translateY(-2px);
+}
 
 /* ================================
    QUOTE
