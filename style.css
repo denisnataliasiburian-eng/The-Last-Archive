@@ -1,1 +1,13 @@
+function openArchive() {
 
+    const status = document.querySelector(".status");
+    const button = document.querySelector(".enter-btn");
+
+    status.textContent = "ARCHIVE STATUS: OPENING...";
+    button.textContent = "OPENING...";
+
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 1500);
+
+}
