@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Story | The Last Archive</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* =====================================================
+           OUR STORY
+           Visual language: The Last Archive
+        ===================================================== */
+
+        .story-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 50% 20%, rgba(92, 67, 104, 0.14), transparent 35%),
+                #11100f;
+            color: #e9e1d2;
+            position: relative;
+            overflow-x: hidden;
+            padding: 70px 8% 90px;
+        }
+
+        .story-page::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.08;
+            background-image:
+                radial-gradient(#ffffff 0.5px, transparent 0.5px);
+            background-size: 5px 5px;
+            z-index: 0;
+        }
+
+        .story-container {
+            max-width: 1050px;
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .story-header {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .story-small {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: #a88b59;
+            margin-bottom: 18px;
+        }
+
+        .story-header h1 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(42px, 7vw, 78px);
+            font-weight: 400;
+            letter-spacing: 6px;
+            margin: 0;
+            color: #eee6d8;
+        }
+
+        .story-subtitle {
+            font-family: Georgia, "Times New Roman", serif;
+            font-style: italic;
+            color: #a99d8c;
+            margin-top: 20px;
+            font-size: 17px;
+        }
+
+        .story-line {
+            width: 90px;
+            height: 1px;
+            background: #a88b59;
+            margin: 35px auto 0;
+            opacity: 0.8;
+        }
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        .story-intro {
+            max-width: 720px;
+            margin: 0 auto 120px;
+            text-align: center;
+        }
+
+        .story-intro p {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 21px;
+            line-height: 1.9;
+            color: #d4ccbd;
+            margin: 0;
+        }
+
+        .story-intro p::first-letter {
+            font-size: 58px;
+            float: left;
+            line-height: 0.8;
+            padding-right: 8px;
+            color: #a88b59;
+        }
+
+        /* =====================================================
+           STORY SECTIONS
+        ===================================================== */
+
+        .story-section {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto 110px;
+            padding-left: 70px;
+        }
+
+        .story-section::before {
+            content: "";
+            position: absolute;
+            left: 25px;
+            top: 5px;
+            bottom: -60px;
+            width: 1px;
+            background: linear-gradient(
+                to bottom,
+                rgba(168, 139, 89, 0.7),
+                rgba(168, 139, 89, 0.08)
+            );
+        }
+
+        .story-section:last-child::before {
+            display: none;
+        }
+
+        .story-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            width: 50px;
+            height: 50px;
+
+            border: 1px solid rgba(168, 139, 89, 0.7);
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 15px;
+            color: #b99b67;
+
+            background: #11100f;
+            z-index: 2;
+        }
+
+        .story-section h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-weight: 400;
+            font-size: 30px;
+            letter-spacing: 2px;
+            color: #e9dfce;
+            margin: 0 0 25px;
+        }
+
+        .story-section h2::after {
+            content: "";
+            display: block;
+            width: 45px;
+            height: 1px;
+            background: #a88b59;
+            margin-top: 13px;
+        }
+
+        .story-section p {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 17px;
+            line-height: 2;
+            color: #bcb3a5;
+            margin: 0 0 18px;
+        }
+
+        /* =====================================================
+           ARCHIVE QUOTE
+        ===================================================== */
+
+        .story-quote {
+            max-width: 720px;
+            margin: 130px auto;
+            padding: 55px 50px;
+
+            border-top: 1px solid rgba(168, 139, 89, 0.5);
+            border-bottom: 1px solid rgba(168, 139, 89, 0.5);
+
+            text-align: center;
+        }
+
+        .story-quote p {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 26px;
+            line-height: 1.7;
+            font-style: italic;
+            color: #ddd3c3;
+            margin: 0;
+        }
+
+        .story-quote span {
+            display: block;
+            margin-top: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+            color: #a88b59;
+        }
+
+        /* =====================================================
+           FINAL PAGE
+        ===================================================== */
+
+        .story-ending {
+            max-width: 750px;
+            margin: 150px auto 100px;
+            text-align: center;
+        }
+
+        .story-ending .story-small {
+            margin-bottom: 25px;
+        }
+
+        .story-ending h2 {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 38px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: #e8dfd0;
+            margin-bottom: 30px;
+        }
+
+        .story-ending p {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 18px;
+            line-height: 2;
+            color: #bdb3a4;
+            margin-bottom: 15px;
+        }
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .story-navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 90px;
+        }
+
+        .story-nav-btn {
+            display: inline-block;
+            padding: 14px 25px;
+
+            border: 1px solid rgba(168, 139, 89, 0.6);
+
+            color: #cbb58c;
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+
+            transition: all 0.3s ease;
+        }
+
+        .story-nav-btn:hover {
+            background: rgba(168, 139, 89, 0.1);
+            border-color: #b99b67;
+            color: #eee6d8;
+            transform: translateY(-2px);
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .story-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            max-width: 1050px;
+            margin: 100px auto 0;
+            padding-top: 25px;
+
+            border-top: 1px solid rgba(168, 139, 89, 0.2);
+
+            font-family: Arial, sans-serif;
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: #756d62;
+        }
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media (max-width: 700px) {
+
+            .story-page {
+                padding: 55px 7% 70px;
+            }
+
+            .story-header {
+                margin-bottom: 75px;
+            }
+
+            .story-header h1 {
+                font-size: 42px;
+                letter-spacing: 4px;
+            }
+
+            .story-subtitle {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .story-intro {
+                margin-bottom: 90px;
+            }
+
+            .story-intro p {
+                font-size: 18px;
+                line-height: 1.8;
+            }
+
+            .story-section {
+                padding-left: 50px;
+                margin-bottom: 90px;
+            }
+
+            .story-section::before {
+                left: 18px;
+            }
+
+            .story-number {
+                width: 38px;
+                height: 38px;
+                font-size: 12px;
+            }
+
+            .story-section h2 {
+                font-size: 24px;
+            }
+
+            .story-section p {
+                font-size: 16px;
+                line-height: 1.85;
+            }
+
+            .story-quote {
+                margin: 100px auto;
+                padding: 40px 20px;
+            }
+
+            .story-quote p {
+                font-size: 21px;
+            }
+
+            .story-ending {
+                margin: 110px auto 70px;
+            }
+
+            .story-ending h2 {
+                font-size: 30px;
+            }
+
+            .story-ending p {
+                font-size: 16px;
+            }
+
+            .story-navigation {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .story-footer {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<main class="story-page">
+
+    <div class="story-container">
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="story-header">
+
+            <p class="story-small">
+                THE LAST ARCHIVE · GENERAL ARCHIVE · 01
+            </p>
+
+            <h1>OUR STORY</h1>
+
+            <p class="story-subtitle">
+                Four people. One chapter. A collection of ordinary days.
+            </p>
+
+            <div class="story-line"></div>
+
+        </header>
+
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
+        <section class="story-intro">
+
+            <p>
+                We didn't know these days would become memories.
+                At the time, they were simply days we lived,
+                laughed through, complained about, and somehow
+                made our own.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             01 — BEFORE WE WERE US
+        ================================================== -->
+
+        <section class="story-section">
+
+            <div class="story-number">
+                01
+            </div>
+
+            <h2>BEFORE WE WERE US</h2>
+
+            <p>
+                Before there was a group, there were four separate
+                lives. Four different stories, personalities,
+                problems, dreams, and ways of seeing the world.
+            </p>
+
+            <p>
+                None of us knew exactly where university would take
+                us, or that somewhere along the way, our paths would
+                become connected.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             02 — HOW IT STARTED
+        ================================================== -->
+
+        <section class="story-section">
+
+            <div class="story-number">
+                02
+            </div>
+
+            <h2>HOW IT STARTED</h2>
+
+            <p>
+                Somehow, little by little, we became familiar.
+                Conversations became routines. Routines became
+                memories.
+            </p>
+
+            <p>
+                There was no dramatic moment when we suddenly
+                became a group. It happened quietly, through
+                repeated days and ordinary moments that eventually
+                started to mean something.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             QUOTE
+        ================================================== -->
+
+        <div class="story-quote">
+
+            <p>
+                “The moments that matter most rarely announce
+                themselves while they are happening.”
+            </p>
+
+            <span>
+                ARCHIVE NOTE · 2026
+            </span>
+
+        </div>
+
+
+        <!-- =================================================
+             03 — THE ORDINARY DAYS
+        ================================================== -->
+
+        <section class="story-section">
+
+            <div class="story-number">
+                03
+            </div>
+
+            <h2>THE ORDINARY DAYS</h2>
+
+            <p>
+                Some of our favorite memories were probably the
+                ones we never thought to remember.
+            </p>
+
+            <p>
+                Sitting together. Talking about things that made no
+                sense. Complaining about assignments. Laughing at
+                something completely random. Being together without
+                needing a special reason.
+            </p>
+
+            <p>
+                Ordinary days became the background of our story.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             04 — THE CHAOS WE SHARED
+        ================================================== -->
+
+        <section class="story-section">
+
+            <div class="story-number">
+                04
+            </div>
+
+            <h2>THE CHAOS WE SHARED</h2>
+
+            <p>
+                Of course, our story was never perfectly organized.
+            </p>
+
+            <p>
+                There were misunderstandings, last-minute plans,
+                unfinished conversations, ridiculous jokes, strange
+                decisions, and moments that would probably sound
+                completely different if anyone outside the group
+                heard them.
+            </p>
+
+            <p>
+                Maybe that was part of what made it ours.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             05 — SOMEHOW, WE GREW
+        ================================================== -->
+
+        <section class="story-section">
+
+            <div class="story-number">
+                05
+            </div>
+
+            <h2>SOMEHOW, WE GREW</h2>
+
+            <p>
+                Somewhere between the assignments, deadlines,
+                presentations, projects, exhaustion, and everything
+                else that came with university, we changed.
+            </p>
+
+            <p>
+                Not all at once.
+                Not in ways we could immediately notice.
+            </p>
+
+            <p>
+                But when we look back now, it is obvious that we are
+                not exactly the same people who started this chapter.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             06 — BEFORE WE BECOME MEMORIES
+        ================================================== -->
+
+        <section class="story-section">
+
+            <div class="story-number">
+                06
+            </div>
+
+            <h2>BEFORE WE BECOME MEMORIES</h2>
+
+            <p>
+                Graduation has a strange way of making ordinary
+                things feel important.
+            </p>
+
+            <p>
+                The places we used to visit without thinking.
+                The conversations we assumed we could always have.
+                The people we expected to see again next week.
+            </p>
+
+            <p>
+                Suddenly, they belong to a chapter that has an
+                ending.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             FINAL CHAPTER
+        ================================================== -->
+
+        <section class="story-ending">
+
+            <p class="story-small">
+                THE LAST PAGE OF THIS CHAPTER
+            </p>
+
+            <h2>THE LAST PAGE</h2>
+
+            <p>
+                Maybe this isn't really the end.
+            </p>
+
+            <p>
+                Maybe it is simply the point where our story stops
+                being one shared routine and becomes four different
+                stories again.
+            </p>
+
+            <p>
+                Wherever those stories take us next, there will
+                always be this chapter.
+            </p>
+
+            <p>
+                Four people.
+                One university.
+                Countless memories.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <nav class="story-navigation">
+
+            <a href="general-archive.html" class="story-nav-btn">
+                ← BACK TO GENERAL ARCHIVE
+            </a>
+
+            <a href="timeline.html" class="story-nav-btn">
+                CONTINUE TO TIMELINE →
+            </a>
+
+        </nav>
+
+
+        <!-- =================================================
+             FOOTER
+        ================================================== -->
+
+        <footer class="story-footer">
+
+            <span>
+                THE LAST ARCHIVE
+            </span>
+
+            <span>
+                OUR STORY · 01
+            </span>
+
+            <span>
+                EST. 2026
+            </span>
+
+        </footer>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>
