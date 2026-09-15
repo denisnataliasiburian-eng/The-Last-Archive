@@ -11,19 +11,18 @@
 
     <style>
         /* =====================================================
-           OUR STORY
-           Visual language: The Last Archive
+           OUR STORY — THE LAST ARCHIVE
         ===================================================== */
 
         .story-page {
             min-height: 100vh;
             background:
-                radial-gradient(circle at 50% 20%, rgba(92, 67, 104, 0.14), transparent 35%),
+                radial-gradient(circle at 50% 15%, rgba(88, 62, 100, .16), transparent 35%),
                 #11100f;
             color: #e9e1d2;
+            padding: 70px 8% 100px;
             position: relative;
             overflow-x: hidden;
-            padding: 70px 8% 90px;
         }
 
         .story-page::before {
@@ -31,11 +30,9 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            opacity: 0.08;
-            background-image:
-                radial-gradient(#ffffff 0.5px, transparent 0.5px);
+            opacity: .07;
+            background-image: radial-gradient(#fff .5px, transparent .5px);
             background-size: 5px 5px;
-            z-index: 0;
         }
 
         .story-container {
@@ -45,18 +42,53 @@
             z-index: 2;
         }
 
+
+        /* =====================================================
+           LANGUAGE SWITCH
+        ===================================================== */
+
+        .language-switch {
+            position: fixed;
+            top: 25px;
+            right: 35px;
+            z-index: 20;
+
+            display: flex;
+            gap: 6px;
+
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .language-switch button {
+            background: transparent;
+            border: 1px solid rgba(168, 139, 89, .35);
+            color: #8f8679;
+            padding: 8px 11px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .language-switch button.active,
+        .language-switch button:hover {
+            color: #d4b57c;
+            border-color: #a88b59;
+        }
+
+
         /* =====================================================
            HEADER
         ===================================================== */
 
         .story-header {
             text-align: center;
-            margin-bottom: 100px;
+            margin-bottom: 95px;
         }
 
         .story-small {
             font-family: Arial, sans-serif;
-            font-size: 11px;
+            font-size: 10px;
             letter-spacing: 4px;
             color: #a88b59;
             margin-bottom: 18px;
@@ -64,7 +96,7 @@
 
         .story-header h1 {
             font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(42px, 7vw, 78px);
+            font-size: clamp(45px, 7vw, 80px);
             font-weight: 400;
             letter-spacing: 6px;
             margin: 0;
@@ -72,7 +104,7 @@
         }
 
         .story-subtitle {
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: Georgia, serif;
             font-style: italic;
             color: #a99d8c;
             margin-top: 20px;
@@ -84,44 +116,36 @@
             height: 1px;
             background: #a88b59;
             margin: 35px auto 0;
-            opacity: 0.8;
         }
+
 
         /* =====================================================
            INTRO
         ===================================================== */
 
         .story-intro {
-            max-width: 720px;
+            max-width: 750px;
             margin: 0 auto 120px;
             text-align: center;
         }
 
         .story-intro p {
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: Georgia, serif;
             font-size: 21px;
             line-height: 1.9;
             color: #d4ccbd;
-            margin: 0;
         }
 
-        .story-intro p::first-letter {
-            font-size: 58px;
-            float: left;
-            line-height: 0.8;
-            padding-right: 8px;
-            color: #a88b59;
-        }
 
         /* =====================================================
-           STORY SECTIONS
+           STORY SECTION
         ===================================================== */
 
         .story-section {
-            position: relative;
             max-width: 800px;
-            margin: 0 auto 110px;
-            padding-left: 70px;
+            margin: 0 auto 115px;
+            padding-left: 75px;
+            position: relative;
         }
 
         .story-section::before {
@@ -129,16 +153,17 @@
             position: absolute;
             left: 25px;
             top: 5px;
-            bottom: -60px;
+            bottom: -65px;
             width: 1px;
+
             background: linear-gradient(
                 to bottom,
-                rgba(168, 139, 89, 0.7),
-                rgba(168, 139, 89, 0.08)
+                rgba(168,139,89,.7),
+                rgba(168,139,89,.05)
             );
         }
 
-        .story-section:last-child::before {
+        .story-section:last-of-type::before {
             display: none;
         }
 
@@ -150,25 +175,23 @@
             width: 50px;
             height: 50px;
 
-            border: 1px solid rgba(168, 139, 89, 0.7);
+            border: 1px solid rgba(168,139,89,.7);
             border-radius: 50%;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 15px;
-            color: #b99b67;
-
             background: #11100f;
-            z-index: 2;
+
+            font-family: Georgia, serif;
+            color: #b99b67;
         }
 
         .story-section h2 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-weight: 400;
+            font-family: Georgia, serif;
             font-size: 30px;
+            font-weight: 400;
             letter-spacing: 2px;
             color: #e9dfce;
             margin: 0 0 25px;
@@ -184,48 +207,209 @@
         }
 
         .story-section p {
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: Georgia, serif;
             font-size: 17px;
             line-height: 2;
             color: #bcb3a5;
-            margin: 0 0 18px;
+            margin-bottom: 18px;
         }
 
+
         /* =====================================================
-           ARCHIVE QUOTE
+           MEMORY FRAGMENT
+        ===================================================== */
+
+        .memory-fragment {
+            max-width: 850px;
+            margin: 130px auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 55px;
+            align-items: center;
+        }
+
+        .memory-photo {
+            min-height: 350px;
+
+            border: 1px solid rgba(168,139,89,.45);
+            padding: 12px;
+
+            background: #191715;
+            transform: rotate(-1.5deg);
+        }
+
+        .memory-photo img {
+            width: 100%;
+            height: 325px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .memory-placeholder {
+            width: 100%;
+            height: 325px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    rgba(168,139,89,.05),
+                    rgba(168,139,89,.02)
+                );
+
+            color: #70685d;
+
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+
+        .memory-info span {
+            font-family: Arial, sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #a88b59;
+        }
+
+        .memory-info h3 {
+            font-family: Georgia, serif;
+            font-weight: 400;
+            font-size: 27px;
+            margin: 15px 0;
+            color: #ddd3c3;
+        }
+
+        .memory-info p {
+            font-family: Georgia, serif;
+            font-size: 16px;
+            line-height: 1.9;
+            color: #a9a093;
+        }
+
+
+        /* =====================================================
+           ARCHIVE NOTE
+        ===================================================== */
+
+        .archive-note {
+            max-width: 700px;
+            margin: 120px auto;
+            padding: 40px;
+
+            border: 1px solid rgba(168,139,89,.25);
+
+            background: rgba(168,139,89,.025);
+
+            text-align: center;
+        }
+
+        .archive-note span {
+            font-family: Arial, sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #a88b59;
+        }
+
+        .archive-note p {
+            font-family: Georgia, serif;
+            font-style: italic;
+            font-size: 22px;
+            line-height: 1.8;
+            color: #d0c6b6;
+            margin: 20px 0 0;
+        }
+
+
+        /* =====================================================
+           QUOTE
         ===================================================== */
 
         .story-quote {
-            max-width: 720px;
+            max-width: 750px;
             margin: 130px auto;
-            padding: 55px 50px;
+            padding: 55px 40px;
 
-            border-top: 1px solid rgba(168, 139, 89, 0.5);
-            border-bottom: 1px solid rgba(168, 139, 89, 0.5);
+            border-top: 1px solid rgba(168,139,89,.5);
+            border-bottom: 1px solid rgba(168,139,89,.5);
 
             text-align: center;
         }
 
         .story-quote p {
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: Georgia, serif;
             font-size: 26px;
             line-height: 1.7;
             font-style: italic;
             color: #ddd3c3;
-            margin: 0;
         }
 
         .story-quote span {
             display: block;
             margin-top: 25px;
+
             font-family: Arial, sans-serif;
-            font-size: 10px;
+            font-size: 9px;
             letter-spacing: 3px;
             color: #a88b59;
         }
 
+
         /* =====================================================
-           FINAL PAGE
+           LETTER
+        ===================================================== */
+
+        .story-letter {
+            max-width: 760px;
+            margin: 150px auto 100px;
+            padding: 60px;
+
+            background:
+                linear-gradient(
+                    rgba(211,194,158,.04),
+                    rgba(211,194,158,.015)
+                );
+
+            border: 1px solid rgba(168,139,89,.3);
+        }
+
+        .story-letter-label {
+            font-family: Arial, sans-serif;
+            font-size: 9px;
+            letter-spacing: 3px;
+            color: #a88b59;
+            margin-bottom: 30px;
+        }
+
+        .story-letter h2 {
+            font-family: Georgia, serif;
+            font-weight: 400;
+            font-size: 31px;
+            margin-bottom: 30px;
+            color: #e5dccd;
+        }
+
+        .story-letter p {
+            font-family: Georgia, serif;
+            font-size: 17px;
+            line-height: 2;
+            color: #bdb3a4;
+            margin-bottom: 18px;
+        }
+
+        .letter-signature {
+            margin-top: 40px;
+
+            font-family: Georgia, serif;
+            font-style: italic;
+            color: #c6a66e;
+        }
+
+
+        /* =====================================================
+           LAST PAGE
         ===================================================== */
 
         .story-ending {
@@ -234,13 +418,9 @@
             text-align: center;
         }
 
-        .story-ending .story-small {
-            margin-bottom: 25px;
-        }
-
         .story-ending h2 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 38px;
+            font-family: Georgia, serif;
+            font-size: 40px;
             font-weight: 400;
             letter-spacing: 3px;
             color: #e8dfd0;
@@ -248,12 +428,12 @@
         }
 
         .story-ending p {
-            font-family: Georgia, "Times New Roman", serif;
+            font-family: Georgia, serif;
             font-size: 18px;
             line-height: 2;
             color: #bdb3a4;
-            margin-bottom: 15px;
         }
+
 
         /* =====================================================
            NAVIGATION
@@ -262,33 +442,31 @@
         .story-navigation {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin-top: 90px;
+            gap: 20px;
+            margin-top: 100px;
         }
 
         .story-nav-btn {
-            display: inline-block;
             padding: 14px 25px;
 
-            border: 1px solid rgba(168, 139, 89, 0.6);
+            border: 1px solid rgba(168,139,89,.6);
 
             color: #cbb58c;
             text-decoration: none;
 
             font-family: Arial, sans-serif;
-            font-size: 10px;
+            font-size: 9px;
             letter-spacing: 2px;
 
-            transition: all 0.3s ease;
+            transition: .3s;
         }
 
         .story-nav-btn:hover {
-            background: rgba(168, 139, 89, 0.1);
-            border-color: #b99b67;
+            background: rgba(168,139,89,.1);
             color: #eee6d8;
             transform: translateY(-2px);
         }
+
 
         /* =====================================================
            FOOTER
@@ -297,19 +475,18 @@
         .story-footer {
             display: flex;
             justify-content: space-between;
-            align-items: center;
 
-            max-width: 1050px;
-            margin: 100px auto 0;
+            margin-top: 100px;
             padding-top: 25px;
 
-            border-top: 1px solid rgba(168, 139, 89, 0.2);
+            border-top: 1px solid rgba(168,139,89,.2);
 
             font-family: Arial, sans-serif;
             font-size: 9px;
             letter-spacing: 2px;
             color: #756d62;
         }
+
 
         /* =====================================================
            MOBILE
@@ -321,8 +498,9 @@
                 padding: 55px 7% 70px;
             }
 
-            .story-header {
-                margin-bottom: 75px;
+            .language-switch {
+                top: 15px;
+                right: 15px;
             }
 
             .story-header h1 {
@@ -330,23 +508,12 @@
                 letter-spacing: 4px;
             }
 
-            .story-subtitle {
-                font-size: 15px;
-                line-height: 1.6;
-            }
-
-            .story-intro {
-                margin-bottom: 90px;
-            }
-
             .story-intro p {
                 font-size: 18px;
-                line-height: 1.8;
             }
 
             .story-section {
                 padding-left: 50px;
-                margin-bottom: 90px;
             }
 
             .story-section::before {
@@ -365,33 +532,53 @@
 
             .story-section p {
                 font-size: 16px;
-                line-height: 1.85;
+            }
+
+            .memory-fragment {
+                grid-template-columns: 1fr;
+                gap: 35px;
+                margin: 90px auto;
+            }
+
+            .memory-photo {
+                min-height: auto;
+            }
+
+            .memory-photo img,
+            .memory-placeholder {
+                height: 280px;
+            }
+
+            .archive-note {
+                padding: 30px 20px;
+                margin: 90px auto;
             }
 
             .story-quote {
-                margin: 100px auto;
                 padding: 40px 20px;
+                margin: 90px auto;
             }
 
             .story-quote p {
                 font-size: 21px;
             }
 
+            .story-letter {
+                padding: 35px 25px;
+                margin: 100px auto 70px;
+            }
+
             .story-ending {
-                margin: 110px auto 70px;
+                margin: 100px auto 70px;
             }
 
             .story-ending h2 {
                 font-size: 30px;
             }
 
-            .story-ending p {
-                font-size: 16px;
-            }
-
             .story-navigation {
                 flex-direction: column;
-                gap: 12px;
+                align-items: center;
             }
 
             .story-footer {
@@ -403,11 +590,28 @@
     </style>
 </head>
 
+
 <body>
 
 <main class="story-page">
 
+    <!-- LANGUAGE -->
+
+    <div class="language-switch">
+
+        <button id="enBtn" class="active" onclick="setLanguage('en')">
+            EN
+        </button>
+
+        <button id="idBtn" onclick="setLanguage('id')">
+            ID
+        </button>
+
+    </div>
+
+
     <div class="story-container">
+
 
         <!-- =================================================
              HEADER
@@ -419,10 +623,16 @@
                 THE LAST ARCHIVE · GENERAL ARCHIVE · 01
             </p>
 
-            <h1>OUR STORY</h1>
+            <h1>
+                OUR STORY
+            </h1>
 
-            <p class="story-subtitle">
-                Four people. One chapter. A collection of ordinary days.
+            <p class="story-subtitle lang en">
+                Four people. One chapter. Countless memories.
+            </p>
+
+            <p class="story-subtitle lang id" style="display:none;">
+                Empat orang. Satu bab. Tak terhitung kenangan.
             </p>
 
             <div class="story-line"></div>
@@ -436,18 +646,26 @@
 
         <section class="story-intro">
 
-            <p>
-                We didn't know these days would become memories.
-                At the time, they were simply days we lived,
-                laughed through, complained about, and somehow
-                made our own.
+            <p class="lang en">
+                We didn't know these ordinary days would become
+                memories. At the time, they were simply days we
+                lived, laughed through, complained about, and
+                somehow made our own.
+            </p>
+
+            <p class="lang id" style="display:none;">
+                Kami tidak tahu bahwa hari-hari sederhana ini
+                suatu saat akan menjadi kenangan. Saat itu,
+                semuanya hanyalah hari-hari yang kami jalani,
+                tertawakan, keluhkan, dan entah bagaimana,
+                menjadi milik kami.
             </p>
 
         </section>
 
 
         <!-- =================================================
-             01 — BEFORE WE WERE US
+             01
         ================================================== -->
 
         <section class="story-section">
@@ -456,25 +674,75 @@
                 01
             </div>
 
-            <h2>BEFORE WE WERE US</h2>
+            <h2>
+                BEFORE WE WERE US
+            </h2>
 
-            <p>
-                Before there was a group, there were four separate
-                lives. Four different stories, personalities,
-                problems, dreams, and ways of seeing the world.
-            </p>
+            <div class="lang en">
 
-            <p>
-                None of us knew exactly where university would take
-                us, or that somewhere along the way, our paths would
-                become connected.
-            </p>
+                <p>
+                    Before there was an “us”, there were four
+                    separate lives. Four different personalities,
+                    stories, problems, dreams, and ways of seeing
+                    the world.
+                </p>
+
+                <p>
+                    None of us knew exactly where university would
+                    take us. We simply arrived, started our own
+                    journeys, and somehow ended up walking through
+                    part of it together.
+                </p>
+
+            </div>
+
+            <div class="lang id" style="display:none;">
+
+                <p>
+                    Sebelum ada kata “kita”, ada empat kehidupan
+                    yang berjalan sendiri-sendiri. Empat
+                    kepribadian, cerita, masalah, mimpi, dan cara
+                    memandang dunia yang berbeda.
+                </p>
+
+                <p>
+                    Tidak ada dari kita yang benar-benar tahu
+                    kemana perjalanan kuliah akan membawa kita.
+                    Kita hanya datang, memulai perjalanan masing-
+                    masing, lalu entah bagaimana berjalan bersama
+                    untuk sebagian perjalanan itu.
+                </p>
+
+            </div>
 
         </section>
 
 
         <!-- =================================================
-             02 — HOW IT STARTED
+             ARCHIVE NOTE
+        ================================================== -->
+
+        <div class="archive-note">
+
+            <span>
+                ARCHIVE NOTE · 001
+            </span>
+
+            <p class="lang en">
+                Some stories begin with a moment.
+                Ours began with many small ones.
+            </p>
+
+            <p class="lang id" style="display:none;">
+                Beberapa cerita dimulai dari satu momen.
+                Cerita kita dimulai dari banyak momen kecil.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             02
         ================================================== -->
 
         <section class="story-section">
@@ -483,20 +751,156 @@
                 02
             </div>
 
-            <h2>HOW IT STARTED</h2>
+            <h2>
+                HOW IT STARTED
+            </h2>
 
-            <p>
-                Somehow, little by little, we became familiar.
-                Conversations became routines. Routines became
-                memories.
-            </p>
+            <div class="lang en">
 
-            <p>
-                There was no dramatic moment when we suddenly
-                became a group. It happened quietly, through
-                repeated days and ordinary moments that eventually
-                started to mean something.
-            </p>
+                <p>
+                    There was no grand announcement that told us
+                    we had become a group.
+                </p>
+
+                <p>
+                    It happened gradually. Through conversations,
+                    shared spaces, random jokes, familiar faces,
+                    and the kind of ordinary interactions that
+                    seemed insignificant at the time.
+                </p>
+
+                <p>
+                    Until one day, being together simply felt
+                    normal.
+                </p>
+
+            </div>
+
+            <div class="lang id" style="display:none;">
+
+                <p>
+                    Tidak ada pengumuman besar yang mengatakan
+                    bahwa kita telah menjadi sebuah kelompok.
+                </p>
+
+                <p>
+                    Semuanya terjadi perlahan. Lewat percakapan,
+                    tempat yang sama, candaan random, wajah-wajah
+                    yang mulai familiar, dan interaksi sederhana
+                    yang saat itu terasa biasa saja.
+                </p>
+
+                <p>
+                    Sampai akhirnya, berada bersama terasa seperti
+                    sesuatu yang memang seharusnya terjadi.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MEMORY FRAGMENT 01
+        ================================================== -->
+
+        <div class="memory-fragment">
+
+            <div class="memory-photo">
+
+                <!-- GANTI BAGIAN INI DENGAN FOTO -->
+
+                <div class="memory-placeholder">
+                    MEMORY PHOTO · 001
+                </div>
+
+            </div>
+
+            <div class="memory-info">
+
+                <span>
+                    MEMORY FRAGMENT · 001
+                </span>
+
+                <h3>
+                    The Beginning
+                </h3>
+
+                <p class="lang en">
+                    Add the first important photo or moment here.
+                    Something that represents the beginning of
+                    your story.
+                </p>
+
+                <p class="lang id" style="display:none;">
+                    Tambahkan foto atau momen penting pertama di
+                    sini. Sesuatu yang menggambarkan awal dari
+                    cerita kalian.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             03
+        ================================================== -->
+
+        <section class="story-section">
+
+            <div class="story-number">
+                03
+            </div>
+
+            <h2>
+                THE ORDINARY DAYS
+            </h2>
+
+            <div class="lang en">
+
+                <p>
+                    Looking back, some of the moments we remember
+                    most were probably the ones we never thought
+                    were important.
+                </p>
+
+                <p>
+                    Sitting together. Talking about nothing.
+                    Complaining about assignments. Laughing at
+                    something that would make absolutely no sense
+                    to anyone else.
+                </p>
+
+                <p>
+                    They were ordinary days.
+                    Somehow, they became extraordinary memories.
+                </p>
+
+            </div>
+
+            <div class="lang id" style="display:none;">
+
+                <p>
+                    Kalau dipikir-pikir lagi, mungkin beberapa
+                    momen yang paling kita ingat justru adalah
+                    momen yang tidak pernah kita anggap penting.
+                </p>
+
+                <p>
+                    Duduk bersama. Membicarakan hal-hal random.
+                    Mengeluh tentang tugas. Tertawa karena sesuatu
+                    yang mungkin tidak akan masuk akal bagi orang
+                    lain.
+                </p>
+
+                <p>
+                    Hari-hari itu sederhana.
+                    Entah bagaimana, semuanya berubah menjadi
+                    kenangan yang luar biasa.
+                </p>
+
+            </div>
 
         </section>
 
@@ -507,9 +911,15 @@
 
         <div class="story-quote">
 
-            <p>
+            <p class="lang en">
                 “The moments that matter most rarely announce
                 themselves while they are happening.”
+            </p>
+
+            <p class="lang id" style="display:none;">
+                “Momen yang paling berarti jarang memberi tahu
+                kita bahwa suatu hari nanti kita akan
+                merindukannya.”
             </p>
 
             <span>
@@ -520,38 +930,7 @@
 
 
         <!-- =================================================
-             03 — THE ORDINARY DAYS
-        ================================================== -->
-
-        <section class="story-section">
-
-            <div class="story-number">
-                03
-            </div>
-
-            <h2>THE ORDINARY DAYS</h2>
-
-            <p>
-                Some of our favorite memories were probably the
-                ones we never thought to remember.
-            </p>
-
-            <p>
-                Sitting together. Talking about things that made no
-                sense. Complaining about assignments. Laughing at
-                something completely random. Being together without
-                needing a special reason.
-            </p>
-
-            <p>
-                Ordinary days became the background of our story.
-            </p>
-
-        </section>
-
-
-        <!-- =================================================
-             04 — THE CHAOS WE SHARED
+             04
         ================================================== -->
 
         <section class="story-section">
@@ -560,29 +939,98 @@
                 04
             </div>
 
-            <h2>THE CHAOS WE SHARED</h2>
+            <h2>
+                THE CHAOS WE SHARED
+            </h2>
 
-            <p>
-                Of course, our story was never perfectly organized.
-            </p>
+            <div class="lang en">
 
-            <p>
-                There were misunderstandings, last-minute plans,
-                unfinished conversations, ridiculous jokes, strange
-                decisions, and moments that would probably sound
-                completely different if anyone outside the group
-                heard them.
-            </p>
+                <p>
+                    Of course, our story was never perfectly
+                    organized.
+                </p>
 
-            <p>
-                Maybe that was part of what made it ours.
-            </p>
+                <p>
+                    There were last-minute plans, unfinished
+                    conversations, ridiculous jokes, strange
+                    decisions, misunderstandings, and moments
+                    that would probably sound completely different
+                    if anyone outside the group heard them.
+                </p>
+
+                <p>
+                    Maybe that was part of what made it ours.
+                </p>
+
+            </div>
+
+            <div class="lang id" style="display:none;">
+
+                <p>
+                    Tentu saja, cerita kita tidak pernah benar-benar
+                    teratur.
+                </p>
+
+                <p>
+                    Ada rencana mendadak, percakapan yang tidak
+                    selesai, candaan absurd, keputusan aneh,
+                    kesalahpahaman, dan momen-momen yang mungkin
+                    terdengar sangat berbeda kalau didengar orang
+                    di luar kelompok kita.
+                </p>
+
+                <p>
+                    Mungkin justru itulah yang membuat semuanya
+                    terasa seperti milik kita.
+                </p>
+
+            </div>
 
         </section>
 
 
         <!-- =================================================
-             05 — SOMEHOW, WE GREW
+             MEMORY FRAGMENT 02
+        ================================================== -->
+
+        <div class="memory-fragment">
+
+            <div class="memory-info">
+
+                <span>
+                    MEMORY FRAGMENT · 002
+                </span>
+
+                <h3>
+                    The Chaos
+                </h3>
+
+                <p class="lang en">
+                    This space is for the funniest, weirdest, or
+                    most unforgettable memory you shared.
+                </p>
+
+                <p class="lang id" style="display:none;">
+                    Bagian ini bisa diisi dengan kejadian paling
+                    lucu, paling random, atau paling tidak
+                    terlupakan yang pernah kalian alami bersama.
+                </p>
+
+            </div>
+
+            <div class="memory-photo">
+
+                <div class="memory-placeholder">
+                    MEMORY PHOTO · 002
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             05
         ================================================== -->
 
         <section class="story-section">
@@ -591,29 +1039,58 @@
                 05
             </div>
 
-            <h2>SOMEHOW, WE GREW</h2>
+            <h2>
+                SOMEHOW, WE GREW
+            </h2>
 
-            <p>
-                Somewhere between the assignments, deadlines,
-                presentations, projects, exhaustion, and everything
-                else that came with university, we changed.
-            </p>
+            <div class="lang en">
 
-            <p>
-                Not all at once.
-                Not in ways we could immediately notice.
-            </p>
+                <p>
+                    Somewhere between assignments, deadlines,
+                    presentations, projects, exhaustion, and
+                    everything else that came with university,
+                    we changed.
+                </p>
 
-            <p>
-                But when we look back now, it is obvious that we are
-                not exactly the same people who started this chapter.
-            </p>
+                <p>
+                    Not all at once.
+                    Not in ways we could immediately notice.
+                </p>
+
+                <p>
+                    But when we look back now, it is obvious that
+                    we are no longer exactly the same people who
+                    started this chapter.
+                </p>
+
+            </div>
+
+            <div class="lang id" style="display:none;">
+
+                <p>
+                    Di antara tugas, deadline, presentasi,
+                    proyek, kelelahan, dan segala hal yang datang
+                    bersama kehidupan perkuliahan, kita berubah.
+                </p>
+
+                <p>
+                    Tidak sekaligus.
+                    Tidak dengan cara yang langsung kita sadari.
+                </p>
+
+                <p>
+                    Tetapi ketika melihat ke belakang sekarang,
+                    jelas bahwa kita bukan lagi orang yang sama
+                    seperti ketika memulai bab ini.
+                </p>
+
+            </div>
 
         </section>
 
 
         <!-- =================================================
-             06 — BEFORE WE BECOME MEMORIES
+             06
         ================================================== -->
 
         <section class="story-section">
@@ -622,29 +1099,134 @@
                 06
             </div>
 
-            <h2>BEFORE WE BECOME MEMORIES</h2>
+            <h2>
+                BEFORE WE BECOME MEMORIES
+            </h2>
 
-            <p>
-                Graduation has a strange way of making ordinary
-                things feel important.
-            </p>
+            <div class="lang en">
 
-            <p>
-                The places we used to visit without thinking.
-                The conversations we assumed we could always have.
-                The people we expected to see again next week.
-            </p>
+                <p>
+                    Graduation has a strange way of making ordinary
+                    things feel important.
+                </p>
 
-            <p>
-                Suddenly, they belong to a chapter that has an
-                ending.
-            </p>
+                <p>
+                    The places we used to visit without thinking.
+                    The conversations we assumed we could always
+                    have. The people we expected to see again next
+                    week.
+                </p>
+
+                <p>
+                    Suddenly, they belong to a chapter that has an
+                    ending.
+                </p>
+
+            </div>
+
+            <div class="lang id" style="display:none;">
+
+                <p>
+                    Wisuda punya cara yang aneh untuk membuat
+                    hal-hal sederhana terasa begitu berarti.
+                </p>
+
+                <p>
+                    Tempat-tempat yang dulu kita datangi tanpa
+                    berpikir. Percakapan yang kita kira akan selalu
+                    bisa dilakukan. Orang-orang yang kita pikir akan
+                    kita temui lagi minggu depan.
+                </p>
+
+                <p>
+                    Tiba-tiba, semuanya menjadi bagian dari sebuah
+                    bab yang memiliki akhir.
+                </p>
+
+            </div>
 
         </section>
 
 
         <!-- =================================================
-             FINAL CHAPTER
+             LETTER
+        ================================================== -->
+
+        <section class="story-letter">
+
+            <div class="story-letter-label">
+                A LETTER FROM THE ARCHIVIST
+            </div>
+
+            <h2 class="lang en">
+                To the four of us.
+            </h2>
+
+            <h2 class="lang id" style="display:none;">
+                Untuk kita berempat.
+            </h2>
+
+            <div class="lang en">
+
+                <p>
+                    I don't know where life will take each of us
+                    after this.
+                </p>
+
+                <p>
+                    Maybe we will stay close. Maybe our lives will
+                    become busy and our conversations will become
+                    less frequent.
+                </p>
+
+                <p>
+                    But I hope that somewhere in the future, when
+                    one of us looks back at this chapter, we
+                    remember that once, there were four people who
+                    shared a piece of their lives together.
+                </p>
+
+                <p>
+                    And for a while, that was enough.
+                </p>
+
+            </div>
+
+            <div class="lang id" style="display:none;">
+
+                <p>
+                    Aku tidak tahu ke mana kehidupan akan membawa
+                    kita masing-masing setelah ini.
+                </p>
+
+                <p>
+                    Mungkin kita akan tetap dekat. Mungkin hidup
+                    akan menjadi semakin sibuk dan percakapan kita
+                    menjadi semakin jarang.
+                </p>
+
+                <p>
+                    Tetapi aku berharap suatu hari nanti, ketika
+                    salah satu dari kita melihat kembali bab ini,
+                    kita akan mengingat bahwa pernah ada empat orang
+                    yang berbagi sebagian hidup mereka bersama.
+                </p>
+
+                <p>
+                    Dan untuk sementara waktu, itu sudah cukup.
+                </p>
+
+            </div>
+
+            <div class="letter-signature">
+                — The Archivist
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FINAL PAGE
         ================================================== -->
 
         <section class="story-ending">
@@ -653,27 +1235,19 @@
                 THE LAST PAGE OF THIS CHAPTER
             </p>
 
-            <h2>THE LAST PAGE</h2>
+            <h2>
+                THE STORY CONTINUES.
+            </h2>
 
-            <p>
-                Maybe this isn't really the end.
+            <p class="lang en">
+                This archive preserves where we have been.
+                The next pages are still waiting to be written.
             </p>
 
-            <p>
-                Maybe it is simply the point where our story stops
-                being one shared routine and becomes four different
-                stories again.
-            </p>
-
-            <p>
-                Wherever those stories take us next, there will
-                always be this chapter.
-            </p>
-
-            <p>
-                Four people.
-                One university.
-                Countless memories.
+            <p class="lang id" style="display:none;">
+                Arsip ini menyimpan perjalanan yang telah kita
+                lalui. Halaman berikutnya masih menunggu untuk
+                ditulis.
             </p>
 
         </section>
@@ -719,6 +1293,48 @@
     </div>
 
 </main>
+
+
+<script>
+
+function setLanguage(language) {
+
+    const english = document.querySelectorAll(".lang.en");
+    const indonesian = document.querySelectorAll(".lang.id");
+
+    const enBtn = document.getElementById("enBtn");
+    const idBtn = document.getElementById("idBtn");
+
+    if (language === "en") {
+
+        english.forEach(function(element) {
+            element.style.display = "";
+        });
+
+        indonesian.forEach(function(element) {
+            element.style.display = "none";
+        });
+
+        enBtn.classList.add("active");
+        idBtn.classList.remove("active");
+
+    } else {
+
+        english.forEach(function(element) {
+            element.style.display = "none";
+        });
+
+        indonesian.forEach(function(element) {
+            element.style.display = "";
+        });
+
+        idBtn.classList.add("active");
+        enBtn.classList.remove("active");
+
+    }
+}
+
+</script>
 
 </body>
 
