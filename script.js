@@ -414,3 +414,55 @@ togglePassword.addEventListener("click", function() {
         togglePassword.textContent = "👁";
     }
 });
+/* =====================================================
+   CHAOS CHAT SLIDER
+===================================================== */
+
+const chatImages = {
+
+    1: [
+        "chaos-topic-1-1.jpg",
+        "chaos-topic-1-2.jpg",
+        "chaos-topic-1-3.jpg"
+    ],
+
+    2: [
+        "chaos-topic-2-1.jpg",
+        "chaos-topic-2-2.jpg",
+        "chaos-topic-2-3.jpg"
+    ],
+
+    3: [
+        "chaos-topic-3-1.jpg",
+        "chaos-topic-3-2.jpg",
+        "chaos-topic-3-3.jpg"
+    ]
+
+};
+
+const chatIndex = {
+    1: 0,
+    2: 0,
+    3: 0
+};
+
+function changeChat(topic, direction) {
+
+    chatIndex[topic] += direction;
+
+    if (chatIndex[topic] < 0) {
+        chatIndex[topic] = chatImages[topic].length - 1;
+    }
+
+    if (chatIndex[topic] >= chatImages[topic].length) {
+        chatIndex[topic] = 0;
+    }
+
+    document.getElementById("chatTopic" + topic).src =
+        chatImages[topic][chatIndex[topic]];
+
+    document.getElementById("counter" + topic).textContent =
+        String(chatIndex[topic] + 1).padStart(2, "0")
+        + " / "
+        + String(chatImages[topic].length).padStart(2, "0");
+}
