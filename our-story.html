@@ -764,8 +764,96 @@
     font-size: 15px;
     line-height: 1.8;
 }
-        }
-    
+        
+    /* =========================
+   LETTER FROM THE ARCHIVIST
+========================= */
+
+.story-letter {
+    max-width: 800px;
+    margin: 120px auto 100px;
+    padding: 0 25px;
+    text-align: center;
+}
+
+.story-letter-label {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: #a88b59;
+    margin-bottom: 30px;
+}
+
+.story-letter h2 {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: #e9dfce;
+    margin-bottom: 45px;
+}
+
+.story-letter h2::after {
+    content: "";
+    display: block;
+    width: 45px;
+    height: 1px;
+    background: #a88b59;
+    margin: 18px auto 0;
+}
+
+.story-letter p {
+    font-family: Georgia, serif;
+    font-size: 16px;
+    line-height: 2;
+    color: #a9a093;
+    margin-bottom: 25px;
+}
+
+.letter-signature {
+    margin-top: 50px;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #a88b59;
+}
+
+
+/* =========================
+   MOBILE LETTER
+========================= */
+
+@media (max-width: 700px) {
+
+    .story-letter {
+        width: 100%;
+        margin: 90px auto 80px;
+        padding: 0 25px;
+    }
+
+    .story-letter h2 {
+        font-size: 25px;
+        line-height: 1.5;
+        margin-bottom: 35px;
+    }
+
+    .story-letter p {
+        font-size: 15px;
+        line-height: 1.9;
+        margin-bottom: 22px;
+    }
+
+    .story-letter-label {
+        font-size: 8px;
+        letter-spacing: 3px;
+    }
+
+    .letter-signature {
+        margin-top: 40px;
+    }
+
+            }
     </style>
 </head>
 
