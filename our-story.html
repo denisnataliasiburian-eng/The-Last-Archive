@@ -48,27 +48,32 @@
         ===================================================== */
 
         .language-switch {
-            position: fixed;
-            top: 25px;
-            right: 35px;
-            z-index: 20;
+    position: fixed;
+    top: 25px;
+    right: 35px;
+    z-index: 9999;
+    pointer-events: auto;
 
-            display: flex;
-            gap: 6px;
+    display: flex;
+    gap: 6px;
 
-            font-family: Arial, sans-serif;
-            font-size: 10px;
-            letter-spacing: 2px;
-        }
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
 
         .language-switch button {
-            background: transparent;
-            border: 1px solid rgba(168, 139, 89, .35);
-            color: #8f8679;
-            padding: 8px 11px;
-            cursor: pointer;
-            transition: .3s;
-        }
+    position: relative;
+    z-index: 10000;
+    pointer-events: auto;
+
+    background: transparent;
+    border: 1px solid rgba(168, 139, 89, .35);
+    color: #8f8679;
+    padding: 8px 11px;
+    cursor: pointer;
+    transition: .3s;
+}
 
         .language-switch button.active,
         .language-switch button:hover {
@@ -773,13 +778,13 @@
 
     <div class="language-switch">
 
-        <button id="enBtn" class="active" onclick="setLanguage('en')">
-            EN
-        </button>
+        <button type="button" id="enBtn" class="active" onclick="setLanguage('en')">
+    EN
+</button>
 
-        <button id="idBtn" onclick="setLanguage('id')">
-            ID
-        </button>
+<button type="button" id="idBtn" onclick="setLanguage('id')">
+    ID
+</button>
 
     </div>
 
@@ -1690,7 +1695,6 @@ function changeChat(topic, direction) {
         + String(chatImages[topic].length).padStart(2, "0");
 }
 
-</script>
 </script>
 
 </body>
