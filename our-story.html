@@ -545,10 +545,17 @@
                 min-height: auto;
             }
 
-            .memory-photo img,
-            .memory-placeholder {
-                height: 280px;
-            }
+            .memory-photo img {
+    width: 100%;
+    height: auto !important;
+    max-height: 500px;
+    object-fit: contain;
+    display: block;
+}
+
+.memory-placeholder {
+    height: 280px;
+}
 
             .archive-note {
                 padding: 30px 20px;
