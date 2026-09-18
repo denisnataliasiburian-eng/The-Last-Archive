@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Group Memories | The Last Archive</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        /* =========================
+           GROUP MEMORIES PAGE
+        ========================= */
+
+        .memories-page {
+            min-height: 100vh;
+            padding: 80px 7% 60px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+
+        .memories-header {
+            text-align: center;
+            margin-bottom: 90px;
+        }
+
+        .memories-header .archive-small {
+            margin-bottom: 15px;
+        }
+
+        .memories-header h1 {
+            font-size: clamp(42px, 7vw, 78px);
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+        }
+
+        .memories-subtitle {
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.8;
+            opacity: 0.75;
+        }
+
+        /* BACK BUTTON */
+
+        .back-archive {
+            display: inline-block;
+            margin-bottom: 50px;
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 12px;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .back-archive:hover {
+            opacity: 1;
+        }
+
+        /* MEMORY SECTION */
+
+        .memory-section {
+            max-width: 1050px;
+            margin: 0 auto 120px;
+        }
+
+        .memory-heading {
+            display: flex;
+            align-items: baseline;
+            gap: 20px;
+            margin-bottom: 35px;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            padding-bottom: 18px;
+        }
+
+        .memory-number {
+            font-size: 13px;
+            letter-spacing: 3px;
+            opacity: 0.5;
+        }
+
+        .memory-heading h2 {
+            font-size: clamp(25px, 4vw, 38px);
+            letter-spacing: 3px;
+            font-weight: 500;
+        }
+
+        .memory-description {
+            max-width: 650px;
+            line-height: 1.8;
+            opacity: 0.7;
+            margin-bottom: 35px;
+        }
+
+        /* PHOTO GRID */
+
+        .memory-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .memory-card {
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .memory-card.large {
+            grid-column: span 2;
+            min-height: 430px;
+        }
+
+        .memory-card img {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        .memory-card.large img {
+            min-height: 430px;
+        }
+
+        .memory-card:hover img {
+            transform: scale(1.04);
+        }
+
+        /* PHOTO PLACEHOLDER */
+
+        .memory-placeholder {
+            width: 100%;
+            height: 100%;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            box-sizing: border-box;
+            opacity: 0.35;
+            letter-spacing: 2px;
+            font-size: 12px;
+        }
+
+        .memory-card.large .memory-placeholder {
+            min-height: 430px;
+        }
+
+        /* CAPTION */
+
+        .memory-caption {
+            padding: 16px 18px;
+            font-size: 13px;
+            line-height: 1.6;
+            opacity: 0.75;
+        }
+
+        /* LAST SECTION */
+
+        .memories-closing {
+            max-width: 700px;
+            margin: 140px auto 80px;
+            text-align: center;
+        }
+
+        .memories-closing h2 {
+            font-size: 30px;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+
+        .memories-closing p {
+            line-height: 1.9;
+            opacity: 0.7;
+        }
+
+        /* FOOTER */
+
+        .memories-footer {
+            max-width: 1050px;
+            margin: 100px auto 0;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.12);
+
+            display: flex;
+            justify-content: space-between;
+
+            font-size: 11px;
+            letter-spacing: 2px;
+            opacity: 0.5;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .memories-page {
+                padding: 50px 6% 40px;
+            }
+
+            .memories-header {
+                margin-bottom: 60px;
+            }
+
+            .memory-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .memory-card.large {
+                grid-column: span 1;
+            }
+
+            .memory-card,
+            .memory-card.large {
+                min-height: 260px;
+            }
+
+            .memory-card img,
+            .memory-card.large img,
+            .memory-placeholder,
+            .memory-card.large .memory-placeholder {
+                min-height: 260px;
+            }
+
+            .memory-heading {
+                gap: 12px;
+            }
+
+            .memory-heading h2 {
+                font-size: 23px;
+            }
+
+            .memories-footer {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<main class="memories-page">
+
+    <!-- BACK -->
+
+    <a href="general-archive.html" class="back-archive">
+        ← BACK TO GENERAL ARCHIVE
+    </a>
+
+
+    <!-- HEADER -->
+
+    <header class="memories-header">
+
+        <p class="archive-small">
+            THE LAST ARCHIVE
+        </p>
+
+        <h1>GROUP MEMORIES</h1>
+
+        <p class="memories-subtitle">
+            Photographs, fragments, and little moments
+            that became memories before we knew it.
+        </p>
+
+    </header>
+
+
+    <!-- =========================
+         01 — CAMPUS DAYS
+    ========================== -->
+
+    <section class="memory-section">
+
+        <div class="memory-heading">
+
+            <span class="memory-number">01</span>
+
+            <h2>CAMPUS DAYS</h2>
+
+        </div>
+
+        <p class="memory-description">
+            The ordinary days that quietly became part of the story.
+            Classes, assignments, presentations, and everything in between.
+        </p>
+
+
+        <div class="memory-gallery">
+
+            <div class="memory-card large">
+
+                <div class="memory-placeholder">
+                    PHOTO — CAMPUS
+                </div>
+
+                <!--
+                Contoh jika sudah punya foto:
+
+                <img src="campus-01.jpg" alt="Campus memory">
+                -->
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         02 — THE PROJECTS
+    ========================== -->
+
+    <section class="memory-section">
+
+        <div class="memory-heading">
+
+            <span class="memory-number">02</span>
+
+            <h2>THE PROJECTS</h2>
+
+        </div>
+
+        <p class="memory-description">
+            The things we worked on together,
+            from assignments and presentations to projects
+            that somehow became memories of their own.
+        </p>
+
+
+        <div class="memory-gallery">
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PROJECT PHOTO
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PROJECT PHOTO
+                </div>
+
+            </div>
+
+
+            <div class="memory-card large">
+
+                <div class="memory-placeholder">
+                    SCREENSHOT / DOCUMENT / PROJECT
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         03 — THE LITTLE THINGS
+    ========================== -->
+
+    <section class="memory-section">
+
+        <div class="memory-heading">
+
+            <span class="memory-number">03</span>
+
+            <h2>THE LITTLE THINGS</h2>
+
+        </div>
+
+        <p class="memory-description">
+            The small moments that never seemed important at the time,
+            but somehow became the ones worth keeping.
+        </p>
+
+
+        <div class="memory-gallery">
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         04 — THE CHAOS
+    ========================== -->
+
+    <section class="memory-section">
+
+        <div class="memory-heading">
+
+            <span class="memory-number">04</span>
+
+            <h2>THE CHAOS</h2>
+
+        </div>
+
+        <p class="memory-description">
+            The random pictures, ridiculous conversations,
+            questionable decisions, and moments that made absolutely no sense.
+        </p>
+
+
+        <div class="memory-gallery">
+
+            <div class="memory-card large">
+
+                <div class="memory-placeholder">
+                    CHAOS PHOTO / CHAT
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    CHAT / MEME
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    RANDOM PHOTO
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         05 — SOMEWHERE ALONG THE WAY
+    ========================== -->
+
+    <section class="memory-section">
+
+        <div class="memory-heading">
+
+            <span class="memory-number">05</span>
+
+            <h2>SOMEWHERE ALONG THE WAY</h2>
+
+        </div>
+
+        <p class="memory-description">
+            The moments that happened somewhere between campus,
+            deadlines, and everything else life had going on.
+        </p>
+
+
+        <div class="memory-gallery">
+
+            <div class="memory-card large">
+
+                <div class="memory-placeholder">
+                    EVENT / HANGOUT / TRIP
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         06 — THE LAST DAYS
+    ========================== -->
+
+    <section class="memory-section">
+
+        <div class="memory-heading">
+
+            <span class="memory-number">06</span>
+
+            <h2>THE LAST DAYS</h2>
+
+        </div>
+
+        <p class="memory-description">
+            The final stretch of university life.
+            Sidang, yudisium, graduation, and the moments
+            that slowly marked the end of this chapter.
+        </p>
+
+
+        <div class="memory-gallery">
+
+            <div class="memory-card large">
+
+                <div class="memory-placeholder">
+                    SIDANG / YUDISIUM / GRADUATION
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    FINAL DAYS
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    GRADUATION
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         07 — STILL HERE
+    ========================== -->
+
+    <section class="memory-section">
+
+        <div class="memory-heading">
+
+            <span class="memory-number">07</span>
+
+            <h2>STILL HERE</h2>
+
+        </div>
+
+        <p class="memory-description">
+            Different paths. Different places.
+            But some memories remain where we left them.
+        </p>
+
+
+        <div class="memory-gallery">
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    PHOTO
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- CLOSING -->
+
+    <section class="memories-closing">
+
+        <p class="archive-small">
+            END OF COLLECTION
+        </p>
+
+        <h2>Some moments stay.</h2>
+
+        <p>
+            Not because they were extraordinary,
+            but because they happened with the right people.
+        </p>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="memories-footer">
+
+        <span>GROUP MEMORIES</span>
+
+        <span>THE LAST ARCHIVE</span>
+
+        <span>EST. 2026</span>
+
+    </footer>
+
+
+</main>
+
+</body>
+
+</html>
