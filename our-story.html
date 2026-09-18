@@ -1094,7 +1094,7 @@
     are sometimes the ones we end up missing the most.
 </p>
 
-<p class="lang id">
+<p class="lang id" style="display:none;">
     Ujian pertama kami. Saat itu kami datang dengan wajah tegang,
     jawaban yang belum selesai, dan mungkin kepercayaan diri yang
     terlalu tinggi untuk orang-orang yang bahkan belum tahu bakal
@@ -1884,39 +1884,78 @@ function changeChat(topic, direction) {
         + " / "
         + String(chatImages[topic].length).padStart(2, "0");
 }
+    document.addEventListener("DOMContentLoaded", function () {
+    setLanguage("en");
+});
 
 </script>
+    
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
+    const letter = document.querySelector(".story-letter");
+
+    if (!letter) {
+        console.log("LETTER TIDAK DITEMUKAN");
+        return;
+    }
+
     const gifContainer = document.createElement("div");
 
-    gifContainer.style.width = "90%";
-    gifContainer.style.maxWidth = "900px";
-    gifContainer.style.margin = "80px auto";
-    gifContainer.style.textAlign = "center";
+    gifContainer.style.cssText = `
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: calc(100% - 30px);
+        max-width: 900px;
+        margin: 80px auto;
+        padding: 8px;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        box-sizing: border-box;
+    `;
 
     const gif = document.createElement("img");
 
-    gif.src = "./ending.gif";
+    gif.src = "ending.gif";
     gif.alt = "A memory of everyone who was part of our story";
 
-    gif.style.display = "block";
-    gif.style.width = "100%";
-    gif.style.height = "auto";
-    gif.style.maxWidth = "900px";
-    gif.style.margin = "0 auto";
+    gif.style.cssText = `
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: 900px !important;
+        margin: 0 auto !important;
+        object-fit: contain !important;
+    `;
+
+    gif.onload = function () {
+        console.log("ENDING.GIF BERHASIL DIMUAT");
+    };
+
+    gif.onerror = function () {
+        console.log("ENDING.GIF GAGAL DIMUAT");
+
+        gifContainer.innerHTML = `
+            <div style="
+                padding: 40px 20px;
+                border: 1px solid rgba(168,139,89,.4);
+                color: #a88b59;
+                font-family: Georgia, serif;
+                text-align: center;
+            ">
+                ENDING GIF COULD NOT BE LOADED
+            </div>
+        `;
+    };
 
     gifContainer.appendChild(gif);
 
-    // Taruh GIF tepat sebelum LETTER FROM THE ARCHIVIST
-    const letter = document.querySelector(".story-letter");
-
-    if (letter) {
-        letter.parentNode.insertBefore(gifContainer, letter);
-    } else {
-        document.querySelector(".story-page").appendChild(gifContainer);
-    }
+    /* GIF DITARUH TEPAT SEBELUM LETTER */
+    letter.parentNode.insertBefore(gifContainer, letter);
 
 });
 </script>
