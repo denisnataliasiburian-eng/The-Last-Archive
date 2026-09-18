@@ -853,28 +853,35 @@
         margin-top: 40px;
     }
 
-           /* =========================
+    
+/* =====================================================
    ENDING GIF
-========================= */
+===================================================== */
 
 .story-ending-gif {
     width: 100%;
     max-width: 900px;
-    margin: 70px auto 80px;
+    margin: 80px auto;
     padding: 10px;
-    border: 1px solid rgba(168, 139, 89, 0.4);
+
+    border: 1px solid rgba(168, 139, 89, .4);
+
     background: #191715;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, .4);
 }
 
 .story-ending-gif img {
+    display: block;
     width: 100%;
     height: auto;
-    display: block;
 }
 
 
-/* MOBILE */
+/* =====================================================
+   ENDING GIF — MOBILE
+===================================================== */
 
 @media (max-width: 700px) {
 
@@ -884,7 +891,14 @@
         padding: 7px;
     }
 
-} 
+    .story-ending-gif img {
+        width: 100%;
+        height: auto;
+    }
+
+}
+
+</style> 
     </style>
 </head>
 
@@ -1578,7 +1592,6 @@
     <img src="ending.gif" alt="A memory of everyone who was part of our story">
 </div>
 
-<section class="story-letter">
       <!-- =========================
      LETTER FROM THE ARCHIVIST
 ========================= -->
