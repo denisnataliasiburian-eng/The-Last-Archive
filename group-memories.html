@@ -17,16 +17,91 @@
 
         .memories-page {
             min-height: 100vh;
-            padding: 80px 7% 60px;
+            padding: 60px 7% 70px;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* HEADER */
+        /* =========================
+           LANGUAGE SWITCH
+        ========================= */
+
+        .language-switch {
+            position: fixed;
+            top: 25px;
+            right: 30px;
+            z-index: 1000;
+
+            display: flex;
+            gap: 5px;
+
+            padding: 5px;
+
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(0,0,0,0.45);
+            backdrop-filter: blur(10px);
+        }
+
+        .language-switch button {
+            border: none;
+            background: transparent;
+
+            color: inherit;
+
+            padding: 7px 10px;
+
+            font-size: 11px;
+            letter-spacing: 1.5px;
+
+            cursor: pointer;
+
+            opacity: 0.45;
+            transition: 0.3s;
+        }
+
+        .language-switch button.active {
+            opacity: 1;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .language-switch button:hover {
+            opacity: 1;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-archive {
+            display: inline-block;
+
+            margin-bottom: 55px;
+
+            text-decoration: none;
+
+            font-size: 11px;
+            letter-spacing: 2px;
+
+            opacity: 0.6;
+
+            transition: 0.3s;
+        }
+
+        .back-archive:hover {
+            opacity: 1;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
 
         .memories-header {
+            max-width: 850px;
+            margin: 0 auto 110px;
+
             text-align: center;
-            margin-bottom: 90px;
         }
 
         .memories-header .archive-small {
@@ -35,181 +110,274 @@
 
         .memories-header h1 {
             font-size: clamp(42px, 7vw, 78px);
+
             letter-spacing: 5px;
-            margin-bottom: 20px;
+
+            margin-bottom: 25px;
         }
 
         .memories-subtitle {
             max-width: 650px;
+
             margin: auto;
-            line-height: 1.8;
-            opacity: 0.75;
-        }
 
-        /* BACK BUTTON */
+            line-height: 1.9;
 
-        .back-archive {
-            display: inline-block;
-            margin-bottom: 50px;
-            text-decoration: none;
-            letter-spacing: 2px;
-            font-size: 12px;
             opacity: 0.7;
-            transition: 0.3s;
         }
 
-        .back-archive:hover {
-            opacity: 1;
-        }
 
-        /* MEMORY SECTION */
+        /* =========================
+           MEMORY SECTION
+        ========================= */
 
         .memory-section {
             max-width: 1050px;
-            margin: 0 auto 120px;
+
+            margin: 0 auto 125px;
         }
 
         .memory-heading {
             display: flex;
+
             align-items: baseline;
+
             gap: 20px;
-            margin-bottom: 35px;
+
+            margin-bottom: 20px;
+
+            padding-bottom: 17px;
+
             border-bottom: 1px solid rgba(255,255,255,0.15);
-            padding-bottom: 18px;
         }
 
         .memory-number {
-            font-size: 13px;
+            font-size: 12px;
+
             letter-spacing: 3px;
-            opacity: 0.5;
+
+            opacity: 0.45;
         }
 
         .memory-heading h2 {
-            font-size: clamp(25px, 4vw, 38px);
+            font-size: clamp(24px, 4vw, 38px);
+
             letter-spacing: 3px;
+
             font-weight: 500;
         }
 
         .memory-description {
-            max-width: 650px;
-            line-height: 1.8;
-            opacity: 0.7;
-            margin-bottom: 35px;
+            max-width: 720px;
+
+            line-height: 1.85;
+
+            opacity: 0.65;
+
+            margin-bottom: 38px;
         }
 
-        /* PHOTO GRID */
+
+        /* =========================
+           PHOTO GRID
+        ========================= */
 
         .memory-gallery {
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
+
+            gap: 25px;
         }
+
+
+        /* =========================
+           MEMORY CARD
+        ========================= */
 
         .memory-card {
             position: relative;
+
             overflow: hidden;
-            min-height: 280px;
-            background: rgba(255,255,255,0.03);
+
+            background: rgba(255,255,255,0.025);
+
             border: 1px solid rgba(255,255,255,0.12);
         }
 
         .memory-card.large {
             grid-column: span 2;
-            min-height: 430px;
         }
 
-        .memory-card img {
+
+        /* =========================
+           PHOTO
+        ========================= */
+
+        .memory-photo {
+            width: 100%;
+
+            aspect-ratio: 4 / 3;
+
+            overflow: hidden;
+        }
+
+        .memory-card.large .memory-photo {
+            aspect-ratio: 16 / 8;
+        }
+
+        .memory-photo img {
             width: 100%;
             height: 100%;
-            min-height: 280px;
+
             display: block;
+
             object-fit: cover;
+
             transition: transform 0.7s ease;
         }
 
-        .memory-card.large img {
-            min-height: 430px;
+        .memory-card:hover .memory-photo img {
+            transform: scale(1.035);
         }
 
-        .memory-card:hover img {
-            transform: scale(1.04);
-        }
 
-        /* PHOTO PLACEHOLDER */
+        /* =========================
+           PLACEHOLDER
+        ========================= */
 
         .memory-placeholder {
             width: 100%;
-            height: 100%;
-            min-height: 280px;
+
+            aspect-ratio: 4 / 3;
+
             display: flex;
+
             align-items: center;
             justify-content: center;
+
             text-align: center;
+
             padding: 30px;
+
             box-sizing: border-box;
-            opacity: 0.35;
+
+            opacity: 0.3;
+
             letter-spacing: 2px;
-            font-size: 12px;
+
+            font-size: 11px;
         }
 
         .memory-card.large .memory-placeholder {
-            min-height: 430px;
+            aspect-ratio: 16 / 8;
         }
 
-        /* CAPTION */
+
+        /* =========================
+           CAPTION
+        ========================= */
 
         .memory-caption {
-            padding: 16px 18px;
-            font-size: 13px;
-            line-height: 1.6;
-            opacity: 0.75;
+            padding: 17px 19px 20px;
         }
 
-        /* LAST SECTION */
+        .memory-caption strong {
+            display: block;
+
+            margin-bottom: 7px;
+
+            font-size: 12px;
+
+            letter-spacing: 1.5px;
+
+            font-weight: 500;
+        }
+
+        .memory-caption p {
+            margin: 0;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+            opacity: 0.6;
+        }
+
+
+        /* =========================
+           CLOSING
+        ========================= */
 
         .memories-closing {
             max-width: 700px;
-            margin: 140px auto 80px;
+
+            margin: 150px auto 100px;
+
             text-align: center;
+        }
+
+        .memories-closing .archive-small {
+            margin-bottom: 20px;
         }
 
         .memories-closing h2 {
             font-size: 30px;
+
             letter-spacing: 3px;
+
             margin-bottom: 25px;
         }
 
         .memories-closing p {
             line-height: 1.9;
-            opacity: 0.7;
+
+            opacity: 0.65;
         }
 
-        /* FOOTER */
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         .memories-footer {
             max-width: 1050px;
+
             margin: 100px auto 0;
+
             padding-top: 25px;
+
             border-top: 1px solid rgba(255,255,255,0.12);
 
             display: flex;
+
             justify-content: space-between;
 
-            font-size: 11px;
+            font-size: 10px;
+
             letter-spacing: 2px;
-            opacity: 0.5;
+
+            opacity: 0.45;
         }
 
-        /* MOBILE */
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 700px) {
 
             .memories-page {
-                padding: 50px 6% 40px;
+                padding: 45px 6% 50px;
+            }
+
+            .language-switch {
+                top: 15px;
+                right: 15px;
             }
 
             .memories-header {
-                margin-bottom: 60px;
+                margin-bottom: 70px;
             }
 
             .memory-gallery {
@@ -220,16 +388,9 @@
                 grid-column: span 1;
             }
 
-            .memory-card,
-            .memory-card.large {
-                min-height: 260px;
-            }
-
-            .memory-card img,
-            .memory-card.large img,
-            .memory-placeholder,
+            .memory-card.large .memory-photo,
             .memory-card.large .memory-placeholder {
-                min-height: 260px;
+                aspect-ratio: 4 / 3;
             }
 
             .memory-heading {
@@ -255,14 +416,50 @@
 
 <main class="memories-page">
 
-    <!-- BACK -->
+
+    <!-- =========================
+         LANGUAGE
+    ========================== -->
+
+    <div class="language-switch">
+
+        <button
+            type="button"
+            id="enBtn"
+            class="active"
+            onclick="setLanguage('en')">
+            EN
+        </button>
+
+        <button
+            type="button"
+            id="idBtn"
+            onclick="setLanguage('id')">
+            ID
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         BACK
+    ========================== -->
 
     <a href="general-archive.html" class="back-archive">
-        ← BACK TO GENERAL ARCHIVE
+
+        <span class="lang en">← BACK TO GENERAL ARCHIVE</span>
+
+        <span class="lang id" style="display:none;">
+            ← KEMBALI KE GENERAL ARCHIVE
+        </span>
+
     </a>
 
 
-    <!-- HEADER -->
+
+    <!-- =========================
+         HEADER
+    ========================== -->
 
     <header class="memories-header">
 
@@ -273,16 +470,26 @@
         <h1>GROUP MEMORIES</h1>
 
         <p class="memories-subtitle">
-            Photographs, fragments, and little moments
-            that became memories before we knew it.
+
+            <span class="lang en">
+                Photographs, fragments, and little moments
+                that became memories before we knew it.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Foto, potongan cerita, dan hal-hal kecil
+                yang tanpa kami sadari berubah menjadi kenangan.
+            </span>
+
         </p>
 
     </header>
 
 
-    <!-- =========================
+
+    <!-- ==================================================
          01 — CAMPUS DAYS
-    ========================== -->
+    =================================================== -->
 
     <section class="memory-section">
 
@@ -295,41 +502,143 @@
         </div>
 
         <p class="memory-description">
-            The ordinary days that quietly became part of the story.
-            Classes, assignments, presentations, and everything in between.
+
+            <span class="lang en">
+                The ordinary days that quietly became part of the story.
+                Classes, assignments, presentations, and everything in between.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Hari-hari biasa yang diam-diam menjadi bagian dari cerita.
+                Perkuliahan, tugas, presentasi, dan segala hal di antaranya.
+            </span>
+
         </p>
 
 
         <div class="memory-gallery">
 
+
+            <!-- FOTO 01 -->
+
             <div class="memory-card large">
 
                 <div class="memory-placeholder">
-                    PHOTO — CAMPUS
+                    CAMPUS PHOTO
                 </div>
 
-                <!--
-                Contoh jika sudah punya foto:
+                <div class="memory-caption">
 
-                <img src="campus-01.jpg" alt="Campus memory">
-                -->
+                    <strong>
+
+                        <span class="lang en">
+                            A DAY ON CAMPUS
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            SEHARI DI KAMPUS
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            A photograph that captures us simply being there,
+                            somewhere between classes and everything else.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Foto yang menangkap kami sebagaimana adanya,
+                            di antara kelas dan segala kesibukan lainnya.
+                        </span>
+
+                    </p>
+
+                </div>
 
             </div>
 
 
+
+            <!-- FOTO 02 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PHOTO
+                    CLASS / LECTURE
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            BETWEEN CLASSES
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            DI ANTARA KELAS
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            The moments before class started,
+                            after it ended, or when nobody really wanted to leave.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Momen sebelum kelas dimulai,
+                            setelah kelas selesai, atau ketika tidak ada yang benar-benar ingin pulang.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
 
+
+            <!-- FOTO 03 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PHOTO
+                    CAMPUS ACTIVITY
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            JUST ANOTHER CAMPUS DAY
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            HARI KAMPUS BIASA
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            Nothing particularly extraordinary.
+                            Just one of the days we happened to share.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Tidak ada yang benar-benar luar biasa.
+                            Hanya salah satu hari yang kebetulan kami lewati bersama.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
@@ -340,9 +649,9 @@
 
 
 
-    <!-- =========================
+    <!-- ==================================================
          02 — THE PROJECTS
-    ========================== -->
+    =================================================== -->
 
     <section class="memory-section">
 
@@ -355,36 +664,145 @@
         </div>
 
         <p class="memory-description">
-            The things we worked on together,
-            from assignments and presentations to projects
-            that somehow became memories of their own.
+
+            <span class="lang en">
+                The things we worked on together,
+                from assignments and presentations to projects
+                that somehow became memories of their own.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Hal-hal yang pernah kami kerjakan bersama,
+                dari tugas dan presentasi hingga project
+                yang entah bagaimana ikut menjadi kenangan.
+            </span>
+
         </p>
 
 
         <div class="memory-gallery">
 
+
+            <!-- FOTO 01 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PROJECT PHOTO
+                    GROUP PROJECT
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            WORKING TOGETHER
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            MENGERJAKAN BERSAMA
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            One of the projects that brought us around
+                            the same table, screen, or deadline.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Salah satu project yang membuat kami kembali
+                            berada di meja, layar, atau deadline yang sama.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
 
+
+            <!-- FOTO 02 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PROJECT PHOTO
+                    PRESENTATION
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            PRESENTATION DAY
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            HARI PRESENTASI
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            The presentation, preparation,
+                            or the moment right before everything began.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Presentasi, persiapan,
+                            atau momen tepat sebelum semuanya dimulai.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
+
+
+            <!-- FOTO 03 -->
 
             <div class="memory-card large">
 
                 <div class="memory-placeholder">
-                    SCREENSHOT / DOCUMENT / PROJECT
+                    PROJECT / DOCUMENT / SCREENSHOT
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            SOMETHING WE MADE
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            SESUATU YANG KAMI BUAT
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            A project, document, presentation slide,
+                            or anything that reminds us of what we created together.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Project, dokumen, slide presentasi,
+                            atau apa pun yang mengingatkan kami pada sesuatu yang pernah dibuat bersama.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
@@ -395,9 +813,9 @@
 
 
 
-    <!-- =========================
+    <!-- ==================================================
          03 — THE LITTLE THINGS
-    ========================== -->
+    =================================================== -->
 
     <section class="memory-section">
 
@@ -410,44 +828,185 @@
         </div>
 
         <p class="memory-description">
-            The small moments that never seemed important at the time,
-            but somehow became the ones worth keeping.
+
+            <span class="lang en">
+                The small moments that never seemed important at the time,
+                but somehow became the ones worth keeping.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Momen-momen kecil yang saat itu terasa biasa saja,
+                tetapi entah bagaimana menjadi sesuatu yang ingin disimpan.
+            </span>
+
         </p>
 
 
         <div class="memory-gallery">
 
+
+            <!-- FOTO 01 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PHOTO
+                    FOOD / COFFEE
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            FOOD BREAKS
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            WAKTU MAKAN
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            The meals, drinks, and little breaks
+                            that happened between everything else.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Makanan, minuman, dan jeda-jeda kecil
+                            yang muncul di antara kesibukan lainnya.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
 
+
+            <!-- FOTO 02 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PHOTO
+                    SELFIE
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            ONE MORE PHOTO
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            SATU FOTO LAGI
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            The selfies we took without knowing
+                            how often we would look back at them.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Selfie yang kami ambil tanpa tahu
+                            seberapa sering kami akan melihatnya kembali.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
 
+
+            <!-- FOTO 03 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PHOTO
+                    CANDID
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            WHEN NO ONE WAS POSING
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            SAAT TIDAK ADA YANG BERPOSE
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            The candid moments that happened
+                            when nobody was trying to make a memory.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Momen candid yang terjadi
+                            ketika tidak ada yang sedang berusaha membuat kenangan.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
 
+
+            <!-- FOTO 04 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PHOTO
+                    RANDOM MOMENT
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            NOTHING SPECIAL
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            TIDAK ADA YANG SPESIAL
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            And somehow, those ordinary moments
+                            became some of the easiest to remember.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Dan entah bagaimana, momen-momen biasa itu
+                            justru menjadi beberapa hal yang paling mudah diingat.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
@@ -458,9 +1017,9 @@
 
 
 
-    <!-- =========================
+    <!-- ==================================================
          04 — THE CHAOS
-    ========================== -->
+    =================================================== -->
 
     <section class="memory-section">
 
@@ -473,35 +1032,141 @@
         </div>
 
         <p class="memory-description">
-            The random pictures, ridiculous conversations,
-            questionable decisions, and moments that made absolutely no sense.
+
+            <span class="lang en">
+                The random pictures, ridiculous conversations,
+                questionable decisions, and moments that made absolutely no sense.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Foto random, percakapan absurd,
+                keputusan yang dipertanyakan, dan momen yang sama sekali tidak masuk akal.
+            </span>
+
         </p>
 
 
         <div class="memory-gallery">
 
+
+            <!-- FOTO 01 -->
+
             <div class="memory-card large">
 
                 <div class="memory-placeholder">
-                    CHAOS PHOTO / CHAT
+                    CHAOS PHOTO
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            THIS SHOULD NOT EXIST
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            INI SEHARUSNYA TIDAK ADA
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            One of those photographs that makes sense
+                            only to the people who were there.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Salah satu foto yang hanya masuk akal
+                            bagi orang-orang yang ada di sana.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
 
+
+            <!-- FOTO 02 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    CHAT / MEME
+                    CHAT / SCREENSHOT
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            THE CHAT
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            ISI CHAT
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            A conversation that deserves
+                            to be preserved exactly as it was.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Percakapan yang rasanya pantas
+                            disimpan persis seperti adanya.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
 
+
+            <!-- FOTO 03 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    RANDOM PHOTO
+                    MEME / RANDOM
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            NO CONTEXT
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            TANPA KONTEKS
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            No explanation necessary.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Tidak perlu penjelasan.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
@@ -512,9 +1177,9 @@
 
 
 
-    <!-- =========================
+    <!-- ==================================================
          05 — SOMEWHERE ALONG THE WAY
-    ========================== -->
+    =================================================== -->
 
     <section class="memory-section">
 
@@ -527,12 +1192,24 @@
         </div>
 
         <p class="memory-description">
-            The moments that happened somewhere between campus,
-            deadlines, and everything else life had going on.
+
+            <span class="lang en">
+                The moments that happened somewhere between campus,
+                deadlines, and everything else life had going on.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Momen yang terjadi di antara kampus,
+                deadline, dan segala hal lain yang sedang kami jalani.
+            </span>
+
         </p>
 
 
         <div class="memory-gallery">
+
+
+            <!-- FOTO 01 -->
 
             <div class="memory-card large">
 
@@ -540,22 +1217,118 @@
                     EVENT / HANGOUT / TRIP
                 </div>
 
-            </div>
+                <div class="memory-caption">
 
+                    <strong>
 
-            <div class="memory-card">
+                        <span class="lang en">
+                            SOMEWHERE WE WENT
+                        </span>
 
-                <div class="memory-placeholder">
-                    PHOTO
+                        <span class="lang id" style="display:none;">
+                            SUATU TEMPAT YANG KAMI DATANGI
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            A place, event, or day outside campus
+                            that became part of the story.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Tempat, acara, atau hari di luar kampus
+                            yang akhirnya menjadi bagian dari cerita.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
 
+
+            <!-- FOTO 02 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PHOTO
+                    HANGOUT
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            JUST HANGING OUT
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            SEKADAR NONGKRONG
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            No assignment. No deadline.
+                            Just spending time together.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Tidak ada tugas. Tidak ada deadline.
+                            Hanya menghabiskan waktu bersama.
+                        </span>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOTO 03 -->
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    EVENT
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            A DAY OUT
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            HARI DI LUAR KAMPUS
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            One of the days that happened
+                            somewhere along the way.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Salah satu hari yang terjadi
+                            di suatu titik sepanjang perjalanan.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
@@ -566,9 +1339,9 @@
 
 
 
-    <!-- =========================
+    <!-- ==================================================
          06 — THE LAST DAYS
-    ========================== -->
+    =================================================== -->
 
     <section class="memory-section">
 
@@ -581,36 +1354,187 @@
         </div>
 
         <p class="memory-description">
-            The final stretch of university life.
-            Sidang, yudisium, graduation, and the moments
-            that slowly marked the end of this chapter.
+
+            <span class="lang en">
+                The final stretch of university life.
+                Sidang, yudisium, graduation, and the moments
+                that slowly marked the end of this chapter.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Bagian akhir dari perjalanan perkuliahan.
+                Sidang, yudisium, wisuda, dan momen-momen
+                yang perlahan menandai berakhirnya bab ini.
+            </span>
+
         </p>
 
 
         <div class="memory-gallery">
 
+
+            <!-- FOTO 01 -->
+
             <div class="memory-card large">
 
                 <div class="memory-placeholder">
-                    SIDANG / YUDISIUM / GRADUATION
+                    SIDANG
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            THE DAY WE DEFENDED OUR WORK
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            HARI KETIKA KAMI MEMPERTAHANKAN HASIL KAMI
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            Documentation from the thesis defense,
+                            the presentation, or the moment after it was over.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Dokumentasi sidang,
+                            presentasi, atau momen setelah semuanya selesai.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
+
+
+            <!-- FOTO 02 -->
 
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    FINAL DAYS
+                    YUDISIUM
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            OFFICIALLY DONE
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            RESMI SELESAI
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            A photograph from the moment
+                            graduation became official.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Foto dari momen ketika
+                            kelulusan akhirnya resmi.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
+
+
+            <!-- FOTO 03 -->
 
             <div class="memory-card">
 
                 <div class="memory-placeholder">
                     GRADUATION
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            GRADUATION DAY
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            HARI WISUDA
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            Individual graduation photographs,
+                            because not every ending happened at the same time.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Foto wisuda masing-masing,
+                            karena tidak semua akhir datang pada waktu yang sama.
+                        </span>
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOTO 04 -->
+
+            <div class="memory-card">
+
+                <div class="memory-placeholder">
+                    FINAL CAMPUS MOMENT
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            BEFORE LEAVING
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            SEBELUM MENINGGALKAN KAMPUS
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            The last photograph of a familiar place,
+                            room, hallway, or corner of campus.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Foto terakhir dari tempat,
+                            ruangan, lorong, atau sudut kampus yang familiar.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
@@ -621,9 +1545,9 @@
 
 
 
-    <!-- =========================
+    <!-- ==================================================
          07 — STILL HERE
-    ========================== -->
+    =================================================== -->
 
     <section class="memory-section">
 
@@ -636,26 +1560,101 @@
         </div>
 
         <p class="memory-description">
-            Different paths. Different places.
-            But some memories remain where we left them.
+
+            <span class="lang en">
+                Different paths. Different places.
+                But some memories remain where we left them.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Jalan yang berbeda. Tempat yang berbeda.
+                Tetapi beberapa kenangan tetap berada di tempat kami meninggalkannya.
+            </span>
+
         </p>
 
 
         <div class="memory-gallery">
 
+
+            <!-- FOTO 01 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PHOTO
+                    INDIVIDUAL PHOTO
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            AFTER CAMPUS
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            SETELAH KAMPUS
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            A photograph from life after university
+                            began taking each of us somewhere new.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Foto dari kehidupan setelah perjalanan kuliah
+                            mulai membawa kami ke arah yang berbeda.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
 
 
+
+            <!-- FOTO 02 -->
+
             <div class="memory-card">
 
                 <div class="memory-placeholder">
-                    PHOTO
+                    INDIVIDUAL / RECENT PHOTO
+                </div>
+
+                <div class="memory-caption">
+
+                    <strong>
+
+                        <span class="lang en">
+                            STILL HERE
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            MASIH DI SINI
+                        </span>
+
+                    </strong>
+
+                    <p>
+
+                        <span class="lang en">
+                            A reminder that even when the chapter changes,
+                            the memories remain.
+                        </span>
+
+                        <span class="lang id" style="display:none;">
+                            Pengingat bahwa meskipun babnya berubah,
+                            kenangan tetap tinggal.
+                        </span>
+
+                    </p>
+
                 </div>
 
             </div>
@@ -666,26 +1665,59 @@
 
 
 
-    <!-- CLOSING -->
+    <!-- =========================
+         CLOSING
+    ========================== -->
 
     <section class="memories-closing">
 
         <p class="archive-small">
-            END OF COLLECTION
+
+            <span class="lang en">
+                END OF COLLECTION
+            </span>
+
+            <span class="lang id" style="display:none;">
+                AKHIR KOLEKSI
+            </span>
+
         </p>
 
-        <h2>Some moments stay.</h2>
+
+        <h2>
+
+            <span class="lang en">
+                Some moments stay.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Beberapa momen tetap tinggal.
+            </span>
+
+        </h2>
+
 
         <p>
-            Not because they were extraordinary,
-            but because they happened with the right people.
+
+            <span class="lang en">
+                Not because they were extraordinary,
+                but because they happened with the right people.
+            </span>
+
+            <span class="lang id" style="display:none;">
+                Bukan karena semuanya luar biasa,
+                tetapi karena semuanya terjadi bersama orang-orang yang tepat.
+            </span>
+
         </p>
 
     </section>
 
 
 
-    <!-- FOOTER -->
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
     <footer class="memories-footer">
 
@@ -699,6 +1731,71 @@
 
 
 </main>
+
+
+
+<!-- =========================
+     LANGUAGE SCRIPT
+========================= -->
+
+<script>
+
+function setLanguage(language) {
+
+    const english =
+        document.querySelectorAll(".lang.en");
+
+    const indonesian =
+        document.querySelectorAll(".lang.id");
+
+    const enBtn =
+        document.getElementById("enBtn");
+
+    const idBtn =
+        document.getElementById("idBtn");
+
+
+    if (language === "en") {
+
+        english.forEach(function(element) {
+            element.style.display = "";
+        });
+
+        indonesian.forEach(function(element) {
+            element.style.display = "none";
+        });
+
+        enBtn.classList.add("active");
+        idBtn.classList.remove("active");
+
+    } else {
+
+        english.forEach(function(element) {
+            element.style.display = "none";
+        });
+
+        indonesian.forEach(function(element) {
+            element.style.display = "";
+        });
+
+        idBtn.classList.add("active");
+        enBtn.classList.remove("active");
+
+    }
+
+}
+
+
+/* DEFAULT LANGUAGE */
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    setLanguage("en");
+
+});
+
+</script>
+
 
 </body>
 
