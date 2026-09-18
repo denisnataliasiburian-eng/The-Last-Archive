@@ -1900,9 +1900,9 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    const gifContainer = document.createElement("div");
+    const videoContainer = document.createElement("div");
 
-    gifContainer.style.cssText = `
+    videoContainer.style.cssText = `
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -1916,12 +1916,15 @@ document.addEventListener("DOMContentLoaded", function () {
         box-sizing: border-box;
     `;
 
-    const gif = document.createElement("img");
+    const video = document.createElement("video");
 
-    gif.src = "ending.gif";
-    gif.alt = "A memory of everyone who was part of our story";
+    video.src = "ending.mp4";
+    video.autoplay = true;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
 
-    gif.style.cssText = `
+    video.style.cssText = `
         display: block !important;
         visibility: visible !important;
         opacity: 1 !important;
@@ -1932,33 +1935,14 @@ document.addEventListener("DOMContentLoaded", function () {
         object-fit: contain !important;
     `;
 
-    gif.onload = function () {
-        console.log("ENDING.GIF BERHASIL DIMUAT");
-    };
+    videoContainer.appendChild(video);
 
-    gif.onerror = function () {
-        console.log("ENDING.GIF GAGAL DIMUAT");
-
-        gifContainer.innerHTML = `
-            <div style="
-                padding: 40px 20px;
-                border: 1px solid rgba(168,139,89,.4);
-                color: #a88b59;
-                font-family: Georgia, serif;
-                text-align: center;
-            ">
-                ENDING GIF COULD NOT BE LOADED
-            </div>
-        `;
-    };
-
-    gifContainer.appendChild(gif);
-
-    /* GIF DITARUH TEPAT SEBELUM LETTER */
-    letter.parentNode.insertBefore(gifContainer, letter);
+    /* VIDEO DITARUH TEPAT SEBELUM LETTER */
+    letter.parentNode.insertBefore(videoContainer, letter);
 
 });
 </script>
+
 </body>
 
 </html>
