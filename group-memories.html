@@ -8,669 +8,632 @@
     <title>Group Memories | The Last Archive</title>
 
     <style>
-        /* =========================
+        /* =========================================================
            GROUP MEMORIES
-           THE LAST ARCHIVE
-        ========================= */
+           VISUAL LANGUAGE — SAME FAMILY AS OUR STORY
+        ========================================================= */
 
-        .memories-page {
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #11100f;
+            color: #e8e0d2;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        .story-page {
             min-height: 100vh;
             background:
-                radial-gradient(circle at 50% 0%, rgba(91, 61, 117, 0.12), transparent 35%),
-                #0b0b0d;
-            color: #e8e1d5;
-            padding: 70px 25px 40px;
+                radial-gradient(
+                    circle at 50% 0%,
+                    rgba(75, 45, 90, 0.24),
+                    transparent 42%
+                ),
+                radial-gradient(
+                    circle at 10% 50%,
+                    rgba(110, 80, 50, 0.08),
+                    transparent 35%
+                ),
+                #11100f;
+
             position: relative;
             overflow-x: hidden;
+            padding: 70px 20px 80px;
         }
 
-        .memories-container {
-            width: min(1050px, 100%);
-            margin: 0 auto;
+        /* =========================================================
+           GRAIN
+        ========================================================= */
+
+        .story-page::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+
+            pointer-events: none;
+            z-index: 0;
         }
 
-        /* =========================
+        /* =========================================================
            LANGUAGE SWITCH
-        ========================= */
+        ========================================================= */
 
         .language-switch {
             position: fixed;
             top: 25px;
-            right: 25px;
-            z-index: 20;
+            right: 35px;
+            z-index: 100;
 
             display: flex;
-            gap: 4px;
-
-            padding: 4px;
-
-            border: 1px solid rgba(196, 164, 104, 0.25);
-            background: rgba(10, 10, 12, 0.9);
-            backdrop-filter: blur(10px);
-        }
-
-        .language-switch button {
-            border: none;
-            background: transparent;
-            color: #827b70;
+            gap: 5px;
 
             font-family: Arial, sans-serif;
             font-size: 11px;
-            letter-spacing: 1.5px;
-
-            padding: 8px 12px;
-            cursor: pointer;
-
-            transition: 0.3s ease;
+            letter-spacing: 2px;
         }
 
-        .language-switch button.active {
-            background: #c4a468;
-            color: #0b0b0d;
+        .language-switch button {
+            background: transparent;
+            border: 1px solid rgba(168, 139, 89, 0.35);
+
+            color: #8d877d;
+
+            padding: 7px 11px;
+
+            cursor: pointer;
+
+            transition:
+                color 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
         }
 
         .language-switch button:hover {
-            color: #c4a468;
+            color: #d2b47a;
+            border-color: #a88b59;
         }
 
-        .language-switch button.active:hover {
-            color: #0b0b0d;
+        .language-switch button.active {
+            color: #d8bd88;
+            border-color: #a88b59;
+            background: rgba(168, 139, 89, 0.08);
         }
 
-        /* =========================
+        /* =========================================================
+           MAIN CONTAINER
+        ========================================================= */
+
+        .story-container {
+            width: 100%;
+            max-width: 1050px;
+            margin: 0 auto;
+
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================================================
            HEADER
-        ========================= */
+        ========================================================= */
 
-        .memories-header {
+        .story-header {
             text-align: center;
-            margin-bottom: 90px;
+            margin-bottom: 85px;
         }
 
-        .memories-label {
+        .story-header .eyebrow {
+            color: #a88b59;
+
             font-family: Arial, sans-serif;
-            font-size: 10px;
+            font-size: 11px;
             letter-spacing: 4px;
-            color: #9d8c70;
+
+            margin-bottom: 20px;
+        }
+
+        .story-header h1 {
+            color: #eee7dc;
+
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(42px, 7vw, 76px);
+            font-weight: normal;
+
+            letter-spacing: 5px;
+            line-height: 1.05;
+
             margin-bottom: 22px;
         }
 
-        .memories-header h1 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-weight: 400;
-            font-size: clamp(42px, 7vw, 82px);
-            letter-spacing: 7px;
-            margin: 0 0 22px;
+        .story-header .subtitle {
+            color: #9b948a;
 
-            color: #eee7dc;
-        }
+            font-size: 17px;
+            font-style: italic;
 
-        .memories-subtitle {
-            max-width: 620px;
+            max-width: 650px;
             margin: 0 auto;
 
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 18px;
             line-height: 1.8;
-
-            color: #9e988e;
-            font-style: italic;
         }
 
-        /* =========================
-           INTRO
-        ========================= */
+        .header-line {
+            width: 80px;
+            height: 1px;
 
-        .memories-intro {
-            max-width: 700px;
-            margin: 0 auto 100px;
+            background: #a88b59;
 
-            text-align: center;
-
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 17px;
-            line-height: 2;
-
-            color: #b7b0a5;
+            margin: 30px auto 0;
         }
 
-        /* =========================
+        /* =========================================================
            SECTION
-        ========================= */
+        ========================================================= */
 
-        .memory-section {
+        .story-section {
             position: relative;
-            margin-bottom: 110px;
-            padding-left: 35px;
-            border-left: 1px solid rgba(196, 164, 104, 0.25);
+
+            max-width: 820px;
+
+            margin: 0 auto 105px;
+            padding-left: 75px;
         }
 
-        .memory-section::before {
+        .story-section::before {
             content: "";
+
             position: absolute;
-            left: -4px;
-            top: 3px;
+            left: 21px;
+            top: 0;
+            bottom: 0;
 
-            width: 7px;
-            height: 7px;
+            width: 1px;
 
-            background: #c4a468;
+            background:
+                linear-gradient(
+                    to bottom,
+                    transparent,
+                    rgba(168, 139, 89, 0.7) 5%,
+                    rgba(168, 139, 89, 0.7) 95%,
+                    transparent
+                );
+        }
+
+        .section-heading {
+            position: relative;
+
+            margin-bottom: 45px;
+        }
+
+        .story-number {
+            position: absolute;
+
+            left: -75px;
+            top: 0;
+
+            width: 43px;
+            height: 43px;
+
+            border: 1px solid #a88b59;
             border-radius: 50%;
-        }
 
-        .memory-section-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #c5a96d;
+
             font-family: Arial, sans-serif;
-            font-size: 10px;
+            font-size: 11px;
+            letter-spacing: 1px;
+
+            background: #11100f;
+        }
+
+        .section-heading h2 {
+            color: #d9c39a;
+
+            font-size: 24px;
+            font-weight: normal;
+
             letter-spacing: 3px;
-            color: #8c7960;
-            margin-bottom: 10px;
+            line-height: 1.4;
         }
 
-        .memory-section h2 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(26px, 4vw, 42px);
-            font-weight: 400;
-            letter-spacing: 2px;
+        .section-heading p {
+            color: #777168;
 
-            margin: 0 0 15px;
-            color: #e9e0d2;
+            margin-top: 9px;
+
+            font-size: 13px;
+            font-style: italic;
+            line-height: 1.7;
         }
 
-        .memory-section-intro {
-            max-width: 680px;
-
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 15px;
-            line-height: 1.9;
-
-            color: #8f8980;
-            margin-bottom: 50px;
-        }
-
-        /* =========================
+        /* =========================================================
            MEMORY FRAGMENT
-        ========================= */
+        ========================================================= */
 
         .memory-fragment {
             display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
-            gap: 45px;
+            grid-template-columns: minmax(0, 1.1fr) minmax(250px, 0.9fr);
+
+            gap: 42px;
 
             align-items: center;
 
-            margin-bottom: 70px;
+            margin-bottom: 75px;
         }
 
         .memory-fragment:last-child {
             margin-bottom: 0;
         }
 
-        /* =========================
-           IMAGE
-        ========================= */
+        /* =========================================================
+           MEDIA
+        ========================================================= */
 
-        .memory-image {
+        .memory-photo {
             position: relative;
 
-            min-height: 340px;
+            padding: 10px;
 
-            border: 1px solid rgba(196, 164, 104, 0.22);
-            background: #111114;
+            border: 1px solid rgba(168, 139, 89, 0.4);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(168, 139, 89, 0.08),
+                    rgba(255, 255, 255, 0.015)
+                );
+
+            box-shadow:
+                0 18px 45px rgba(0, 0, 0, 0.35);
 
             overflow: hidden;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .memory-image img {
-            width: 100%;
-            height: 100%;
-
-            min-height: 340px;
-
-            object-fit: cover;
-
+        .memory-photo img,
+        .memory-photo video {
             display: block;
 
-            filter: saturate(0.8) contrast(0.95);
-            transition: transform 0.6s ease, filter 0.6s ease;
+            width: 100%;
+            height: auto;
+
+            max-height: 520px;
+
+            object-fit: contain;
+
+            background: #0b0b0a;
         }
 
-        .memory-image:hover img {
-            transform: scale(1.025);
-            filter: saturate(0.95) contrast(1);
+        .memory-photo video {
+            max-height: 500px;
         }
 
-        /* Image placeholder */
+        .memory-photo::after {
+            content: "";
 
-        .memory-image::after {
-            content: "ARCHIVE IMAGE";
             position: absolute;
+            inset: 10px;
 
-            bottom: 12px;
-            right: 12px;
-
-            padding: 6px 9px;
-
-            font-family: Arial, sans-serif;
-            font-size: 8px;
-            letter-spacing: 2px;
-
-            color: rgba(232, 225, 213, 0.55);
-            background: rgba(10, 10, 12, 0.75);
-            border: 1px solid rgba(196, 164, 104, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.04);
 
             pointer-events: none;
         }
 
-        /* =========================
-           MEMORY INFO
-        ========================= */
+        /* =========================================================
+           MEDIA LABEL
+        ========================================================= */
 
-        .memory-info {
-            padding: 5px 0;
-        }
+        .media-label {
+            position: absolute;
 
-        .memory-number {
+            top: 20px;
+            left: 20px;
+
+            z-index: 2;
+
+            padding: 5px 8px;
+
+            background: rgba(17, 16, 15, 0.88);
+            border: 1px solid rgba(168, 139, 89, 0.4);
+
+            color: #c5a96d;
+
             font-family: Arial, sans-serif;
             font-size: 9px;
             letter-spacing: 2px;
+        }
 
-            color: #8b7554;
+        /* =========================================================
+           MEMORY INFO
+        ========================================================= */
+
+        .memory-info {
+            align-self: center;
+        }
+
+        .memory-index {
+            color: #706a61;
+
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
 
             margin-bottom: 14px;
         }
 
         .memory-info h3 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 25px;
-            font-weight: 400;
-            line-height: 1.3;
+            color: #ddd3c3;
 
-            color: #ded6c9;
+            font-size: 22px;
+            font-weight: normal;
 
-            margin: 0 0 18px;
+            line-height: 1.45;
+            letter-spacing: 1px;
+
+            margin-bottom: 17px;
         }
 
-        .memory-info p {
-            font-family: Georgia, "Times New Roman", serif;
+        .memory-description {
+            color: #999188;
+
             font-size: 14px;
             line-height: 1.9;
-
-            color: #99938a;
-
-            margin: 0 0 18px;
-        }
-
-        .memory-caption {
-            padding-left: 15px;
-
-            border-left: 1px solid rgba(196, 164, 104, 0.35);
-
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 13px;
-            line-height: 1.8;
-
-            color: #aaa196;
-            font-style: italic;
-        }
-
-        /* =========================
-           DOCUMENT ARCHIVE
-        ========================= */
-
-        .document-archive {
-            margin-top: 65px;
-
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .archive-document {
-            position: relative;
-
-            padding: 25px;
-
-            min-height: 185px;
-
-            border: 1px solid rgba(196, 164, 104, 0.18);
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(255,255,255,0.025),
-                    rgba(255,255,255,0.005)
-                );
-
-            transition: 0.35s ease;
-        }
-
-        .archive-document:hover {
-            border-color: rgba(196, 164, 104, 0.45);
-            transform: translateY(-3px);
-        }
-
-        .document-type {
-            font-family: Arial, sans-serif;
-            font-size: 8px;
-            letter-spacing: 2px;
-
-            color: #79674e;
-
-            margin-bottom: 22px;
-        }
-
-        .archive-document h3 {
-            font-family: Georgia, "Times New Roman", serif;
-            font-weight: 400;
-
-            font-size: 20px;
-
-            color: #d8d0c3;
-
-            margin: 0 0 12px;
-        }
-
-        .archive-document p {
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 12px;
-            line-height: 1.7;
-
-            color: #858078;
-
-            margin: 0;
-        }
-
-        .document-file {
-            margin-top: 18px;
-
-            font-family: Arial, sans-serif;
-            font-size: 8px;
-            letter-spacing: 1.5px;
-
-            color: #9e8765;
-        }
-
-        /* =========================
-           CHAOS DOCUMENTS
-        ========================= */
-
-        .chaos-archive {
-            margin-top: 65px;
-        }
-
-        .chaos-title {
-            font-family: Arial, sans-serif;
-            font-size: 9px;
-            letter-spacing: 3px;
-
-            color: #8d7757;
-
-            margin-bottom: 25px;
-        }
-
-        .chaos-documents {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 15px;
-        }
-
-        .chaos-document {
-            padding: 18px;
-
-            border: 1px dashed rgba(196, 164, 104, 0.22);
-
-            background: rgba(255, 255, 255, 0.012);
-        }
-
-        .chaos-document img {
-            width: 100%;
-            height: 190px;
-
-            object-fit: cover;
-
-            display: block;
-
-            margin-bottom: 15px;
-
-            filter: saturate(0.7);
-        }
-
-        .chaos-document small {
-            display: block;
-
-            font-family: Arial, sans-serif;
-            font-size: 8px;
-            letter-spacing: 1.5px;
-
-            color: #766c5e;
-
-            margin-bottom: 8px;
-        }
-
-        .chaos-document p {
-            margin: 0;
-
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 12px;
-            line-height: 1.7;
-
-            color: #969087;
-            font-style: italic;
-        }
-
-        /* =========================
-           ARCHIVE NOTE
-        ========================= */
-
-        .archive-note {
-            margin: 90px auto;
-
-            max-width: 700px;
-
-            padding: 35px 30px;
-
-            text-align: center;
-
-            border-top: 1px solid rgba(196, 164, 104, 0.25);
-            border-bottom: 1px solid rgba(196, 164, 104, 0.25);
-        }
-
-        .archive-note-label {
-            font-family: Arial, sans-serif;
-            font-size: 9px;
-            letter-spacing: 3px;
-
-            color: #8b7657;
 
             margin-bottom: 20px;
         }
 
-        .archive-note p {
-            margin: 0;
+        .memory-caption {
+            color: #b59a68;
 
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 17px;
-            line-height: 1.9;
-
-            color: #aaa197;
+            font-size: 13px;
             font-style: italic;
+            line-height: 1.7;
+
+            padding-top: 15px;
+
+            border-top: 1px solid rgba(168, 139, 89, 0.22);
         }
 
-        /* =========================
-           QUOTE
-        ========================= */
+        /* =========================================================
+           ARCHIVE NOTE
+        ========================================================= */
 
-        .memories-quote {
-            max-width: 760px;
+        .archive-note {
+            max-width: 700px;
 
-            margin: 110px auto;
+            margin: 110px auto 70px;
+            padding: 35px 40px;
+
+            border-top: 1px solid rgba(168, 139, 89, 0.45);
+            border-bottom: 1px solid rgba(168, 139, 89, 0.45);
 
             text-align: center;
         }
 
-        .memories-quote span {
-            display: block;
-
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: clamp(23px, 4vw, 36px);
-
-            line-height: 1.6;
-
-            color: #d3c8b8;
-            font-style: italic;
-        }
-
-        .memories-quote small {
-            display: block;
-
-            margin-top: 22px;
+        .archive-note .note-label {
+            color: #a88b59;
 
             font-family: Arial, sans-serif;
-            font-size: 9px;
+            font-size: 10px;
             letter-spacing: 3px;
 
-            color: #756b5d;
+            margin-bottom: 17px;
         }
 
-        /* =========================
+        .archive-note p {
+            color: #a49d93;
+
+            font-size: 15px;
+            font-style: italic;
+
+            line-height: 1.9;
+        }
+
+        /* =========================================================
+           QUOTE
+        ========================================================= */
+
+        .story-quote {
+            max-width: 650px;
+
+            margin: 0 auto 90px;
+            padding: 30px 0;
+
+            text-align: center;
+
+            border-top: 1px solid rgba(168, 139, 89, 0.3);
+            border-bottom: 1px solid rgba(168, 139, 89, 0.3);
+        }
+
+        .story-quote p {
+            color: #c7bba8;
+
+            font-size: 20px;
+            font-style: italic;
+
+            line-height: 1.8;
+        }
+
+        /* =========================================================
            NAVIGATION
-        ========================= */
+        ========================================================= */
 
         .story-navigation {
             display: flex;
 
             justify-content: center;
-            gap: 15px;
-
-            margin-top: 100px;
-            margin-bottom: 70px;
+            gap: 18px;
 
             flex-wrap: wrap;
+
+            margin-bottom: 70px;
         }
 
         .story-nav-btn {
             display: inline-block;
 
-            padding: 14px 20px;
+            padding: 12px 20px;
 
-            border: 1px solid rgba(196, 164, 104, 0.25);
+            border: 1px solid rgba(168, 139, 89, 0.4);
 
-            color: #a79a87;
+            color: #a99e8d;
 
             text-decoration: none;
 
             font-family: Arial, sans-serif;
-            font-size: 9px;
-            letter-spacing: 1.8px;
+            font-size: 10px;
+            letter-spacing: 2px;
 
-            transition: 0.3s ease;
+            transition:
+                color 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
         }
 
         .story-nav-btn:hover {
-            color: #0b0b0d;
-            background: #c4a468;
-            border-color: #c4a468;
+            color: #dbc18c;
+
+            border-color: #a88b59;
+
+            background: rgba(168, 139, 89, 0.07);
         }
 
-        /* =========================
+        /* =========================================================
            FOOTER
-        ========================= */
+        ========================================================= */
 
-        .memories-footer {
-            padding-top: 35px;
+        .story-footer {
+            text-align: center;
 
-            border-top: 1px solid rgba(196, 164, 104, 0.12);
-
-            display: flex;
-
-            justify-content: space-between;
-            align-items: center;
-
-            gap: 20px;
+            color: #5f5a54;
 
             font-family: Arial, sans-serif;
-            font-size: 8px;
-            letter-spacing: 2px;
-
-            color: #635c53;
+            font-size: 9px;
+            letter-spacing: 3px;
         }
 
-        /* =========================
-           LANGUAGE
-        ========================= */
+        /* =========================================================
+           EMPTY / ERROR
+        ========================================================= */
 
-        .lang.id {
-            display: none;
+        .archive-empty {
+            color: #777168;
+
+            text-align: center;
+
+            padding: 70px 20px;
+
+            font-size: 14px;
+            font-style: italic;
         }
 
-        /* =========================
+        /* =========================================================
            MOBILE
-        ========================= */
+        ========================================================= */
 
         @media (max-width: 760px) {
 
-            .memories-page {
-                padding: 80px 18px 30px;
+            .story-page {
+                padding: 65px 18px 60px;
             }
 
             .language-switch {
-                top: 15px;
-                right: 15px;
+                top: 18px;
+                right: 18px;
             }
 
-            .memories-header {
+            .story-header {
                 margin-bottom: 65px;
             }
 
-            .memories-header h1 {
-                letter-spacing: 4px;
+            .story-header h1 {
+                font-size: 38px;
+                letter-spacing: 3px;
             }
 
-            .memory-section {
-                padding-left: 20px;
+            .story-header .subtitle {
+                font-size: 14px;
+            }
+
+            .story-section {
+                padding-left: 52px;
                 margin-bottom: 80px;
+            }
+
+            .story-section::before {
+                left: 15px;
+            }
+
+            .story-number {
+                left: -52px;
+
+                width: 32px;
+                height: 32px;
+
+                font-size: 9px;
+            }
+
+            .section-heading h2 {
+                font-size: 19px;
+                letter-spacing: 2px;
             }
 
             .memory-fragment {
                 grid-template-columns: 1fr;
+
                 gap: 25px;
-                margin-bottom: 55px;
+
+                margin-bottom: 60px;
             }
 
-            .memory-image,
-            .memory-image img {
-                min-height: 260px;
+            .memory-photo img,
+            .memory-photo video {
+                max-height: none;
             }
 
-            .document-archive {
-                grid-template-columns: 1fr;
+            .memory-info h3 {
+                font-size: 19px;
             }
 
-            .chaos-documents {
-                grid-template-columns: 1fr;
-            }
-
-            .chaos-document img {
-                height: 230px;
+            .memory-description {
+                font-size: 13px;
             }
 
             .archive-note {
-                margin: 70px auto;
-                padding: 30px 15px;
+                padding: 28px 22px;
+
+                margin-top: 80px;
+            }
+
+            .story-quote {
+                margin-bottom: 70px;
+            }
+
+            .story-quote p {
+                font-size: 17px;
             }
 
             .story-navigation {
                 flex-direction: column;
+                align-items: center;
             }
 
             .story-nav-btn {
-                text-align: center;
-            }
-
-            .memories-footer {
-                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
                 text-align: center;
             }
         }
@@ -680,1786 +643,1044 @@
 
 <body>
 
-<main class="memories-page">
+    <main class="story-page">
 
-    <!-- =========================
-         LANGUAGE SWITCH
-    ========================= -->
+        <!-- =====================================================
+             LANGUAGE SWITCH
+        ====================================================== -->
 
-    <div class="language-switch">
-        <button
-            type="button"
-            id="enBtn"
-            class="active"
-            onclick="setLanguage('en')">
-            EN
-        </button>
+        <div class="language-switch">
 
-        <button
-            type="button"
-            id="idBtn"
-            onclick="setLanguage('id')">
-            ID
-        </button>
-    </div>
+            <button
+                id="enBtn"
+                class="active"
+                onclick="setLanguage('en')">
+                EN
+            </button>
 
-
-    <div class="memories-container">
-
-        <!-- =========================
-             HEADER
-        ========================= -->
-
-        <header class="memories-header">
-
-            <div class="memories-label">
-                THE LAST ARCHIVE · GENERAL ARCHIVE · 02
-            </div>
-
-            <h1>GROUP MEMORIES</h1>
-
-            <div class="memories-subtitle">
-
-                <span class="lang en">
-                    The moments that became part of the archive.
-                </span>
-
-                <span class="lang id">
-                    Momen-momen yang akhirnya menjadi bagian dari arsip.
-                </span>
-
-            </div>
-
-        </header>
-
-
-        <!-- =========================
-             INTRO
-        ========================= -->
-
-        <div class="memories-intro">
-
-            <span class="lang en">
-                Not every memory was important when it happened.
-                Some were ordinary days, unfinished projects, random photographs,
-                conversations, and moments that seemed too small to keep.
-                Somehow, they stayed.
-            </span>
-
-            <span class="lang id">
-                Tidak semua kenangan terasa penting ketika terjadi.
-                Ada hari-hari biasa, tugas yang belum selesai, foto random,
-                percakapan, dan momen kecil yang rasanya tidak perlu disimpan.
-                Entah bagaimana, semuanya tetap tinggal.
-            </span>
+            <button
+                id="idBtn"
+                onclick="setLanguage('id')">
+                ID
+            </button>
 
         </div>
 
 
-        <!-- =========================================================
-             01 — CAMPUS DAYS
-        ========================================================== -->
-
-        <section class="memory-section">
-
-            <div class="memory-section-number">
-                01 · CAMPUS DAYS
-            </div>
-
-            <h2>CAMPUS DAYS</h2>
-
-            <div class="memory-section-intro">
-
-                <span class="lang en">
-                    The ordinary places, faces, and days that quietly became
-                    part of the story.
-                </span>
-
-                <span class="lang id">
-                    Tempat, wajah, dan hari-hari biasa yang diam-diam
-                    menjadi bagian dari cerita.
-                </span>
-
-            </div>
+        <div class="story-container">
 
 
-            <!-- MEMORY 001 -->
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
 
-            <div class="memory-fragment">
+            <header class="story-header">
 
-                <div class="memory-image">
-                    <img
-                        src="campus-01.jpg"
-                        alt="Campus documentation"
-                        onerror="this.style.display='none';">
+                <div class="eyebrow">
+                    THE LAST ARCHIVE
                 </div>
 
-                <div class="memory-info">
+                <h1>
+                    GROUP MEMORIES
+                </h1>
 
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 001
-                    </div>
+                <p class="subtitle lang en">
+                    The places, moments, and fragments that became part
+                    of the story along the way.
+                </p>
 
-                    <h3>
-                        THE PLACE WE KEPT RETURNING TO
-                    </h3>
+                <p class="subtitle lang id" style="display:none;">
+                    Tempat, momen, dan potongan kecil yang menjadi bagian
+                    dari cerita sepanjang perjalanan.
+                </p>
 
-                    <p class="lang en">
-                        A place that became familiar simply because
-                        we spent so much time there.
-                    </p>
+                <div class="header-line"></div>
 
-                    <p class="lang id">
-                        Sebuah tempat yang menjadi familiar hanya karena
-                        terlalu sering kami datangi.
-                    </p>
+            </header>
 
-                    <div class="memory-caption">
 
-                        <span class="lang en">
-                            Some places become memories without trying.
-                        </span>
+            <!-- =================================================
+                 DATABASE WILL BE RENDERED HERE
+            ================================================== -->
 
-                        <span class="lang id">
-                            Beberapa tempat menjadi kenangan tanpa pernah berusaha.
-                        </span>
+            <div id="memoryArchive"></div>
 
-                    </div>
 
+            <!-- =================================================
+                 ARCHIVE NOTE
+            ================================================== -->
+
+            <section class="archive-note">
+
+                <div class="note-label lang en">
+                    ARCHIVE NOTE
                 </div>
 
-            </div>
-
-
-            <!-- MEMORY 002 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="campus-02.jpg"
-                        alt="Campus together"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 002
-                    </div>
-
-                    <h3>
-                        BETWEEN CLASSES
-                    </h3>
-
-                    <p class="lang en">
-                        The moments between one responsibility and another
-                        were sometimes the ones worth remembering.
-                    </p>
-
-                    <p class="lang id">
-                        Momen di antara satu kesibukan dan kesibukan lainnya
-                        justru kadang menjadi bagian yang paling ingin diingat.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Nothing special. Somehow, everything.
-                        </span>
-
-                        <span class="lang id">
-                            Tidak ada yang istimewa. Tapi entah kenapa, semuanya.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 003 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="campus-03.jpg"
-                        alt="Class documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 003
-                    </div>
-
-                    <h3>
-                        ONE MORE PHOTO
-                    </h3>
-
-                    <p class="lang en">
-                        Because apparently, one photograph was never quite enough.
-                    </p>
-
-                    <p class="lang id">
-                        Karena ternyata, satu foto tidak pernah benar-benar cukup.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Archived because we were there.
-                        </span>
-
-                        <span class="lang id">
-                            Disimpan karena kami pernah berada di sana.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 004 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="campus-04.jpg"
-                        alt="Campus candid"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 004
-                    </div>
-
-                    <h3>
-                        THE CANDID ONE
-                    </h3>
-
-                    <p class="lang en">
-                        The photograph nobody planned.
-                        Usually, those become the most honest ones.
-                    </p>
-
-                    <p class="lang id">
-                        Foto yang tidak direncanakan.
-                        Biasanya justru menjadi foto yang paling jujur.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Unplanned. Unfiltered. Kept.
-                        </span>
-
-                        <span class="lang id">
-                            Tidak direncanakan. Tidak dibuat-buat. Disimpan.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================================================
-             02 — THE PROJECTS
-        ========================================================== -->
-
-        <section class="memory-section">
-
-            <div class="memory-section-number">
-                02 · THE PROJECTS
-            </div>
-
-            <h2>THE PROJECTS</h2>
-
-            <div class="memory-section-intro">
-
-                <span class="lang en">
-                    Files, presentations, assignments, and everything
-                    that somehow got finished.
-                </span>
-
-                <span class="lang id">
-                    File, presentasi, tugas, dan segala hal yang entah bagaimana
-                    akhirnya berhasil diselesaikan.
-                </span>
-
-            </div>
-
-
-            <!-- MEMORY 005 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="project-01.jpg"
-                        alt="Project documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 005
-                    </div>
-
-                    <h3>
-                        THE FIRST DRAFT
-                    </h3>
-
-                    <p class="lang en">
-                        Every finished project once looked unfinished.
-                    </p>
-
-                    <p class="lang id">
-                        Setiap proyek yang selesai pernah terlihat berantakan.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Somewhere between “we can do this” and “why did we choose this?”
-                        </span>
-
-                        <span class="lang id">
-                            Di antara “kita pasti bisa” dan “kenapa pilih yang ini?”
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 006 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="project-02.jpg"
-                        alt="Project presentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 006
-                    </div>
-
-                    <h3>
-                        PRESENTATION DAY
-                    </h3>
-
-                    <p class="lang en">
-                        A moment when preparation met reality.
-                    </p>
-
-                    <p class="lang id">
-                        Saat semua persiapan akhirnya bertemu dengan kenyataan.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Somehow, we made it through.
-                        </span>
-
-                        <span class="lang id">
-                            Entah bagaimana, akhirnya kami berhasil melewatinya.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 007 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="project-03.jpg"
-                        alt="Group work documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 007
-                    </div>
-
-                    <h3>
-                        FIGURING IT OUT
-                    </h3>
-
-                    <p class="lang en">
-                        Not everything needed to be perfect.
-                        Sometimes we just needed to finish it together.
-                    </p>
-
-                    <p class="lang id">
-                        Tidak semuanya harus sempurna.
-                        Kadang yang penting hanya menyelesaikannya bersama.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Progress was rarely a straight line.
-                        </span>
-
-                        <span class="lang id">
-                            Proses tidak pernah benar-benar berjalan lurus.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- PROJECT DOCUMENTS -->
-
-            <div class="document-archive">
-
-                <div class="archive-document">
-
-                    <div class="document-type">
-                        ARCHIVED FILE · 001
-                    </div>
-
-                    <h3>
-                        THE DOCUMENT
-                    </h3>
-
-                    <p class="lang en">
-                        A file that once looked like just another assignment.
-                    </p>
-
-                    <p class="lang id">
-                        File yang dulu terlihat seperti tugas biasa.
-                    </p>
-
-                    <div class="document-file">
-                        PROJECT-FILE-01
-                    </div>
-
+                <div class="note-label lang id" style="display:none;">
+                    CATATAN ARSIP
                 </div>
 
 
-                <div class="archive-document">
+                <p class="lang en">
+                    Not every memory was planned to become a memory.
+                    Some simply happened, stayed with us,
+                    and found their way here.
+                </p>
 
-                    <div class="document-type">
-                        ARCHIVED FILE · 002
-                    </div>
+                <p class="lang id" style="display:none;">
+                    Tidak semua kenangan direncanakan untuk menjadi kenangan.
+                    Beberapa hanya terjadi, tinggal bersama kita,
+                    lalu menemukan jalannya sendiri hingga sampai di sini.
+                </p>
 
-                    <h3>
-                        THE PRESENTATION
-                    </h3>
+            </section>
 
-                    <p class="lang en">
-                        Proof that the presentation eventually happened.
-                    </p>
 
-                    <p class="lang id">
-                        Bukti bahwa presentasi itu akhirnya benar-benar terjadi.
-                    </p>
+            <!-- =================================================
+                 QUOTE
+            ================================================== -->
 
-                    <div class="document-file">
-                        PRESENTATION-01
-                    </div>
+            <section class="story-quote">
 
-                </div>
+                <p class="lang en">
+                    "Some moments disappear with time.
+                    Others become the reason we remember."
+                </p>
 
+                <p class="lang id" style="display:none;">
+                    "Beberapa momen menghilang bersama waktu.
+                    Yang lainnya menjadi alasan kita mengingat."
+                </p>
 
-                <div class="archive-document">
+            </section>
 
-                    <div class="document-type">
-                        ARCHIVED FILE · 003
-                    </div>
 
-                    <h3>
-                        THE FINAL VERSION
-                    </h3>
+            <!-- =================================================
+                 NAVIGATION
+            ================================================== -->
 
-                    <p class="lang en">
-                        After drafts, edits, changes, and probably too many revisions.
-                    </p>
+            <nav class="story-navigation">
 
-                    <p class="lang id">
-                        Setelah draft, revisi, perubahan, dan mungkin terlalu banyak revisi.
-                    </p>
+                <a
+                    href="general-archive.html"
+                    class="story-nav-btn">
 
-                    <div class="document-file">
-                        FINAL-VERSION
-                    </div>
+                    ← BACK TO GENERAL ARCHIVE
 
-                </div>
+                </a>
 
 
-                <div class="archive-document">
+                <a
+                    href="the-people.html"
+                    class="story-nav-btn">
 
-                    <div class="document-type">
-                        ARCHIVED FILE · 004
-                    </div>
+                    CONTINUE TO THE PEOPLE →
 
-                    <h3>
-                        THE SCREENSHOT
-                    </h3>
+                </a>
 
-                    <p class="lang en">
-                        A tiny digital proof that this part of the journey happened.
-                    </p>
+            </nav>
 
-                    <p class="lang id">
-                        Bukti digital kecil bahwa bagian perjalanan ini pernah terjadi.
-                    </p>
 
-                    <div class="document-file">
-                        SCREENSHOT-ARCHIVE
-                    </div>
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
 
-                </div>
+            <footer class="story-footer">
 
-            </div>
+                THE LAST ARCHIVE · EST. 2026
 
-        </section>
-
-
-        <!-- =========================================================
-             03 — THE LITTLE THINGS
-        ========================================================== -->
-
-        <section class="memory-section">
-
-            <div class="memory-section-number">
-                03 · THE LITTLE THINGS
-            </div>
-
-            <h2>THE LITTLE THINGS</h2>
-
-            <div class="memory-section-intro">
-
-                <span class="lang en">
-                    Food, selfies, waiting, random photographs,
-                    and things that were never supposed to become memories.
-                </span>
-
-                <span class="lang id">
-                    Makanan, selfie, menunggu, foto random,
-                    dan hal-hal yang awalnya tidak pernah dimaksudkan menjadi kenangan.
-                </span>
-
-            </div>
-
-
-            <!-- MEMORY 008 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="little-01.jpg"
-                        alt="Food documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 008
-                    </div>
-
-                    <h3>
-                        THE FOOD BREAK
-                    </h3>
-
-                    <p class="lang en">
-                        Because no archive of student life would be complete
-                        without documenting what kept everyone alive.
-                    </p>
-
-                    <p class="lang id">
-                        Karena arsip kehidupan mahasiswa rasanya tidak lengkap
-                        tanpa mendokumentasikan sesuatu yang membuat semua tetap hidup.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Important research: what should we eat?
-                        </span>
-
-                        <span class="lang id">
-                            Penelitian paling penting: kita makan apa?
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 009 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="little-02.jpg"
-                        alt="Selfie documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 009
-                    </div>
-
-                    <h3>
-                        PROOF OF EXISTENCE
-                    </h3>
-
-                    <p class="lang en">
-                        A selfie, because apparently the archive needed evidence.
-                    </p>
-
-                    <p class="lang id">
-                        Sebuah selfie, karena sepertinya arsip membutuhkan bukti.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Yes, we were actually there.
-                        </span>
-
-                        <span class="lang id">
-                            Iya, kami benar-benar ada di sana.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 010 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="little-03.jpg"
-                        alt="Random candid documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 010
-                    </div>
-
-                    <h3>
-                        THE RANDOM ONE
-                    </h3>
-
-                    <p class="lang en">
-                        No explanation required.
-                    </p>
-
-                    <p class="lang id">
-                        Tidak membutuhkan penjelasan.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Archived simply because it made us laugh.
-                        </span>
-
-                        <span class="lang id">
-                            Disimpan hanya karena membuat kami tertawa.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 011 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="little-04.jpg"
-                        alt="Waiting documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 011
-                    </div>
-
-                    <h3>
-                        WHILE WAITING
-                    </h3>
-
-                    <p class="lang en">
-                        Waiting for someone, waiting for something,
-                        or simply waiting for the day to move forward.
-                    </p>
-
-                    <p class="lang id">
-                        Menunggu seseorang, menunggu sesuatu,
-                        atau sekadar menunggu hari berjalan lagi.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Some of the best conversations happened while doing nothing.
-                        </span>
-
-                        <span class="lang id">
-                            Beberapa percakapan terbaik justru terjadi saat tidak melakukan apa-apa.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================================================
-             THE CHAOS — DOCUMENT ARCHIVE
-        ========================================================== -->
-
-        <section class="memory-section">
-
-            <div class="memory-section-number">
-                ARCHIVE ADDENDUM · THE CHAOS
-            </div>
-
-            <h2>THE CHAOS</h2>
-
-            <div class="memory-section-intro">
-
-                <span class="lang en">
-                    Some records do not belong in a timeline.
-                    They belong in a folder labelled:
-                    <em>do not delete.</em>
-                </span>
-
-                <span class="lang id">
-                    Beberapa arsip memang tidak cocok dimasukkan ke timeline.
-                    Mereka lebih cocok berada di folder bernama:
-                    <em>jangan dihapus.</em>
-                </span>
-
-            </div>
-
-
-            <div class="chaos-archive">
-
-                <div class="chaos-title">
-                    ARCHIVED DOCUMENTS · UNCLASSIFIED
-                </div>
-
-
-                <div class="chaos-documents">
-
-                    <!-- CHAOS 001 -->
-
-                    <div class="chaos-document">
-
-                        <img
-                            src="chaos-01.jpg"
-                            alt="Archived chat"
-                            onerror="this.style.display='none';">
-
-                        <small>
-                            DOCUMENT · 001
-                        </small>
-
-                        <p class="lang en">
-                            A conversation that probably made sense at the time.
-                        </p>
-
-                        <p class="lang id">
-                            Percakapan yang mungkin masuk akal pada saat itu.
-                        </p>
-
-                    </div>
-
-
-                    <!-- CHAOS 002 -->
-
-                    <div class="chaos-document">
-
-                        <img
-                            src="chaos-02.jpg"
-                            alt="Archived chat"
-                            onerror="this.style.display='none';">
-
-                        <small>
-                            DOCUMENT · 002
-                        </small>
-
-                        <p class="lang en">
-                            Evidence of how quickly a normal conversation can disappear into chaos.
-                        </p>
-
-                        <p class="lang id">
-                            Bukti betapa cepat percakapan biasa berubah menjadi kekacauan.
-                        </p>
-
-                    </div>
-
-
-                    <!-- CHAOS 003 -->
-
-                    <div class="chaos-document">
-
-                        <img
-                            src="chaos-03.jpg"
-                            alt="Archived screenshot"
-                            onerror="this.style.display='none';">
-
-                        <small>
-                            DOCUMENT · 003
-                        </small>
-
-                        <p class="lang en">
-                            Context unavailable. Laughter preserved.
-                        </p>
-
-                        <p class="lang id">
-                            Konteks tidak tersedia. Tawa tetap disimpan.
-                        </p>
-
-                    </div>
-
-
-                    <!-- CHAOS 004 -->
-
-                    <div class="chaos-document">
-
-                        <img
-                            src="chaos-04.jpg"
-                            alt="Archived meme"
-                            onerror="this.style.display='none';">
-
-                        <small>
-                            DOCUMENT · 004
-                        </small>
-
-                        <p class="lang en">
-                            An important document of absolutely questionable importance.
-                        </p>
-
-                        <p class="lang id">
-                            Dokumen penting dengan tingkat kepentingan yang sangat meragukan.
-                        </p>
-
-                    </div>
-
-
-                    <!-- CHAOS 005 -->
-
-                    <div class="chaos-document">
-
-                        <img
-                            src="chaos-05.jpg"
-                            alt="Archived random screenshot"
-                            onerror="this.style.display='none';">
-
-                        <small>
-                            DOCUMENT · 005
-                        </small>
-
-                        <p class="lang en">
-                            Filed under: “we really kept this?”
-                        </p>
-
-                        <p class="lang id">
-                            Disimpan di folder: “serius ini disimpan?”
-                        </p>
-
-                    </div>
-
-
-                    <!-- CHAOS 006 -->
-
-                    <div class="chaos-document">
-
-                        <img
-                            src="chaos-06.jpg"
-                            alt="Archived random documentation"
-                            onerror="this.style.display='none';">
-
-                        <small>
-                            DOCUMENT · 006
-                        </small>
-
-                        <p class="lang en">
-                            No further explanation required.
-                        </p>
-
-                        <p class="lang id">
-                            Tidak membutuhkan penjelasan lebih lanjut.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================================================
-             04 — SOMEWHERE ALONG THE WAY
-        ========================================================== -->
-
-        <section class="memory-section">
-
-            <div class="memory-section-number">
-                04 · SOMEWHERE ALONG THE WAY
-            </div>
-
-            <h2>SOMEWHERE ALONG THE WAY</h2>
-
-            <div class="memory-section-intro">
-
-                <span class="lang en">
-                    Moments that happened outside the usual routine:
-                    meals, gatherings, events, trips, and time spent somewhere else.
-                </span>
-
-                <span class="lang id">
-                    Momen di luar rutinitas:
-                    makan bersama, kumpul, acara, perjalanan, dan waktu yang dihabiskan di tempat lain.
-                </span>
-
-            </div>
-
-
-            <!-- MEMORY 012 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="outside-01.jpg"
-                        alt="Gathering documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 012
-                    </div>
-
-                    <h3>
-                        OUTSIDE THE ROUTINE
-                    </h3>
-
-                    <p class="lang en">
-                        A day that existed somewhere beyond classrooms,
-                        deadlines, and schedules.
-                    </p>
-
-                    <p class="lang id">
-                        Hari yang berlangsung di luar ruang kelas,
-                        deadline, dan jadwal.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Different place. Same people.
-                        </span>
-
-                        <span class="lang id">
-                            Tempat berbeda. Orang yang sama.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 013 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="outside-02.jpg"
-                        alt="Bukber documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 013
-                    </div>
-
-                    <h3>
-                        A TABLE SOMEWHERE
-                    </h3>
-
-                    <p class="lang en">
-                        Sometimes the place mattered less than the people sitting around it.
-                    </p>
-
-                    <p class="lang id">
-                        Kadang tempatnya tidak sepenting orang-orang yang duduk di sekitarnya.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Keep the table. Keep the memory.
-                        </span>
-
-                        <span class="lang id">
-                            Simpan mejanya. Simpan kenangannya.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 014 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="outside-03.jpg"
-                        alt="Event documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 014
-                    </div>
-
-                    <h3>
-                        SOMEWHERE WE WENT
-                    </h3>
-
-                    <p class="lang en">
-                        A small record of a place we once shared.
-                    </p>
-
-                    <p class="lang id">
-                        Catatan kecil tentang tempat yang pernah kami datangi bersama.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            The location fades. The photograph stays.
-                        </span>
-
-                        <span class="lang id">
-                            Tempatnya mungkin terlupakan. Fotonya tetap tinggal.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 015 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="outside-04.jpg"
-                        alt="Outside campus documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 015
-                    </div>
-
-                    <h3>
-                        AN ORDINARY DAY
-                    </h3>
-
-                    <p class="lang en">
-                        Nothing extraordinary happened.
-                        That might be exactly why it belongs here.
-                    </p>
-
-                    <p class="lang id">
-                        Tidak ada hal luar biasa yang terjadi.
-                        Mungkin justru itu alasan kenapa ia pantas berada di sini.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Ordinary days become rare when they are over.
-                        </span>
-
-                        <span class="lang id">
-                            Hari biasa menjadi langka ketika semuanya sudah berakhir.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================================================
-             05 — THE LAST DAYS
-        ========================================================== -->
-
-        <section class="memory-section">
-
-            <div class="memory-section-number">
-                05 · THE LAST DAYS
-            </div>
-
-            <h2>THE LAST DAYS</h2>
-
-            <div class="memory-section-intro">
-
-                <span class="lang en">
-                    Thesis, final presentations, examinations, graduation,
-                    and the quiet realization that one chapter was changing.
-                </span>
-
-                <span class="lang id">
-                    Skripsi, presentasi akhir, sidang, yudisium,
-                    wisuda, dan kesadaran perlahan bahwa satu bab mulai berubah.
-                </span>
-
-            </div>
-
-
-            <!-- MEMORY 016 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="last-days-01.jpg"
-                        alt="Thesis documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 016
-                    </div>
-
-                    <h3>
-                        THE LAST ASSIGNMENT
-                    </h3>
-
-                    <p class="lang en">
-                        Pages, revisions, deadlines, and the feeling
-                        that the finish line was finally visible.
-                    </p>
-
-                    <p class="lang id">
-                        Halaman, revisi, deadline, dan perasaan
-                        bahwa garis akhir akhirnya mulai terlihat.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            One more page.
-                        </span>
-
-                        <span class="lang id">
-                            Satu halaman lagi.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 017 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="last-days-02.jpg"
-                        alt="Sidang documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 017
-                    </div>
-
-                    <h3>
-                        THE FINAL PRESENTATION
-                    </h3>
-
-                    <p class="lang en">
-                        A room, a presentation, and everything that had been
-                        carried toward that moment.
-                    </p>
-
-                    <p class="lang id">
-                        Sebuah ruangan, sebuah presentasi, dan semua hal
-                        yang akhirnya dibawa menuju momen itu.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            The moment after “finally.”
-                        </span>
-
-                        <span class="lang id">
-                            Momen setelah kata “akhirnya.”
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 018 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="last-days-03.jpg"
-                        alt="Yudisium documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 018
-                    </div>
-
-                    <h3>
-                        OFFICIALLY
-                    </h3>
-
-                    <p class="lang en">
-                        The point where years of work became something official.
-                    </p>
-
-                    <p class="lang id">
-                        Titik ketika perjalanan panjang akhirnya menjadi sesuatu yang resmi.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            A quiet ending to a very long chapter.
-                        </span>
-
-                        <span class="lang id">
-                            Akhir yang tenang untuk sebuah bab yang panjang.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 019 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="last-days-04.jpg"
-                        alt="Graduation documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 019
-                    </div>
-
-                    <h3>
-                        THE GRADUATION
-                    </h3>
-
-                    <p class="lang en">
-                        Different people may reach the moment at different times.
-                        The memory still belongs to the same chapter.
-                    </p>
-
-                    <p class="lang id">
-                        Setiap orang mungkin sampai di momen ini pada waktu yang berbeda.
-                        Tapi kenangannya tetap berasal dari bab yang sama.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Not every ending happens at once.
-                        </span>
-
-                        <span class="lang id">
-                            Tidak semua akhir terjadi pada waktu yang sama.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 020 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="last-days-05.jpg"
-                        alt="Final campus moment"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 020
-                    </div>
-
-                    <h3>
-                        BEFORE LEAVING
-                    </h3>
-
-                    <p class="lang en">
-                        One final look at a place that had become familiar.
-                    </p>
-
-                    <p class="lang id">
-                        Satu pandangan terakhir pada tempat yang sudah terasa familiar.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            We didn't know which photograph would be the last one.
-                        </span>
-
-                        <span class="lang id">
-                            Kami tidak tahu foto mana yang akan menjadi foto terakhir.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================================================
-             06 — STILL HERE
-        ========================================================== -->
-
-        <section class="memory-section">
-
-            <div class="memory-section-number">
-                06 · STILL HERE
-            </div>
-
-            <h2>STILL HERE</h2>
-
-            <div class="memory-section-intro">
-
-                <span class="lang en">
-                    The story changed when the routine changed.
-                    The archive did not.
-                </span>
-
-                <span class="lang id">
-                    Ceritanya berubah ketika rutinitas berubah.
-                    Arsipnya tidak.
-                </span>
-
-            </div>
-
-
-            <!-- MEMORY 021 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="still-here-01.jpg"
-                        alt="After graduation documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 021
-                    </div>
-
-                    <h3>
-                        DIFFERENT DAYS
-                    </h3>
-
-                    <p class="lang en">
-                        Different schedules. Different places.
-                        Different things to worry about.
-                    </p>
-
-                    <p class="lang id">
-                        Jadwal yang berbeda. Tempat yang berbeda.
-                        Hal-hal yang harus dipikirkan juga berbeda.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Distance changes routines, not history.
-                        </span>
-
-                        <span class="lang id">
-                            Jarak mengubah rutinitas, bukan sejarah.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 022 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="still-here-02.jpg"
-                        alt="Individual documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 022
-                    </div>
-
-                    <h3>
-                        STILL MOVING
-                    </h3>
-
-                    <p class="lang en">
-                        Everyone continues in their own direction.
-                    </p>
-
-                    <p class="lang id">
-                        Semua orang terus berjalan ke arahnya masing-masing.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            The archive stays. The people keep moving.
-                        </span>
-
-                        <span class="lang id">
-                            Arsipnya tetap. Orang-orangnya terus berjalan.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- MEMORY 023 -->
-
-            <div class="memory-fragment">
-
-                <div class="memory-image">
-                    <img
-                        src="still-here-03.jpg"
-                        alt="Personal documentation"
-                        onerror="this.style.display='none';">
-                </div>
-
-                <div class="memory-info">
-
-                    <div class="memory-number">
-                        MEMORY FRAGMENT · 023
-                    </div>
-
-                    <h3>
-                        SOMEWHERE AHEAD
-                    </h3>
-
-                    <p class="lang en">
-                        Whatever comes next, this part happened first.
-                    </p>
-
-                    <p class="lang id">
-                        Apa pun yang datang berikutnya,
-                        bagian ini pernah terjadi lebih dulu.
-                    </p>
-
-                    <div class="memory-caption">
-
-                        <span class="lang en">
-                            Keep going. Keep the memory.
-                        </span>
-
-                        <span class="lang id">
-                            Terus berjalan. Simpan kenangannya.
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             ARCHIVE NOTE
-        ========================= -->
-
-        <div class="archive-note">
-
-            <div class="archive-note-label">
-                ARCHIVE NOTE
-            </div>
-
-            <p class="lang en">
-                “Maybe these photographs were never meant to tell a complete story.
-                Maybe they only needed to prove that these moments happened.”
-            </p>
-
-            <p class="lang id">
-                “Mungkin foto-foto ini memang tidak pernah dimaksudkan
-                untuk menceritakan sebuah kisah yang lengkap.
-                Mungkin mereka hanya perlu membuktikan bahwa semua ini pernah terjadi.”
-            </p>
+            </footer>
 
         </div>
 
-
-        <!-- =========================
-             QUOTE
-        ========================= -->
-
-        <div class="memories-quote">
-
-            <span class="lang en">
-                “The moments we thought were ordinary
-                became the ones we wanted to keep.”
-            </span>
-
-            <span class="lang id">
-                “Momen yang dulu terasa biasa
-                justru menjadi momen yang ingin kita simpan.”
-            </span>
-
-            <small>
-                — THE ARCHIVIST
-            </small>
-
-        </div>
+    </main>
 
 
-        <!-- =========================
-             NAVIGATION
-        ========================= -->
+    <script>
 
-        <nav class="story-navigation">
-
-            <a
-                href="general-archive.html"
-                class="story-nav-btn">
-                ← BACK TO GENERAL ARCHIVE
-            </a>
-
-            <a
-                href="the-people.html"
-                class="story-nav-btn">
-                CONTINUE TO THE PEOPLE →
-            </a>
-
-        </nav>
+        /* =========================================================
+           DOCUMENTATION DATABASE
+           
+           CUKUP TAMBAHKAN OBJECT BARU DI SINI
+           
+           type:
+           "image" → foto
+           "video" → video
+        ========================================================= */
 
 
-        <!-- =========================
-             FOOTER
-        ========================= -->
+        const memories = [
 
-        <footer class="memories-footer">
+            /* =====================================================
+               CAMPUS DAYS
+            ===================================================== */
 
-            <span>
-                THE LAST ARCHIVE
-            </span>
+            {
+                section: "CAMPUS DAYS",
+                sectionId: "Hari-Hari Kampus",
 
-            <span>
-                GROUP MEMORIES · 02
-            </span>
+                type: "image",
+                file: "campus-01.jpg",
 
-            <span>
-                EST. 2026
-            </span>
+                title: "THE PLACE WE KEPT RETURNING TO",
 
-        </footer>
+                en:
+                    "A place that slowly became familiar simply because we spent so much time there.",
 
-    </div>
+                id:
+                    "Sebuah tempat yang perlahan menjadi familiar karena terlalu banyak waktu yang kami habiskan di sana.",
 
-</main>
+                captionEn:
+                    "Some places become memories without trying.",
 
-
-<script>
-
-    /* =========================
-       LANGUAGE SWITCH
-    ========================= */
-
-    function setLanguage(language) {
-
-        const englishElements =
-            document.querySelectorAll(".lang.en");
-
-        const indonesianElements =
-            document.querySelectorAll(".lang.id");
-
-        const enButton =
-            document.getElementById("enBtn");
-
-        const idButton =
-            document.getElementById("idBtn");
+                captionId:
+                    "Beberapa tempat menjadi kenangan tanpa pernah berusaha."
+            },
 
 
-        if (language === "en") {
+            {
+                section: "CAMPUS DAYS",
+                sectionId: "Hari-Hari Kampus",
 
-            englishElements.forEach(function (element) {
-                element.style.display = "";
+                type: "image",
+                file: "campus-02.jpg",
+
+                title: "ORDINARY DAYS",
+
+                en:
+                    "Nothing particularly extraordinary. Just another day that eventually became worth keeping.",
+
+                id:
+                    "Tidak ada yang benar-benar luar biasa. Hanya hari biasa yang akhirnya terasa layak untuk disimpan.",
+
+                captionEn:
+                    "Ordinary, until it became distant.",
+
+                captionId:
+                    "Biasa saja, sampai akhirnya menjadi sesuatu yang jauh."
+            },
+
+
+            {
+                section: "CAMPUS DAYS",
+                sectionId: "Hari-Hari Kampus",
+
+                type: "image",
+                file: "campus-03.jpg",
+
+                title: "BETWEEN CLASSES",
+
+                en:
+                    "The small pauses between responsibilities were often where the best memories quietly happened.",
+
+                id:
+                    "Jeda-jeda kecil di antara kesibukan sering kali menjadi tempat kenangan terbaik terjadi diam-diam.",
+
+                captionEn:
+                    "The moments between everything else.",
+
+                captionId:
+                    "Momen-momen di antara segala sesuatu."
+            },
+
+
+            {
+                section: "CAMPUS DAYS",
+                sectionId: "Hari-Hari Kampus",
+
+                type: "image",
+                file: "campus-04.jpg",
+
+                title: "A FAMILIAR CORNER",
+
+                en:
+                    "A familiar corner, a familiar routine, and a version of ourselves that existed only then.",
+
+                id:
+                    "Sudut yang familiar, rutinitas yang familiar, dan versi diri kita yang hanya ada pada masa itu.",
+
+                captionEn:
+                    "We did not know we were collecting memories.",
+
+                captionId:
+                    "Kami tidak tahu bahwa saat itu kami sedang mengumpulkan kenangan."
+            },
+
+
+            /* =====================================================
+               THE PROJECTS
+            ===================================================== */
+
+            {
+                section: "THE PROJECTS",
+                sectionId: "Proyek-Proyek",
+
+                type: "image",
+                file: "project-01.jpg",
+
+                title: "BUILT TOGETHER",
+
+                en:
+                    "Ideas, deadlines, revisions, and the quiet satisfaction of finally seeing something take shape.",
+
+                id:
+                    "Ide, tenggat waktu, revisi, dan rasa lega ketika akhirnya melihat sesuatu mulai terbentuk.",
+
+                captionEn:
+                    "Some things only make sense after we build them together.",
+
+                captionId:
+                    "Beberapa hal baru terasa berarti setelah kita membangunnya bersama."
+            },
+
+
+            {
+                section: "THE PROJECTS",
+                sectionId: "Proyek-Proyek",
+
+                type: "image",
+                file: "project-02.jpg",
+
+                title: "THE WORK BEHIND IT",
+
+                en:
+                    "Behind every finished result were conversations, mistakes, adjustments, and a lot of time.",
+
+                id:
+                    "Di balik setiap hasil akhir ada percakapan, kesalahan, penyesuaian, dan banyak waktu yang diberikan.",
+
+                captionEn:
+                    "The finished thing never tells the whole story.",
+
+                captionId:
+                    "Hasil akhirnya tidak pernah menceritakan keseluruhan cerita."
+            },
+
+
+            {
+                section: "THE PROJECTS",
+                sectionId: "Proyek-Proyek",
+
+                type: "image",
+                file: "project-03.jpg",
+
+                title: "ONE MORE DEADLINE",
+
+                en:
+                    "Another deadline that felt endless at the time, and strangely nostalgic afterward.",
+
+                id:
+                    "Satu tenggat waktu lagi yang terasa tidak ada habisnya saat itu, lalu terasa nostalgis setelahnya.",
+
+                captionEn:
+                    "We survived another one.",
+
+                captionId:
+                    "Kami berhasil melewati satu lagi."
+            },
+
+
+            /* =====================================================
+               THE LITTLE THINGS
+            ===================================================== */
+
+            {
+                section: "THE LITTLE THINGS",
+                sectionId: "Hal-Hal Kecil",
+
+                type: "image",
+                file: "little-01.jpg",
+
+                title: "THE SMALL MOMENTS",
+
+                en:
+                    "The moments that seemed too small to remember were often the ones that stayed the longest.",
+
+                id:
+                    "Momen yang terasa terlalu kecil untuk diingat justru sering menjadi yang paling lama tinggal.",
+
+                captionEn:
+                    "Small things. Somehow, they mattered.",
+
+                captionId:
+                    "Hal-hal kecil. Entah bagaimana, semuanya berarti."
+            },
+
+
+            {
+                section: "THE LITTLE THINGS",
+                sectionId: "Hal-Hal Kecil",
+
+                type: "image",
+                file: "little-02.jpg",
+
+                title: "A RANDOM DAY",
+
+                en:
+                    "A completely ordinary moment, preserved simply because someone thought to press the shutter.",
+
+                id:
+                    "Momen yang sepenuhnya biasa, tersimpan hanya karena seseorang sempat menekan tombol kamera.",
+
+                captionEn:
+                    "No special occasion required.",
+
+                captionId:
+                    "Tidak perlu ada alasan khusus."
+            },
+
+
+            {
+                section: "THE LITTLE THINGS",
+                sectionId: "Hal-Hal Kecil",
+
+                type: "image",
+                file: "little-03.jpg",
+
+                title: "THINGS WE NEVER PLANNED",
+
+                en:
+                    "Some of the best memories were never part of the plan.",
+
+                id:
+                    "Beberapa kenangan terbaik justru tidak pernah ada dalam rencana.",
+
+                captionEn:
+                    "The unplanned parts mattered too.",
+
+                captionId:
+                    "Bagian yang tidak direncanakan juga berarti."
+            },
+
+
+            {
+                section: "THE LITTLE THINGS",
+                sectionId: "Hal-Hal Kecil",
+
+                type: "image",
+                file: "little-04.jpg",
+
+                title: "JUST LIKE THAT",
+
+                en:
+                    "One moment we were simply living the day. The next, it was something we wanted to keep.",
+
+                id:
+                    "Satu saat kami hanya menjalani hari. Lalu tiba-tiba, hari itu menjadi sesuatu yang ingin disimpan.",
+
+                captionEn:
+                    "Just like that, a memory was made.",
+
+                captionId:
+                    "Begitu saja, sebuah kenangan tercipta."
+            },
+
+
+            /* =====================================================
+               SOMEWHERE ALONG THE WAY
+            ===================================================== */
+
+            {
+                section: "SOMEWHERE ALONG THE WAY",
+                sectionId: "Di Tengah Perjalanan",
+
+                type: "image",
+                file: "outside-01.jpg",
+
+                title: "OUTSIDE THE ROUTINE",
+
+                en:
+                    "There were places beyond campus, beyond deadlines, and beyond the routines we knew so well.",
+
+                id:
+                    "Ada tempat-tempat di luar kampus, di luar tenggat waktu, dan di luar rutinitas yang begitu kami kenal.",
+
+                captionEn:
+                    "The story existed outside the classroom too.",
+
+                captionId:
+                    "Cerita ini juga ada di luar ruang kelas."
+            },
+
+
+            {
+                section: "SOMEWHERE ALONG THE WAY",
+                sectionId: "Di Tengah Perjalanan",
+
+                type: "image",
+                file: "outside-02.jpg",
+
+                title: "A CHANGE OF SCENE",
+
+                en:
+                    "Sometimes all it took was a different place to make an ordinary day feel different.",
+
+                id:
+                    "Terkadang hanya perlu tempat yang berbeda untuk membuat hari biasa terasa berbeda.",
+
+                captionEn:
+                    "A different place, the same story.",
+
+                captionId:
+                    "Tempat berbeda, cerita yang sama."
+            },
+
+
+            {
+                section: "SOMEWHERE ALONG THE WAY",
+                sectionId: "Di Tengah Perjalanan",
+
+                type: "image",
+                file: "outside-03.jpg",
+
+                title: "WHERE WE WENT",
+
+                en:
+                    "Not every destination was important. What mattered was that we were there.",
+
+                id:
+                    "Tidak setiap tujuan harus penting. Yang penting adalah kami pernah berada di sana.",
+
+                captionEn:
+                    "The destination was never the whole point.",
+
+                captionId:
+                    "Tujuannya tidak pernah menjadi satu-satunya hal yang penting."
+            },
+
+
+            {
+                section: "SOMEWHERE ALONG THE WAY",
+                sectionId: "Di Tengah Perjalanan",
+
+                type: "image",
+                file: "outside-04.jpg",
+
+                title: "ANOTHER MEMORY",
+
+                en:
+                    "Another place. Another day. Another fragment worth keeping.",
+
+                id:
+                    "Tempat lain. Hari lain. Potongan lain yang layak disimpan.",
+
+                captionEn:
+                    "Another page in the archive.",
+
+                captionId:
+                    "Satu halaman lain dalam arsip."
+            },
+
+
+            /* =====================================================
+               THE LAST DAYS
+            ===================================================== */
+
+            {
+                section: "THE LAST DAYS",
+                sectionId: "Hari-Hari Terakhir",
+
+                type: "image",
+                file: "last-days-01.jpg",
+
+                title: "WHEN THINGS STARTED CHANGING",
+
+                en:
+                    "At some point, the familiar routine began to feel temporary.",
+
+                id:
+                    "Pada suatu titik, rutinitas yang familiar mulai terasa sementara.",
+
+                captionEn:
+                    "We did not notice the ending while it was happening.",
+
+                captionId:
+                    "Kami tidak menyadari akhir itu ketika sedang terjadi."
+            },
+
+
+            {
+                section: "THE LAST DAYS",
+                sectionId: "Hari-Hari Terakhir",
+
+                type: "image",
+                file: "last-days-02.jpg",
+
+                title: "THE LAST ROUTINES",
+
+                en:
+                    "The same places and habits suddenly carried a different kind of meaning.",
+
+                id:
+                    "Tempat dan kebiasaan yang sama tiba-tiba membawa makna yang berbeda.",
+
+                captionEn:
+                    "Familiar things began to feel precious.",
+
+                captionId:
+                    "Hal-hal yang familiar mulai terasa berharga."
+            },
+
+
+            {
+                section: "THE LAST DAYS",
+                sectionId: "Hari-Hari Terakhir",
+
+                type: "image",
+                file: "last-days-03.jpg",
+
+                title: "BEFORE WE LEFT",
+
+                en:
+                    "There was no dramatic announcement. Things simply began moving forward.",
+
+                id:
+                    "Tidak ada pengumuman dramatis. Segalanya hanya perlahan bergerak maju.",
+
+                captionEn:
+                    "Some endings arrive quietly.",
+
+                captionId:
+                    "Beberapa akhir datang dengan diam-diam."
+            },
+
+
+            {
+                section: "THE LAST DAYS",
+                sectionId: "Hari-Hari Terakhir",
+
+                type: "image",
+                file: "last-days-04.jpg",
+
+                title: "ONE LAST LOOK",
+
+                en:
+                    "A moment that felt ordinary until we realized we would not experience it in quite the same way again.",
+
+                id:
+                    "Momen yang terasa biasa sampai kami sadar bahwa kami tidak akan mengalaminya dengan cara yang sama lagi.",
+
+                captionEn:
+                    "The last time rarely announces itself.",
+
+                captionId:
+                    "Terakhir kali jarang memberi tahu bahwa ia adalah yang terakhir."
+            },
+
+
+            {
+                section: "THE LAST DAYS",
+                sectionId: "Hari-Hari Terakhir",
+
+                type: "video",
+                file: "last-day.mp4",
+
+                title: "THE LAST DAY",
+
+                en:
+                    "A moment that felt ordinary until we realized it was part of an ending.",
+
+                id:
+                    "Momen yang terasa biasa sampai kami sadar bahwa itu adalah bagian dari sebuah akhir.",
+
+                captionEn:
+                    "Not every ending looks like an ending.",
+
+                captionId:
+                    "Tidak setiap akhir terlihat seperti sebuah akhir."
+            },
+
+
+            /* =====================================================
+               STILL HERE
+            ===================================================== */
+
+            {
+                section: "STILL HERE",
+                sectionId: "Masih Di Sini",
+
+                type: "image",
+                file: "still-here-01.jpg",
+
+                title: "WHAT REMAINS",
+
+                en:
+                    "People move, places change, and time continues. But some moments remain exactly where we left them.",
+
+                id:
+                    "Orang-orang bergerak, tempat berubah, dan waktu terus berjalan. Tetapi beberapa momen tetap tinggal di tempatnya.",
+
+                captionEn:
+                    "Some things remain in memory.",
+
+                captionId:
+                    "Beberapa hal tetap tinggal dalam ingatan."
+            },
+
+
+            {
+                section: "STILL HERE",
+                sectionId: "Masih Di Sini",
+
+                type: "image",
+                file: "still-here-02.jpg",
+
+                title: "THE MEMORY STAYS",
+
+                en:
+                    "Not everything has to remain the same for a memory to remain meaningful.",
+
+                id:
+                    "Tidak semuanya harus tetap sama agar sebuah kenangan tetap berarti.",
+
+                captionEn:
+                    "Distance does not erase a chapter.",
+
+                captionId:
+                    "Jarak tidak menghapus sebuah bab."
+            },
+
+
+            {
+                section: "STILL HERE",
+                sectionId: "Masih Di Sini",
+
+                type: "image",
+                file: "still-here-03.jpg",
+
+                title: "STILL PART OF THE STORY",
+
+                en:
+                    "Whatever comes next, these moments remain part of the story that brought us here.",
+
+                id:
+                    "Apa pun yang datang setelah ini, momen-momen ini tetap menjadi bagian dari cerita yang membawa kita sampai di sini.",
+
+                captionEn:
+                    "The chapter stays, even when the pages turn.",
+
+                captionId:
+                    "Babnya tetap ada, bahkan ketika halamannya berganti."
+            }
+
+        ];
+
+
+        /* =========================================================
+           RENDER ARCHIVE
+        ========================================================= */
+
+        function renderArchive() {
+
+            const archive = document.getElementById("memoryArchive");
+
+            archive.innerHTML = "";
+
+            if (!memories.length) {
+
+                archive.innerHTML = `
+                    <div class="archive-empty">
+                        No memories have been added to the archive yet.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            /* =====================================================
+               GROUP BY SECTION
+            ===================================================== */
+
+            const sections = {};
+
+            memories.forEach(memory => {
+
+                if (!sections[memory.section]) {
+                    sections[memory.section] = {
+                        id: memory.sectionId,
+                        memories: []
+                    };
+                }
+
+                sections[memory.section].memories.push(memory);
+
             });
 
-            indonesianElements.forEach(function (element) {
-                element.style.display = "none";
+
+            let sectionNumber = 0;
+            let globalIndex = 0;
+
+
+            Object.keys(sections).forEach(sectionName => {
+
+                sectionNumber++;
+
+                const sectionData = sections[sectionName];
+
+
+                const section = document.createElement("section");
+
+                section.className = "story-section";
+
+
+                /* =================================================
+                   SECTION HEADING
+                ================================================= */
+
+                const heading = document.createElement("div");
+
+                heading.className = "section-heading";
+
+
+                heading.innerHTML = `
+
+                    <div class="story-number">
+                        ${String(sectionNumber).padStart(2, "0")}
+                    </div>
+
+                    <h2 class="lang en">
+                        ${sectionName}
+                    </h2>
+
+                    <h2 class="lang id" style="display:none;">
+                        ${sectionData.id}
+                    </h2>
+
+                    <p class="lang en">
+                        A collection of moments from this part of the journey.
+                    </p>
+
+                    <p class="lang id" style="display:none;">
+                        Kumpulan momen dari bagian perjalanan ini.
+                    </p>
+
+                `;
+
+
+                section.appendChild(heading);
+
+
+                /* =================================================
+                   MEMORY ITEMS
+                ================================================= */
+
+                sectionData.memories.forEach(memory => {
+
+                    globalIndex++;
+
+
+                    const fragment =
+                        document.createElement("article");
+
+                    fragment.className = "memory-fragment";
+
+
+                    /* =============================================
+                       MEDIA
+                    ============================================== */
+
+                    const mediaBox =
+                        document.createElement("div");
+
+                    mediaBox.className = "memory-photo";
+
+
+                    const label =
+                        memory.type === "video"
+                            ? "VIDEO"
+                            : "PHOTO";
+
+
+                    if (memory.type === "video") {
+
+                        mediaBox.innerHTML = `
+
+                            <div class="media-label">
+                                ${label}
+                            </div>
+
+                            <video
+                                controls
+                                preload="metadata"
+                            >
+                                <source
+                                    src="${memory.file}"
+                                    type="video/mp4"
+                                >
+                            </video>
+
+                        `;
+
+                    } else {
+
+                        mediaBox.innerHTML = `
+
+                            <div class="media-label">
+                                ${label}
+                            </div>
+
+                            <img
+                                src="${memory.file}"
+                                alt="${memory.title}"
+                                loading="lazy"
+                                onerror="this.style.display='none';"
+                            >
+
+                        `;
+
+                    }
+
+
+                    /* =============================================
+                       INFORMATION
+                    ============================================== */
+
+                    const info =
+                        document.createElement("div");
+
+                    info.className = "memory-info";
+
+
+                    info.innerHTML = `
+
+                        <div class="memory-index">
+                            MEMORY ${String(globalIndex).padStart(2, "0")}
+                        </div>
+
+
+                        <h3>
+                            ${memory.title}
+                        </h3>
+
+
+                        <p class="memory-description lang en">
+                            ${memory.en}
+                        </p>
+
+                        <p
+                            class="memory-description lang id"
+                            style="display:none;"
+                        >
+                            ${memory.id}
+                        </p>
+
+
+                        <p class="memory-caption lang en">
+                            ${memory.captionEn}
+                        </p>
+
+                        <p
+                            class="memory-caption lang id"
+                            style="display:none;"
+                        >
+                            ${memory.captionId}
+                        </p>
+
+                    `;
+
+
+                    fragment.appendChild(mediaBox);
+                    fragment.appendChild(info);
+
+                    section.appendChild(fragment);
+
+                });
+
+
+                archive.appendChild(section);
+
             });
-
-            enButton.classList.add("active");
-            idButton.classList.remove("active");
-
-        } else {
-
-            englishElements.forEach(function (element) {
-                element.style.display = "none";
-            });
-
-            indonesianElements.forEach(function (element) {
-                element.style.display = "";
-            });
-
-            idButton.classList.add("active");
-            enButton.classList.remove("active");
 
         }
-    }
 
 
-    /* =========================
-       DEFAULT LANGUAGE
-    ========================= */
+        /* =========================================================
+           LANGUAGE SYSTEM
+        ========================================================= */
 
-    document.addEventListener("DOMContentLoaded", function () {
-        setLanguage("en");
-    });
+        function setLanguage(language) {
 
-</script>
+            const englishElements =
+                document.querySelectorAll(".lang.en");
+
+            const indonesianElements =
+                document.querySelectorAll(".lang.id");
+
+
+            if (language === "en") {
+
+                englishElements.forEach(element => {
+                    element.style.display = "";
+                });
+
+                indonesianElements.forEach(element => {
+                    element.style.display = "none";
+                });
+
+
+                document
+                    .getElementById("enBtn")
+                    .classList
+                    .add("active");
+
+                document
+                    .getElementById("idBtn")
+                    .classList
+                    .remove("active");
+
+
+                document.documentElement.lang = "en";
+
+            }
+
+
+            if (language === "id") {
+
+                englishElements.forEach(element => {
+                    element.style.display = "none";
+                });
+
+                indonesianElements.forEach(element => {
+                    element.style.display = "";
+                });
+
+
+                document
+                    .getElementById("idBtn")
+                    .classList
+                    .add("active");
+
+                document
+                    .getElementById("enBtn")
+                    .classList
+                    .remove("active");
+
+
+                document.documentElement.lang = "id";
+
+            }
+
+        }
+
+
+        /* =========================================================
+           INITIALIZE
+        ========================================================= */
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                renderArchive();
+
+                setLanguage("en");
+
+            }
+        );
+
+    </script>
 
 </body>
+
 </html>
