@@ -1463,13 +1463,18 @@ files: [
            RENDER ARCHIVE
         ========================================================= */
 
-       function renderArchive() {
+      function renderArchive() {
 
     const archive = document.getElementById("memoryArchive");
 
+    if (!archive) {
+        console.error("ERROR: #memoryArchive tidak ditemukan.");
+        return;
+    }
+
     archive.innerHTML = "";
 
-    if (!memories.length) {
+    if (!Array.isArray(memories) || memories.length === 0) {
 
         archive.innerHTML = `
             <div class="archive-empty">
@@ -1482,23 +1487,31 @@ files: [
 
 
     /* =====================================================
-       GROUP BY SECTION
+       GROUP MEMORIES BY SECTION
     ===================================================== */
 
     const sections = {};
 
-    memories.forEach(memory => {
+    memories.forEach((memory, index) => {
 
-        if (!sections[memory.section]) {
+        if (!memory || typeof memory !== "object") {
+            console.error("Memory object tidak valid:", index, memory);
+            return;
+        }
 
-            sections[memory.section] = {
-                id: memory.sectionId,
+        const sectionName = memory.section || "UNCATEGORIZED";
+        const sectionId = memory.sectionId || sectionName;
+
+        if (!sections[sectionName]) {
+
+            sections[sectionName] = {
+                id: sectionId,
                 memories: []
             };
 
         }
 
-        sections[memory.section].memories.push(memory);
+        sections[sectionName].memories.push(memory);
 
     });
 
@@ -1506,6 +1519,10 @@ files: [
     let sectionNumber = 0;
     let globalIndex = 0;
 
+
+    /* =====================================================
+       CREATE SECTIONS
+    ===================================================== */
 
     Object.keys(sections).forEach(sectionName => {
 
@@ -1526,7 +1543,6 @@ files: [
         const heading = document.createElement("div");
 
         heading.className = "section-heading";
-
 
         heading.innerHTML = `
 
@@ -1552,12 +1568,11 @@ files: [
 
         `;
 
-
         section.appendChild(heading);
 
 
         /* =================================================
-           MEMORY ITEMS
+           CREATE MEMORY ITEMS
         ================================================= */
 
         sectionData.memories.forEach(memory => {
@@ -1565,69 +1580,77 @@ files: [
             globalIndex++;
 
 
-            const fragment =
-                document.createElement("article");
+            const fragment = document.createElement("article");
 
             fragment.className = "memory-fragment";
 
 
-            /* =============================================
-               MEDIA
-            ============================================== */
+            /* =================================================
+               MEDIA BOX
+            ================================================= */
 
-            const mediaBox =
-                document.createElement("div");
+            const mediaBox = document.createElement("div");
 
             mediaBox.className = "memory-photo";
 
 
-            let label = "PHOTO";
-
+            /* =================================================
+               VIDEO
+            ================================================= */
 
             if (memory.type === "video") {
-
-                label = "VIDEO";
 
                 mediaBox.innerHTML = `
 
                     <div class="media-label">
-                        ${label}
+                        VIDEO
                     </div>
 
                     <video
                         controls
                         preload="metadata"
+                        playsinline
                     >
+
                         <source
                             src="${memory.file}"
                             type="video/mp4"
                         >
+
+                        Your browser does not support video.
+
                     </video>
 
                 `;
 
+            }
 
-            } else if (memory.type === "collage") {
 
-                label = "COLLAGE";
+            /* =================================================
+               COLLAGE
+            ================================================= */
+
+            else if (
+                memory.type === "collage" &&
+                Array.isArray(memory.files)
+            ) {
 
                 mediaBox.innerHTML = `
 
                     <div class="media-label">
-                        ${label}
+                        COLLAGE
                     </div>
 
                     <div class="memory-collage">
 
                         ${memory.files.map(file => `
-                            
+
                             <div class="collage-item">
 
                                 <img
                                     src="${file}"
-                                    alt="${memory.title}"
+                                    alt="${memory.title || "Memory"}"
                                     loading="lazy"
-                                    onerror="this.style.display='none';"
                                 >
 
                             </div>
@@ -1638,20 +1661,25 @@ files: [
 
                 `;
 
+            }
 
-            } else {
+
+            /* =================================================
+               NORMAL IMAGE
+            ================================================= */
+
+            else {
 
                 mediaBox.innerHTML = `
 
                     <div class="media-label">
-                        ${label}
+                        PHOTO
                     </div>
 
                     <img
                         src="${memory.file}"
-                        alt="${memory.title}"
+                        alt="${memory.title || "Memory"}"
                         loading="lazy"
-                        onerror="this.style.display='none';"
                     >
 
                 `;
@@ -1659,12 +1687,11 @@ files: [
             }
 
 
-            /* =============================================
-               INFORMATION
-            ============================================== */
+            /* =================================================
+               MEMORY INFORMATION
+            ================================================= */
 
-            const info =
-                document.createElement("div");
+            const info = document.createElement("div");
 
             info.className = "memory-info";
 
@@ -1675,33 +1702,30 @@ files: [
                     MEMORY ${String(globalIndex).padStart(2, "0")}
                 </div>
 
-
                 <h3>
-                    ${memory.title}
+                    ${memory.title || "UNTITLED MEMORY"}
                 </h3>
 
-
                 <p class="memory-description lang en">
-                    ${memory.en}
+                    ${memory.en || ""}
                 </p>
 
                 <p
                     class="memory-description lang id"
                     style="display:none;"
                 >
-                    ${memory.id}
+                    ${memory.id || ""}
                 </p>
 
-
                 <p class="memory-caption lang en">
-                    ${memory.captionEn}
+                    ${memory.captionEn || ""}
                 </p>
 
                 <p
                     class="memory-caption lang id"
                     style="display:none;"
                 >
-                    ${memory.captionId}
+                    ${memory.captionId || ""}
                 </p>
 
             `;
@@ -1720,8 +1744,14 @@ files: [
 
     });
 
-}
 
+    console.log(
+        "GROUP MEMORIES BERHASIL DITAMPILKAN:",
+        memories.length,
+        "memories"
+    );
+
+}
         /* =========================================================
            LANGUAGE SYSTEM
         ========================================================= */
