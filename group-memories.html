@@ -1438,230 +1438,264 @@
            RENDER ARCHIVE
         ========================================================= */
 
-        function renderArchive() {
+       function renderArchive() {
 
-            const archive = document.getElementById("memoryArchive");
+    const archive = document.getElementById("memoryArchive");
 
-            archive.innerHTML = "";
+    archive.innerHTML = "";
 
-            if (!memories.length) {
+    if (!memories.length) {
 
-                archive.innerHTML = `
-                    <div class="archive-empty">
-                        No memories have been added to the archive yet.
-                    </div>
-                `;
+        archive.innerHTML = `
+            <div class="archive-empty">
+                No memories have been added to the archive yet.
+            </div>
+        `;
 
-                return;
-            }
+        return;
+    }
 
 
-            /* =====================================================
-               GROUP BY SECTION
-            ===================================================== */
+    /* =====================================================
+       GROUP BY SECTION
+    ===================================================== */
 
-            const sections = {};
+    const sections = {};
 
-            memories.forEach(memory => {
+    memories.forEach(memory => {
 
-                if (!sections[memory.section]) {
-                    sections[memory.section] = {
-                        id: memory.sectionId,
-                        memories: []
-                    };
-                }
+        if (!sections[memory.section]) {
 
-                sections[memory.section].memories.push(memory);
-
-            });
-
-
-            let sectionNumber = 0;
-            let globalIndex = 0;
-
-
-            Object.keys(sections).forEach(sectionName => {
-
-                sectionNumber++;
-
-                const sectionData = sections[sectionName];
-
-
-                const section = document.createElement("section");
-
-                section.className = "story-section";
-
-
-                /* =================================================
-                   SECTION HEADING
-                ================================================= */
-
-                const heading = document.createElement("div");
-
-                heading.className = "section-heading";
-
-
-                heading.innerHTML = `
-
-                    <div class="story-number">
-                        ${String(sectionNumber).padStart(2, "0")}
-                    </div>
-
-                    <h2 class="lang en">
-                        ${sectionName}
-                    </h2>
-
-                    <h2 class="lang id" style="display:none;">
-                        ${sectionData.id}
-                    </h2>
-
-                    <p class="lang en">
-                        A collection of moments from this part of the journey.
-                    </p>
-
-                    <p class="lang id" style="display:none;">
-                        Kumpulan momen dari bagian perjalanan ini.
-                    </p>
-
-                `;
-
-
-                section.appendChild(heading);
-
-
-                /* =================================================
-                   MEMORY ITEMS
-                ================================================= */
-
-                sectionData.memories.forEach(memory => {
-
-                    globalIndex++;
-
-
-                    const fragment =
-                        document.createElement("article");
-
-                    fragment.className = "memory-fragment";
-
-
-                    /* =============================================
-                       MEDIA
-                    ============================================== */
-
-                    const mediaBox =
-                        document.createElement("div");
-
-                    mediaBox.className = "memory-photo";
-
-
-                    const label =
-                        memory.type === "video"
-                            ? "VIDEO"
-                            : "PHOTO";
-
-
-                    if (memory.type === "video") {
-
-                        mediaBox.innerHTML = `
-
-                            <div class="media-label">
-                                ${label}
-                            </div>
-
-                            <video
-                                controls
-                                preload="metadata"
-                            >
-                                <source
-                                    src="${memory.file}"
-                                    type="video/mp4"
-                                >
-                            </video>
-
-                        `;
-
-                    } else {
-
-                        mediaBox.innerHTML = `
-
-                            <div class="media-label">
-                                ${label}
-                            </div>
-
-                            <img
-                                src="${memory.file}"
-                                alt="${memory.title}"
-                                loading="lazy"
-                                onerror="this.style.display='none';"
-                            >
-
-                        `;
-
-                    }
-
-
-                    /* =============================================
-                       INFORMATION
-                    ============================================== */
-
-                    const info =
-                        document.createElement("div");
-
-                    info.className = "memory-info";
-
-
-                    info.innerHTML = `
-
-                        <div class="memory-index">
-                            MEMORY ${String(globalIndex).padStart(2, "0")}
-                        </div>
-
-
-                        <h3>
-                            ${memory.title}
-                        </h3>
-
-
-                        <p class="memory-description lang en">
-                            ${memory.en}
-                        </p>
-
-                        <p
-                            class="memory-description lang id"
-                            style="display:none;"
-                        >
-                            ${memory.id}
-                        </p>
-
-
-                        <p class="memory-caption lang en">
-                            ${memory.captionEn}
-                        </p>
-
-                        <p
-                            class="memory-caption lang id"
-                            style="display:none;"
-                        >
-                            ${memory.captionId}
-                        </p>
-
-                    `;
-
-
-                    fragment.appendChild(mediaBox);
-                    fragment.appendChild(info);
-
-                    section.appendChild(fragment);
-
-                });
-
-
-                archive.appendChild(section);
-
-            });
+            sections[memory.section] = {
+                id: memory.sectionId,
+                memories: []
+            };
 
         }
 
+        sections[memory.section].memories.push(memory);
+
+    });
+
+
+    let sectionNumber = 0;
+    let globalIndex = 0;
+
+
+    Object.keys(sections).forEach(sectionName => {
+
+        sectionNumber++;
+
+        const sectionData = sections[sectionName];
+
+
+        const section = document.createElement("section");
+
+        section.className = "story-section";
+
+
+        /* =================================================
+           SECTION HEADING
+        ================================================= */
+
+        const heading = document.createElement("div");
+
+        heading.className = "section-heading";
+
+
+        heading.innerHTML = `
+
+            <div class="story-number">
+                ${String(sectionNumber).padStart(2, "0")}
+            </div>
+
+            <h2 class="lang en">
+                ${sectionName}
+            </h2>
+
+            <h2 class="lang id" style="display:none;">
+                ${sectionData.id}
+            </h2>
+
+            <p class="lang en">
+                A collection of moments from this part of the journey.
+            </p>
+
+            <p class="lang id" style="display:none;">
+                Kumpulan momen dari bagian perjalanan ini.
+            </p>
+
+        `;
+
+
+        section.appendChild(heading);
+
+
+        /* =================================================
+           MEMORY ITEMS
+        ================================================= */
+
+        sectionData.memories.forEach(memory => {
+
+            globalIndex++;
+
+
+            const fragment =
+                document.createElement("article");
+
+            fragment.className = "memory-fragment";
+
+
+            /* =============================================
+               MEDIA
+            ============================================== */
+
+            const mediaBox =
+                document.createElement("div");
+
+            mediaBox.className = "memory-photo";
+
+
+            let label = "PHOTO";
+
+
+            if (memory.type === "video") {
+
+                label = "VIDEO";
+
+                mediaBox.innerHTML = `
+
+                    <div class="media-label">
+                        ${label}
+                    </div>
+
+                    <video
+                        controls
+                        preload="metadata"
+                    >
+                        <source
+                            src="${memory.file}"
+                            type="video/mp4"
+                        >
+                    </video>
+
+                `;
+
+
+            } else if (memory.type === "collage") {
+
+                label = "COLLAGE";
+
+                mediaBox.innerHTML = `
+
+                    <div class="media-label">
+                        ${label}
+                    </div>
+
+                    <div class="memory-collage">
+
+                        ${memory.files.map(file => `
+                            
+                            <div class="collage-item">
+
+                                <img
+                                    src="${file}"
+                                    alt="${memory.title}"
+                                    loading="lazy"
+                                    onerror="this.style.display='none';"
+                                >
+
+                            </div>
+
+                        `).join("")}
+
+                    </div>
+
+                `;
+
+
+            } else {
+
+                mediaBox.innerHTML = `
+
+                    <div class="media-label">
+                        ${label}
+                    </div>
+
+                    <img
+                        src="${memory.file}"
+                        alt="${memory.title}"
+                        loading="lazy"
+                        onerror="this.style.display='none';"
+                    >
+
+                `;
+
+            }
+
+
+            /* =============================================
+               INFORMATION
+            ============================================== */
+
+            const info =
+                document.createElement("div");
+
+            info.className = "memory-info";
+
+
+            info.innerHTML = `
+
+                <div class="memory-index">
+                    MEMORY ${String(globalIndex).padStart(2, "0")}
+                </div>
+
+
+                <h3>
+                    ${memory.title}
+                </h3>
+
+
+                <p class="memory-description lang en">
+                    ${memory.en}
+                </p>
+
+                <p
+                    class="memory-description lang id"
+                    style="display:none;"
+                >
+                    ${memory.id}
+                </p>
+
+
+                <p class="memory-caption lang en">
+                    ${memory.captionEn}
+                </p>
+
+                <p
+                    class="memory-caption lang id"
+                    style="display:none;"
+                >
+                    ${memory.captionId}
+                </p>
+
+            `;
+
+
+            fragment.appendChild(mediaBox);
+
+            fragment.appendChild(info);
+
+            section.appendChild(fragment);
+
+        });
+
+
+        archive.appendChild(section);
+
+    });
+
+}
 
         /* =========================================================
            LANGUAGE SYSTEM
