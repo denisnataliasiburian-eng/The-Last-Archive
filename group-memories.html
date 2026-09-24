@@ -331,6 +331,24 @@
 
             pointer-events: none;
         }
+        /* =========================
+   GOOGLE DRIVE VIDEO
+========================= */
+
+.drive-video-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #0b0b0a;
+    border: 1px solid rgba(168, 139, 89, 0.35);
+}
+
+.drive-video-wrapper iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
         
         /* =========================
    AUTO COLLAGE SYSTEM
@@ -1062,16 +1080,20 @@ files: [
                 section: "THE PROJECTS",
                 sectionId: "Proyek-Proyek",
 
-                type: "image",
-                file: "project-02.jpg",
+                type: "collage",
+    files: [
+        "project-09.jpg",
+        "project-10.jpg",
+        "project-11.jpg"
+    ],
 
                 title: "THE WORK BEHIND IT",
 
                 en:
-                    "Behind every finished result were conversations, mistakes, adjustments, and a lot of time.",
+                    "Surviving individual assignments through heavy peer-support systems. We think alone, but we progress together.",
 
                 id:
-                    "Di balik setiap hasil akhir ada percakapan, kesalahan, penyesuaian, dan banyak waktu yang diberikan.",
+                    "Cara bertahan hidup di tengah gempuran tugas individu: aktifkan peer-support system. Mikirnya sendiri-sendiri, tapi progresnya harus barengan.",
 
                 captionEn:
                     "The finished thing never tells the whole story.",
@@ -1080,7 +1102,20 @@ files: [
                     "Hasil akhirnya tidak pernah menceritakan keseluruhan cerita."
             },
 
+{
+    section: "THE PROJECTS",
+    type: "drive",
+    file: "10dKYAXse_JamW2sbQdFnsNEMtaZskbG_",
+    title: "THE PROJECT IN MOTION",
 
+    en: "Captured during a chaotic but productive study session for the Technical Writing assignment; showcasing how we back each other up.",
+
+    id: "Dokumentasi waktu sesi belajar bersama yang chaotic tapi produktif buat tugas Teknik Penulisan; bukti kalau kita selalu saling back-up.",
+
+    captionEn: "Some memories were never meant to stay still.",
+
+    captionId: "Beberapa kenangan memang tidak seharusnya hanya diam."
+},
             {
                 section: "THE PROJECTS",
                 sectionId: "Proyek-Proyek",
@@ -1679,7 +1714,22 @@ files: [
         </div>
     `;
 }
+else if (memory.type === "drive") {
 
+    mediaBox.innerHTML = `
+        <div class="media-label">
+            VIDEO
+        </div>
+
+        <div class="drive-video-wrapper">
+            <iframe
+                src="https://drive.google.com/file/d/${memory.file}/preview"
+                allow="autoplay"
+                allowfullscreen>
+            </iframe>
+        </div>
+    `;
+}
             /* =================================================
                NORMAL IMAGE
             ================================================= */
