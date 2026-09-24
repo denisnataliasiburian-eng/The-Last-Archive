@@ -499,7 +499,7 @@
     max-width: 100%;
     background: #0b0b0a;
 }
-        /* =========================
+       /* =========================
    MASLOW COLLAGE
 ========================= */
 
@@ -507,16 +507,20 @@
     align-items: start;
 }
 
-.memory-collage.maslow-collage .collage-item:nth-child(1) img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.memory-collage.maslow-collage .collage-item {
+    overflow: hidden;
 }
 
-.memory-collage.maslow-collage .collage-item:nth-child(2) img {
+.memory-collage.maslow-collage .collage-item img {
+    display: block;
     width: 100%;
     height: auto;
     object-fit: contain;
+}
+
+/* Project 18 mengikuti tinggi Project 19 */
+.memory-collage.maslow-collage .collage-item:first-child img {
+    object-fit: cover;
 }
         
         /* =========================================================
@@ -1320,7 +1324,7 @@ captionId: "Mode penelitian: ON. Kewarasan: loading..."
     section: "THE PROJECTS",
     sectionId: "Proyek-Proyek",
         
-    type: "video",
+    type: "project-interlude",
     file: "project-24.mp4",
 
     title: "THE ORDINARY WE'LL MISS",
@@ -1986,7 +1990,7 @@ else if (memory.type === "collage") {
             PHOTO COLLAGE
         </div>
 
-        <div class="memory-collage collage-${photoCount}">
+        <div class="memory-collage collage-${photoCount} ${memory.className || ""}">
             ${memory.files.map(file => `
                 <div class="collage-item">
                     <img
@@ -1997,7 +2001,49 @@ else if (memory.type === "collage") {
         </div>
     `;
 }
+ /* =================================================
+       MASLOW COLLAGE — MATCH PROJECT 18 TO PROJECT 19
+    ================================================= */
 
+    if (memory.className === "maslow-collage") {
+
+        const images = mediaBox.querySelectorAll(
+            ".maslow-collage .collage-item img"
+        );
+
+        const project18 = images[0];
+        const project19 = images[1];
+
+        if (project18 && project19) {
+
+            const matchHeight = () => {
+
+                const targetHeight =
+                    project19.getBoundingClientRect().height;
+
+                project18.style.height =
+                    targetHeight + "px";
+
+                project18.style.objectFit =
+                    "cover";
+            };
+
+            if (project19.complete) {
+                matchHeight();
+            } else {
+                project19.addEventListener(
+                    "load",
+                    matchHeight
+                );
+            }
+
+            window.addEventListener(
+                "resize",
+                matchHeight
+            );
+        }
+    }
+}
 
 /* =================================================
    GOOGLE DRIVE VIDEO
