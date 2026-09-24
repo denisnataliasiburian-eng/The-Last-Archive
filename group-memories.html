@@ -428,6 +428,30 @@
 .video-collage.video-collage-4 {
     grid-template-columns: repeat(2, 1fr);
 }
+        /* =========================
+   VIDEO PAIR
+========================= */
+
+.video-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+
+.video-pair-item {
+    width: 100%;
+    background: #0b0b0a;
+    overflow: hidden;
+}
+
+.video-pair-item video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    background: #0b0b0a;
+}
         /* =========================================================
            MEDIA LABEL
         ========================================================= */
@@ -1158,7 +1182,7 @@ files: [
                 section: "THE PROJECTS",
                 sectionId: "Proyek-Proyek",
 
-                 type: "video-collage",
+                  type: "video-pair",
     files: [
         "project-13.mp4",
         "project-14.mp4"
@@ -1732,7 +1756,33 @@ files: [
 
             }
 
+/* =================================================
+   VIDEO PAIR
+================================================= */
+else if (
+    memory.type === "video-pair" &&
+    Array.isArray(memory.files)
+) {
 
+    mediaBox.innerHTML = `
+        <div class="media-label">
+            VIDEO DOCUMENTATION
+        </div>
+
+        <div class="video-pair">
+            ${memory.files.map(file => `
+                <div class="video-pair-item">
+                    <video
+                        src="${file}"
+                        controls
+                        playsinline
+                        preload="metadata">
+                    </video>
+                </div>
+            `).join("")}
+        </div>
+    `;
+}
         /* =================================================
    VIDEO COLLAGE
 ================================================= */
