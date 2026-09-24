@@ -332,7 +332,54 @@
             pointer-events: none;
         }
         
+/* =========================
+   PROJECT INTERLUDE
+========================= */
 
+.project-interlude {
+    width: 100%;
+    max-width: 850px;
+    margin: 90px auto;
+    text-align: center;
+}
+
+.project-interlude-title {
+    margin-bottom: 25px;
+    font-family: Georgia, serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+    color: #a88b59;
+}
+
+.project-interlude-video {
+    width: 100%;
+    margin: 0 auto;
+    background: #0b0b0a;
+}
+
+.project-interlude-video video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    margin: 0 auto;
+    object-fit: contain;
+    background: #0b0b0a;
+}
+
+.project-interlude-caption {
+    max-width: 650px;
+    margin: 25px auto 0;
+    text-align: center;
+}
+
+.project-interlude-caption p {
+    font-family: Georgia, serif;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #c8c0b2;
+    font-style: italic;
+}
 /* =========================
    GOOGLE DRIVE VIDEO
 ========================= */
@@ -1787,10 +1834,42 @@ captionId: "Mode penelitian: ON. Kewarasan: loading..."
             mediaBox.className = "memory-photo";
 
 
+            
             /* =================================================
                VIDEO
             ================================================= */
+            
+if (memory.type === "project-interlude") {
 
+    mediaBox.innerHTML = `
+        <div class="project-interlude">
+
+            <h3 class="project-interlude-title">
+                ${memory.title}
+            </h3>
+
+            <div class="project-interlude-video">
+                <video
+                    src="${memory.file}"
+                    controls
+                    playsinline
+                    preload="metadata">
+                </video>
+            </div>
+
+            <div class="project-interlude-caption">
+                <p class="lang en">
+                    ${memory.captionEn}
+                </p>
+
+                <p class="lang id">
+                    ${memory.captionId}
+                </p>
+            </div>
+
+        </div>
+    `;
+}
             if (memory.type === "video") {
 
                 mediaBox.innerHTML = `
