@@ -392,6 +392,42 @@
     grid-template-columns: repeat(2, 1fr);
 }
 
+.video-collage {
+    display: grid;
+    gap: 8px;
+    align-items: start;
+}
+
+.video-collage-item {
+    overflow: hidden;
+    background: #0b0b0a;
+}
+
+.video-collage-item video {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+    background: #0b0b0a;
+}
+
+.video-collage.video-collage-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.video-collage.video-collage-3 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.video-collage.video-collage-3
+.video-collage-item:last-child {
+    grid-column: 1 / -1;
+}
+
+.video-collage.video-collage-4 {
+    grid-template-columns: repeat(2, 1fr);
+}
         /* =========================================================
            MEDIA LABEL
         ========================================================= */
@@ -1700,7 +1736,45 @@ files: [
             /* =================================================
                COLLAGE
             ================================================= */
+else if (
+    memory.type === "video-collage" &&
+    Array.isArray(memory.files)
+) {
 
+    const videoCount = memory.files.length;
+
+    mediaBox.innerHTML = `
+
+        <div class="media-label">
+            VIDEO COLLAGE
+        </div>
+
+        <div class="video-collage video-collage-${videoCount}">
+
+            ${memory.files.map(file => `
+
+                <div class="video-collage-item">
+
+                    <video
+                        controls
+                        preload="metadata"
+                        playsinline
+                    >
+                        <source
+                            src="${file}"
+                            type="video/mp4"
+                        >
+                        Your browser does not support video.
+                    </video>
+
+                </div>
+
+            `).join("")}
+
+        </div>
+    `;
+}
+                
             else if (memory.type === "collage") {
 
     const photoCount = memory.files.length;
