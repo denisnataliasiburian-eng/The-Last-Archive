@@ -336,19 +336,30 @@
    PROJECT INTERLUDE
 ========================= */
 
+.project-interlude-box {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+}
+
 .project-interlude {
     width: 100%;
     max-width: 850px;
-    margin: 90px auto;
+    margin: 40px auto 20px;
     text-align: center;
 }
 
 .project-interlude-title {
     margin-bottom: 25px;
-    font-family: Georgia, serif;
-    font-size: 25px;
-    letter-spacing: 2px;
     color: #a88b59;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    font-weight: normal;
+    letter-spacing: 2px;
 }
 
 .project-interlude-video {
@@ -374,12 +385,13 @@
 }
 
 .project-interlude-caption p {
-    font-family: Georgia, serif;
+    color: #c8c0b2;
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 15px;
     line-height: 1.8;
-    color: #c8c0b2;
     font-style: italic;
 }
+        
 /* =========================
    GOOGLE DRIVE VIDEO
 ========================= */
@@ -518,7 +530,6 @@
     object-fit: contain;
 }
 
-/* Project 18 mengikuti tinggi Project 19 */
 .memory-collage.maslow-collage .collage-item:first-child img {
     object-fit: cover;
 }
@@ -1866,6 +1877,8 @@ captionId: "Mode penelitian: ON. Kewarasan: loading..."
             
 if (memory.type === "project-interlude") {
 
+    mediaBox.className = "project-interlude-box";
+
     mediaBox.innerHTML = `
         <div class="project-interlude">
 
@@ -1883,45 +1896,195 @@ if (memory.type === "project-interlude") {
             </div>
 
             <div class="project-interlude-caption">
+
                 <p class="lang en">
                     ${memory.captionEn}
                 </p>
 
-                <p class="lang id">
+                <p
+                    class="lang id"
+                    style="display:none;">
                     ${memory.captionId}
                 </p>
+
             </div>
 
         </div>
     `;
+
 }
-            if (memory.type === "video") {
+/* =================================================
+   PROJECT INTERLUDE
+================================================= */
 
-                mediaBox.innerHTML = `
+if (memory.type === "project-interlude") {
 
-                    <div class="media-label">
-                        VIDEO
-                    </div>
+    fragment.className = "project-interlude-fragment";
 
-                    <video
-                        controls
-                        preload="metadata"
-                        playsinline
+    mediaBox.className = "project-interlude-box";
+
+    mediaBox.innerHTML = `
+
+        <div class="project-interlude">
+
+            <h3 class="project-interlude-title">
+                ${memory.title}
+            </h3>
+
+            <div class="project-interlude-video">
+
+                <video
+                    src="${memory.file}"
+                    controls
+                    playsinline
+                    preload="metadata">
+                </video>
+
+            </div>
+
+            <div class="project-interlude-caption">
+
+                <p class="lang en">
+                    ${memory.captionEn || ""}
+                </p>
+
+                <p
+                    class="lang id"
+                    style="display:none;">
+                    ${memory.captionId || ""}
+                </p>
+
+            </div>
+
+        </div>
+
+    `;
+
+    fragment.appendChild(mediaBox);
+
+    section.appendChild(fragment);
+
+    return;
+}
+
+
+/* =================================================
+   VIDEO
+================================================= */
+
+else if (memory.type === "video") {
+
+    mediaBox.innerHTML = `
+
+        <div class="media-label">
+            VIDEO
+        </div>
+
+        <video
+            controls
+            preload="metadata"
+            playsinline
+        >
+
+            <source
+                src="${memory.file}"
+                type="video/mp4"
+            >
+
+            Your browser does not support video.
+
+        </video>
+
+    `;
+
+}
+
+
+/* =================================================
+   COLLAGE
+================================================= */
+
+else if (
+    memory.type === "collage" &&
+    Array.isArray(memory.files)
+) {
+
+    mediaBox.innerHTML = `
+
+        <div class="media-label">
+            COLLAGE
+        </div>
+
+        <div class="memory-collage collage-${memory.files.length} ${memory.className || ""}">
+
+            ${memory.files.map(file => `
+
+                <div class="collage-item">
+
+                    <img
+                        src="${file}"
+                        alt="${memory.title || "Memory"}"
+                        loading="lazy"
                     >
 
-                        <source
-                            src="${memory.file}"
-                            type="video/mp4"
-                        >
+                </div>
 
-                        Your browser does not support video.
+            `).join("")}
 
-                    </video>
+        </div>
 
-                `;
+    `;
+
+
+    /* =================================================
+       MASLOW — MATCH PROJECT 18 TO PROJECT 19
+    ================================================= */
+
+    if (memory.className === "maslow-collage") {
+
+        const images = mediaBox.querySelectorAll(
+            ".maslow-collage .collage-item img"
+        );
+
+        const project18 = images[0];
+        const project19 = images[1];
+
+        if (project18 && project19) {
+
+            const matchHeight = () => {
+
+                const targetHeight =
+                    project19.getBoundingClientRect().height;
+
+                project18.style.height = targetHeight + "px";
+
+                project18.style.objectFit = "cover";
+
+            };
+
+            if (project19.complete) {
+
+                matchHeight();
+
+            } else {
+
+                project19.addEventListener(
+                    "load",
+                    matchHeight
+                );
 
             }
 
+            window.addEventListener(
+                "resize",
+                matchHeight
+            );
+
+        }
+
+    }
+
+}
 /* =================================================
    VIDEO PAIR
 ================================================= */
