@@ -499,6 +499,26 @@
     max-width: 100%;
     background: #0b0b0a;
 }
+        /* =========================
+   MASLOW COLLAGE
+========================= */
+
+.memory-collage.maslow-collage {
+    align-items: start;
+}
+
+.memory-collage.maslow-collage .collage-item:nth-child(1) img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.memory-collage.maslow-collage .collage-item:nth-child(2) img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+        
         /* =========================================================
            MEDIA LABEL
         ========================================================= */
@@ -1283,7 +1303,8 @@ captionId: "Mode penelitian: ON. Kewarasan: loading..."
         "project-22.jpg",
         "project-23.jpg"
     ],
-    
+
+    className: "maslow-collage",
     title: "MASLOW, BUT MAKE IT PERSONAL",
     
     en: "Somewhere between theory, deadlines, and real life, the hierarchy started making sense.",
