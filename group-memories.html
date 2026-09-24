@@ -331,10 +331,15 @@
 
             pointer-events: none;
         }
-        .memory-collage {
+        
+        /* =========================
+   AUTO COLLAGE SYSTEM
+========================= */
+
+.memory-collage {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 8px;
+    align-items: start;
 }
 
 .collage-item {
@@ -345,9 +350,27 @@
 .collage-item img {
     display: block;
     width: 100%;
-    height: 100%;
-    min-height: 180px;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
+}
+
+/* 2 FOTO */
+.memory-collage.collage-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* 3 FOTO */
+.memory-collage.collage-3 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.memory-collage.collage-3 .collage-item:last-child {
+    grid-column: 1 / -1;
+}
+
+/* 4 FOTO */
+.memory-collage.collage-4 {
+    grid-template-columns: repeat(2, 1fr);
 }
 
         /* =========================================================
@@ -1638,39 +1661,24 @@ files: [
                COLLAGE
             ================================================= */
 
-            else if (
-                memory.type === "collage" &&
-                Array.isArray(memory.files)
-            ) {
+            else if (memory.type === "collage") {
 
-                mediaBox.innerHTML = `
+    const photoCount = memory.files.length;
 
-                    <div class="media-label">
-                        COLLAGE
-                    </div>
+    mediaBox.innerHTML = `
+        <div class="media-label">
+            PHOTO COLLAGE
+        </div>
 
-                    <div class="memory-collage">
-
-                        ${memory.files.map(file => `
-
-                            <div class="collage-item">
-
-                                <img
-                                    src="${file}"
-                                    alt="${memory.title || "Memory"}"
-                                    loading="lazy"
-                                >
-
-                            </div>
-
-                        `).join("")}
-
-                    </div>
-
-                `;
-
-            }
-
+        <div class="memory-collage collage-${photoCount}">
+            ${memory.files.map(file => `
+                <div class="collage-item">
+                    <img src="${file}" alt="${memory.title}">
+                </div>
+            `).join("")}
+        </div>
+    `;
+}
 
             /* =================================================
                NORMAL IMAGE
