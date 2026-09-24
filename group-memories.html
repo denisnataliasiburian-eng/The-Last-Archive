@@ -1733,49 +1733,39 @@ files: [
             }
 
 
-            /* =================================================
-               COLLAGE
-            ================================================= */
+        /* =================================================
+   VIDEO COLLAGE
+================================================= */
 else if (
     memory.type === "video-collage" &&
     Array.isArray(memory.files)
 ) {
 
-    const videoCount = memory.files.length;
-
     mediaBox.innerHTML = `
-
         <div class="media-label">
             VIDEO COLLAGE
         </div>
 
-        <div class="video-collage video-collage-${videoCount}">
-
+        <div class="video-collage">
             ${memory.files.map(file => `
-
                 <div class="video-collage-item">
-
                     <video
+                        src="${file}"
                         controls
-                        preload="metadata"
                         playsinline
-                    >
-                        <source
-                            src="${file}"
-                            type="video/mp4"
-                        >
-                        Your browser does not support video.
+                        preload="metadata">
                     </video>
-
                 </div>
-
             `).join("")}
-
         </div>
     `;
 }
-                
-            else if (memory.type === "collage") {
+
+
+/* =================================================
+   PHOTO COLLAGE
+================================================= */
+else if (memory.type === "collage") {
 
     const photoCount = memory.files.length;
 
@@ -1787,12 +1777,19 @@ else if (
         <div class="memory-collage collage-${photoCount}">
             ${memory.files.map(file => `
                 <div class="collage-item">
-                    <img src="${file}" alt="${memory.title}">
+                    <img
+                        src="${file}"
+                        alt="${memory.title}">
                 </div>
             `).join("")}
         </div>
     `;
 }
+
+
+/* =================================================
+   GOOGLE DRIVE VIDEO
+================================================= */
 else if (memory.type === "drive") {
 
     mediaBox.innerHTML = `
