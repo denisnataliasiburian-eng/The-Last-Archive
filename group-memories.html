@@ -2323,9 +2323,16 @@ sectionData.memories.forEach(memory => {
    INITIALIZE GROUP MEMORIES
 ========================================================= */
 
-renderArchive();
-setLanguage("en");
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
 
+        renderArchive();
+
+        setLanguage("en");
+
+    }
+);
     </script>
 
 </body>
