@@ -373,12 +373,24 @@
     object-fit: contain;
 }
 
-
-/* 2 FOTO - TIDAK DIPOTONG */
+/* 2 FOTO */
 .memory-collage.collage-2 {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 8px;
+    align-items: stretch;
 }
-        
+
+.memory-collage.collage-2 .collage-item {
+    height: 360px;
+    overflow: hidden;
+}
+
+.memory-collage.collage-2 .collage-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 /* 3 FOTO */
 .memory-collage.collage-3 {
     grid-template-columns: repeat(2, 1fr);
@@ -1349,10 +1361,10 @@ captionId:
                 section: "THE LITTLE THINGS",
                 sectionId: "Hal-Hal Kecil",
 
-                 type: "video-pair",
-    files: [
-        "project-13.mp4",
-        "project-14.mp4"
+               type: "collage",
+                files: [
+        "little-08.mp4",
+        "little-09.mp4"
     ],
 
                 title: "JUST LIKE THAT",
