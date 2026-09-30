@@ -332,70 +332,7 @@
             pointer-events: none;
         }
         
-/* =========================
-   PROJECT INTERLUDE
-========================= */
-.project-interlude-fragment {
-    display: block;
-    width: 100%;
-    margin-bottom: 75px;
-}
-.project-interlude-box {
-    grid-column: 1 / -1;
-    width: 100%;
-    padding: 0;
-    border: none;
-    background: transparent;
-    box-shadow: none;
-    overflow: visible;
-}
 
-.project-interlude {
-    width: 100%;
-    max-width: 850px;
-    margin: 40px auto 20px;
-    text-align: center;
-}
-
-.project-interlude-title {
-    margin-bottom: 25px;
-    color: #a88b59;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 25px;
-    font-weight: normal;
-    letter-spacing: 2px;
-}
-
-.project-interlude-video {
-    width: 100%;
-    margin: 0 auto;
-    background: #0b0b0a;
-}
-
-.project-interlude-video video {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-height: 600px;
-    margin: 0 auto;
-    object-fit: contain;
-    background: #0b0b0a;
-}
-
-.project-interlude-caption {
-    max-width: 650px;
-    margin: 25px auto 0;
-    text-align: center;
-}
-
-.project-interlude-caption p {
-    color: #c8c0b2;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 15px;
-    line-height: 1.8;
-    font-style: italic;
-}
-        
 /* =========================
    GOOGLE DRIVE VIDEO
 ========================= */
@@ -515,29 +452,6 @@
     max-width: 100%;
     background: #0b0b0a;
 }
-       /* =========================
-   MASLOW COLLAGE
-========================= */
-
-.memory-collage.maslow-collage {
-    align-items: start;
-}
-
-.memory-collage.maslow-collage .collage-item {
-    overflow: hidden;
-}
-
-.memory-collage.maslow-collage .collage-item img {
-    display: block;
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-}
-
-.memory-collage.maslow-collage .collage-item:first-child img {
-    object-fit: cover;
-}
-        
         /* =========================================================
            MEDIA LABEL
         ========================================================= */
@@ -1322,8 +1236,7 @@ captionId: "Mode penelitian: ON. Kewarasan: loading..."
         "project-22.jpg",
         "project-23.jpg"
     ],
-
-    className: "maslow-collage",
+    
     title: "MASLOW, BUT MAKE IT PERSONAL",
     
     en: "Somewhere between theory, deadlines, and real life, the hierarchy started making sense.",
@@ -1339,7 +1252,7 @@ captionId: "Mode penelitian: ON. Kewarasan: loading..."
     section: "THE PROJECTS",
     sectionId: "Proyek-Proyek",
         
-    type: "project-interlude",
+    type: "video",
     file: "project-24.mp4",
 
     title: "THE ORDINARY WE'LL MISS",
@@ -1852,404 +1765,247 @@ captionId: "Mode penelitian: ON. Kewarasan: loading..."
 
 
         /* =================================================
-   CREATE MEMORY ITEMS
-================================================= */
+           CREATE MEMORY ITEMS
+        ================================================= */
 
-sectionData.memories.forEach(memory => {
+        sectionData.memories.forEach(memory => {
 
-    globalIndex++;
-
-    const fragment = document.createElement("article");
-    fragment.className = "memory-fragment";
+            globalIndex++;
 
 
-    /* =================================================
-       PROJECT INTERLUDE
-       KHUSUS project-24.mp4
-    ================================================= */
+            const fragment = document.createElement("article");
 
-    if (memory.type === "project-interlude") {
+            fragment.className = "memory-fragment";
 
-        fragment.className =
-            "memory-fragment project-interlude-fragment";
 
-        fragment.innerHTML = `
+            /* =================================================
+               MEDIA BOX
+            ================================================= */
 
-            <div class="project-interlude-box">
+            const mediaBox = document.createElement("div");
 
-                <div class="project-interlude">
+            mediaBox.className = "memory-photo";
 
-                    <h3 class="project-interlude-title">
-                        ${memory.title || ""}
-                    </h3>
 
-                    <div class="project-interlude-video">
+            /* =================================================
+               VIDEO
+            ================================================= */
 
-                        <video
+            if (memory.type === "video") {
+
+                mediaBox.innerHTML = `
+
+                    <div class="media-label">
+                        VIDEO
+                    </div>
+
+                    <video
+                        controls
+                        preload="metadata"
+                        playsinline
+                    >
+
+                        <source
                             src="${memory.file}"
-                            controls
-                            playsinline
-                            preload="metadata">
-                        </video>
-
-                    </div>
-
-                    <div class="project-interlude-caption">
-
-                        <p class="lang en">
-                            ${memory.captionEn || ""}
-                        </p>
-
-                        <p
-                            class="lang id"
-                            style="display:none;">
-                            ${memory.captionId || ""}
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        `;
-
-        section.appendChild(fragment);
-
-        return;
-    }
-
-
-    /* =================================================
-       MEDIA BOX
-    ================================================= */
-
-    const mediaBox = document.createElement("div");
-
-    mediaBox.className = "memory-photo";
-
-
-    /* =================================================
-       VIDEO
-    ================================================= */
-
-    if (memory.type === "video") {
-
-        mediaBox.innerHTML = `
-
-            <div class="media-label">
-                VIDEO
-            </div>
-
-            <video
-                controls
-                preload="metadata"
-                playsinline
-            >
-
-                <source
-                    src="${memory.file}"
-                    type="video/mp4"
-                >
-
-                Your browser does not support video.
-
-            </video>
-
-        `;
-    }
-
-
-    /* =================================================
-       VIDEO PAIR
-    ================================================= */
-
-    else if (
-        memory.type === "video-pair" &&
-        Array.isArray(memory.files)
-    ) {
-
-        mediaBox.innerHTML = `
-
-            <div class="media-label">
-                VIDEO DOCUMENTATION
-            </div>
-
-            <div class="video-pair">
-
-                ${memory.files.map(file => `
-
-                    <div class="video-pair-item">
-
-                        <video
-                            src="${file}"
-                            controls
-                            playsinline
-                            preload="metadata">
-                        </video>
-
-                    </div>
-
-                `).join("")}
-
-            </div>
-
-        `;
-    }
-
-
-    /* =================================================
-       VIDEO COLLAGE
-    ================================================= */
-
-    else if (
-        memory.type === "video-collage" &&
-        Array.isArray(memory.files)
-    ) {
-
-        const videoCount = memory.files.length;
-
-        mediaBox.innerHTML = `
-
-            <div class="media-label">
-                VIDEO COLLAGE
-            </div>
-
-            <div class="video-collage video-collage-${videoCount}">
-
-                ${memory.files.map(file => `
-
-                    <div class="video-collage-item">
-
-                        <video
-                            src="${file}"
-                            controls
-                            playsinline
-                            preload="metadata">
-                        </video>
-
-                    </div>
-
-                `).join("")}
-
-            </div>
-
-        `;
-    }
-
-
-    /* =================================================
-       PHOTO COLLAGE
-    ================================================= */
-
-    else if (
-        memory.type === "collage" &&
-        Array.isArray(memory.files)
-    ) {
-
-        const photoCount = memory.files.length;
-
-        mediaBox.innerHTML = `
-
-            <div class="media-label">
-                PHOTO COLLAGE
-            </div>
-
-            <div
-                class="memory-collage collage-${photoCount}
-                ${memory.className || ""}"
-            >
-
-                ${memory.files.map(file => `
-
-                    <div class="collage-item">
-
-                        <img
-                            src="${file}"
-                            alt="${memory.title || "Memory"}"
-                            loading="lazy"
+                            type="video/mp4"
                         >
 
-                    </div>
+                        Your browser does not support video.
 
-                `).join("")}
+                    </video>
 
-            </div>
-
-        `;
-
-
-        /* =============================================
-           MASLOW COLLAGE
-           PROJECT 18 = SAMAKAN TINGGI PROJECT 19
-        ============================================= */
-
-        if (memory.className === "maslow-collage") {
-
-            const images =
-                mediaBox.querySelectorAll(
-                    ".maslow-collage .collage-item img"
-                );
-
-            const project18 = images[0];
-            const project19 = images[1];
-
-
-            if (project18 && project19) {
-
-                const matchHeight = () => {
-
-                    const targetHeight =
-                        project19.getBoundingClientRect().height;
-
-                    if (targetHeight > 0) {
-
-                        project18.style.height =
-                            targetHeight + "px";
-
-                        project18.style.objectFit =
-                            "cover";
-
-                    }
-
-                };
-
-
-                if (project19.complete) {
-
-                    matchHeight();
-
-                } else {
-
-                    project19.addEventListener(
-                        "load",
-                        matchHeight
-                    );
-
-                }
-
-
-                window.addEventListener(
-                    "resize",
-                    matchHeight
-                );
+                `;
 
             }
 
-        }
+/* =================================================
+   VIDEO PAIR
+================================================= */
+else if (
+    memory.type === "video-pair" &&
+    Array.isArray(memory.files)
+) {
 
-    }
-
-
-    /* =================================================
-       GOOGLE DRIVE VIDEO
-    ================================================= */
-
-    else if (memory.type === "drive") {
-
-        mediaBox.innerHTML = `
-
-            <div class="media-label">
-                VIDEO
-            </div>
-
-            <div class="drive-video-wrapper">
-
-                <iframe
-                    src="https://drive.google.com/file/d/${memory.file}/preview"
-                    allow="autoplay"
-                    allowfullscreen>
-                </iframe>
-
-            </div>
-
-        `;
-    }
-
-
-    /* =================================================
-       NORMAL IMAGE
-    ================================================= */
-
-    else {
-
-        mediaBox.innerHTML = `
-
-            <div class="media-label">
-                PHOTO
-            </div>
-
-            <img
-                src="${memory.file}"
-                alt="${memory.title || "Memory"}"
-                loading="lazy"
-            >
-
-        `;
-    }
-
-
-    /* =================================================
-       MEMORY INFORMATION
-    ================================================= */
-
-    const info = document.createElement("div");
-
-    info.className = "memory-info";
-
-    info.innerHTML = `
-
-        <div class="memory-index">
-            MEMORY ${String(globalIndex).padStart(2, "0")}
+    mediaBox.innerHTML = `
+        <div class="media-label">
+            VIDEO DOCUMENTATION
         </div>
 
-        <h3>
-            ${memory.title || "UNTITLED MEMORY"}
-        </h3>
-
-        <p class="memory-description lang en">
-            ${memory.en || ""}
-        </p>
-
-        <p
-            class="memory-description lang id"
-            style="display:none;"
-        >
-            ${memory.id || ""}
-        </p>
-
-        <p class="memory-caption lang en">
-            ${memory.captionEn || ""}
-        </p>
-
-        <p
-            class="memory-caption lang id"
-            style="display:none;"
-        >
-            ${memory.captionId || ""}
-        </p>
-
+        <div class="video-pair">
+            ${memory.files.map(file => `
+                <div class="video-pair-item">
+                    <video
+                        src="${file}"
+                        controls
+                        playsinline
+                        preload="metadata">
+                    </video>
+                </div>
+            `).join("")}
+        </div>
     `;
+}
+        /* =================================================
+   VIDEO COLLAGE
+================================================= */
+else if (
+    memory.type === "video-collage" &&
+    Array.isArray(memory.files)
+) {
+
+    mediaBox.innerHTML = `
+        <div class="media-label">
+            VIDEO COLLAGE
+        </div>
+
+        <div class="video-collage">
+            ${memory.files.map(file => `
+                <div class="video-collage-item">
+                    <video
+                        src="${file}"
+                        controls
+                        playsinline
+                        preload="metadata">
+                    </video>
+                </div>
+            `).join("")}
+        </div>
+    `;
+}
 
 
-    /* =================================================
-       APPEND
-    ================================================= */
+/* =================================================
+   PHOTO COLLAGE
+================================================= */
+else if (memory.type === "collage") {
 
-   fragment.appendChild(mediaBox);
-    fragment.appendChild(info);
+    const photoCount = memory.files.length;
 
-    section.appendChild(fragment);
+    mediaBox.innerHTML = `
+        <div class="media-label">
+            PHOTO COLLAGE
+        </div>
 
-}); // selesai sectionData.memories.forEach
+        <div class="memory-collage collage-${photoCount}">
+            ${memory.files.map(file => `
+                <div class="collage-item">
+                    <img
+                        src="${file}"
+                        alt="${memory.title}">
+                </div>
+            `).join("")}
+        </div>
+    `;
+}
 
 
-}); // selesai Object.keys(sections).forEach
+/* =================================================
+   GOOGLE DRIVE VIDEO
+================================================= */
+else if (memory.type === "drive") {
+
+    mediaBox.innerHTML = `
+        <div class="media-label">
+            VIDEO
+        </div>
+
+        <div class="drive-video-wrapper">
+            <iframe
+                src="https://drive.google.com/file/d/${memory.file}/preview"
+                allow="autoplay"
+                allowfullscreen>
+            </iframe>
+        </div>
+    `;
+}
+            /* =================================================
+               NORMAL IMAGE
+            ================================================= */
+
+            else {
+
+                mediaBox.innerHTML = `
+
+                    <div class="media-label">
+                        PHOTO
+                    </div>
+
+                    <img
+                        src="${memory.file}"
+                        alt="${memory.title || "Memory"}"
+                        loading="lazy"
+                    >
+
+                `;
+
+            }
 
 
-} // selesai renderArchive
+            /* =================================================
+               MEMORY INFORMATION
+            ================================================= */
+
+            const info = document.createElement("div");
+
+            info.className = "memory-info";
 
 
+            info.innerHTML = `
+
+                <div class="memory-index">
+                    MEMORY ${String(globalIndex).padStart(2, "0")}
+                </div>
+
+                <h3>
+                    ${memory.title || "UNTITLED MEMORY"}
+                </h3>
+
+                <p class="memory-description lang en">
+                    ${memory.en || ""}
+                </p>
+
+                <p
+                    class="memory-description lang id"
+                    style="display:none;"
+                >
+                    ${memory.id || ""}
+                </p>
+
+                <p class="memory-caption lang en">
+                    ${memory.captionEn || ""}
+                </p>
+
+                <p
+                    class="memory-caption lang id"
+                    style="display:none;"
+                >
+                    ${memory.captionId || ""}
+                </p>
+
+            `;
+
+
+            fragment.appendChild(mediaBox);
+
+            fragment.appendChild(info);
+
+            section.appendChild(fragment);
+
+        });
+
+
+        archive.appendChild(section);
+
+    });
+
+
+    console.log(
+        "GROUP MEMORIES BERHASIL DITAMPILKAN:",
+        memories.length,
+        "memories"
+    );
+
+}
         /* =========================================================
            LANGUAGE SYSTEM
         ========================================================= */
@@ -2320,19 +2076,20 @@ sectionData.memories.forEach(memory => {
 
 
         /* =========================================================
-   INITIALIZE GROUP MEMORIES
-========================================================= */
+           INITIALIZE
+        ========================================================= */
 
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
-        renderArchive();
+                renderArchive();
 
-        setLanguage("en");
+                setLanguage("en");
 
-    }
-);
+            }
+        );
+
     </script>
 
 </body>
