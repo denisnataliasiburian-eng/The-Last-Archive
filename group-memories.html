@@ -373,23 +373,24 @@
     object-fit: contain;
 }
 
-/* 2 FOTO */
+
+/* 2 FOTO - TIDAK DIPOTONG */
 .memory-collage.collage-2 {
     grid-template-columns: 0.85fr 1.15fr;
     gap: 8px;
-    align-items: stretch;
+    align-items: start;
 }
 
 .memory-collage.collage-2 .collage-item {
-    height: 360px;
     overflow: hidden;
+    background: #0b0b0a;
 }
 
 .memory-collage.collage-2 .collage-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 /* 3 FOTO */
 .memory-collage.collage-3 {
