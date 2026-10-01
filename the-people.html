@@ -199,10 +199,10 @@
 
 
         /* =========================================================
-           FOUR OF US
+           INTRODUCTION
         ========================================================= */
 
-        .four-of-us {
+        .people-intro {
             max-width: 820px;
 
             margin: 0 auto 120px;
@@ -210,7 +210,7 @@
             text-align: center;
         }
 
-        .four-of-us-label {
+        .people-intro-label {
             color: #a88b59;
 
             font-family: Arial, sans-serif;
@@ -222,7 +222,7 @@
             margin-bottom: 20px;
         }
 
-        .four-of-us h2 {
+        .people-intro h2 {
             color: #d9c39a;
 
             font-size: 28px;
@@ -234,7 +234,7 @@
             margin-bottom: 25px;
         }
 
-        .four-of-us p {
+        .people-intro p {
             color: #999188;
 
             max-width: 650px;
@@ -246,7 +246,7 @@
             line-height: 1.9;
         }
 
-        .four-line {
+        .intro-line {
             width: 45px;
             height: 1px;
 
@@ -468,6 +468,129 @@
 
 
         /* =========================================================
+           THE PHOTO THAT BECAME AN ARCHIVE
+        ========================================================= */
+
+        .full-photo-section {
+            max-width: 850px;
+
+            margin: 10px auto 130px;
+
+            text-align: center;
+        }
+
+        .full-photo-label {
+            color: #a88b59;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 10px;
+
+            letter-spacing: 4px;
+
+            margin-bottom: 18px;
+        }
+
+        .full-photo-title {
+            color: #d9c39a;
+
+            font-size: 27px;
+
+            font-weight: normal;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 18px;
+        }
+
+        .full-photo-intro {
+            max-width: 650px;
+
+            margin: 0 auto 35px;
+
+            color: #999188;
+
+            font-size: 14px;
+
+            line-height: 1.9;
+        }
+
+        .full-photo-frame {
+            width: min(720px, 100%);
+
+            margin: 0 auto 35px;
+
+            padding: 12px;
+
+            border:
+                1px solid
+                rgba(168, 139, 89, .45);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(168, 139, 89, .08),
+                    rgba(255, 255, 255, .015)
+                );
+
+            box-shadow:
+                0 25px 60px rgba(0, 0, 0, .4);
+        }
+
+        .full-photo-frame img {
+            display: block;
+
+            width: 100%;
+
+            height: auto;
+
+            max-height: 750px;
+
+            object-fit: contain;
+
+            margin: 0 auto;
+
+            background: #0b0b0a;
+        }
+
+        .full-photo-caption {
+            max-width: 650px;
+
+            margin: 0 auto;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid
+                rgba(168, 139, 89, .22);
+        }
+
+        .full-photo-caption p {
+            color: #aaa096;
+
+            font-size: 15px;
+
+            font-style: italic;
+
+            line-height: 2;
+        }
+
+        .full-photo-caption .signature {
+            margin-top: 18px;
+
+            color: #b59a68;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 9px;
+
+            font-style: normal;
+
+            letter-spacing: 3px;
+        }
+
+
+        /* =========================================================
            CLOSING
         ========================================================= */
 
@@ -609,11 +732,11 @@
                 font-size: 14px;
             }
 
-            .four-of-us {
+            .people-intro {
                 margin-bottom: 85px;
             }
 
-            .four-of-us h2 {
+            .people-intro h2 {
                 font-size: 23px;
             }
 
@@ -645,6 +768,27 @@
                 font-size: 13px;
             }
 
+            .full-photo-section {
+                margin-top: 0;
+                margin-bottom: 95px;
+            }
+
+            .full-photo-title {
+                font-size: 22px;
+            }
+
+            .full-photo-intro {
+                font-size: 13px;
+            }
+
+            .full-photo-frame {
+                padding: 8px;
+            }
+
+            .full-photo-caption p {
+                font-size: 14px;
+            }
+
             .people-closing {
                 padding: 28px 22px;
 
@@ -672,752 +816,909 @@
 
 <body>
 
-<main class="people-page">
+    <main class="people-page">
 
-    <!-- =====================================================
-         LANGUAGE SWITCH
-    ====================================================== -->
+        <!-- =====================================================
+             LANGUAGE SWITCH
+        ====================================================== -->
 
-    <div class="language-switch">
+        <div class="language-switch">
 
-        <button
-            id="enBtn"
-            class="active"
-            onclick="setLanguage('en')">
-            EN
-        </button>
+            <button
+                id="enBtn"
+                class="active"
+                onclick="setLanguage('en')">
+                EN
+            </button>
 
-        <button
-            id="idBtn"
-            onclick="setLanguage('id')">
-            ID
-        </button>
+            <button
+                id="idBtn"
+                onclick="setLanguage('id')">
+                ID
+            </button>
 
-    </div>
-
-
-    <div class="people-container">
+        </div>
 
 
-        <!-- =================================================
-             HEADER
-        ================================================== -->
-
-        <header class="people-header">
-
-            <div class="eyebrow">
-                THE LAST ARCHIVE
-            </div>
-
-            <h1>
-                THE PEOPLE
-            </h1>
-
-            <p class="people-subtitle lang en">
-                Four people. Four different ways of existing.
-                Somehow, those differences became part of the story.
-            </p>
-
-            <p
-                class="people-subtitle lang id"
-                style="display:none;">
-
-                Empat orang. Empat cara berbeda dalam menjalani semuanya.
-                Entah bagaimana, perbedaan itu menjadi bagian dari cerita ini.
-
-            </p>
-
-            <div class="header-line"></div>
-
-        </header>
+        <div class="people-container">
 
 
-        <!-- =================================================
-             THE FOUR OF US
-        ================================================== -->
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
 
-        <section class="four-of-us">
+            <header class="people-header">
 
-            <div class="four-of-us-label lang en">
-                THE FOUR OF US
-            </div>
-
-            <div
-                class="four-of-us-label lang id"
-                style="display:none;">
-
-                KAMI BEREMPAT
-
-            </div>
-
-
-            <h2 class="lang en">
-                FOUR DIFFERENT WAYS TO BE HERE.
-            </h2>
-
-            <h2
-                class="lang id"
-                style="display:none;">
-
-                EMPAT CARA BERBEDA UNTUK ADA DI SINI.
-
-            </h2>
-
-
-            <p class="lang en">
-
-                We were never exactly the same.
-                Different personalities, different habits,
-                different ways of dealing with everything.
-
-                <br><br>
-
-                Somehow, those differences worked.
-
-            </p>
-
-            <p
-                class="lang id"
-                style="display:none;">
-
-                Kami tidak pernah benar-benar sama.
-                Kepribadian berbeda, kebiasaan berbeda,
-                dan cara berbeda dalam menghadapi semuanya.
-
-                <br><br>
-
-                Entah bagaimana, semua perbedaan itu bisa berjalan bersama.
-
-            </p>
-
-            <div class="four-line"></div>
-
-        </section>
-
-
-        <!-- =================================================
-             ADELIA
-        ================================================== -->
-
-        <section class="person">
-
-            <div class="person-photo">
-
-                <img
-                    src="adelia.jpg"
-                    alt="Adelia Melenia Munthe"
-                    loading="lazy">
-
-            </div>
-
-
-            <div class="person-info">
-
-                <div class="person-number">
-                    PERSON 01
+                <div class="eyebrow">
+                    THE LAST ARCHIVE
                 </div>
 
-                <div class="person-role">
-                    THE OLDER SISTER
-                </div>
+                <h1>
+                    THE PEOPLE
+                </h1>
 
-                <h2 class="person-name">
-                    ADELIA MELENIA MUNTHE
-                </h2>
-
-                <div class="person-zodiac">
-                    PISCES
-                </div>
-
-
-                <p class="person-description lang en">
-
-                    The only girl in the family and the youngest at home,
-                    somehow she became the older sister of the group.
-                    The one who carries a quiet sense of care,
-                    keeps things together, and makes the chaos
-                    feel a little more manageable.
-
+                <p class="people-subtitle lang en">
+                    Different people. Different ways of existing.
+                    Somehow, those differences became part of the same story.
                 </p>
 
                 <p
-                    class="person-description lang id"
+                    class="people-subtitle lang id"
                     style="display:none;">
 
-                    Anak bungsu sekaligus satu-satunya perempuan
-                    di keluarganya, tapi entah bagaimana justru
-                    menjadi sosok kakak perempuan di dalam kelompok.
-                    Punya cara sendiri untuk peduli, menjaga semuanya
-                    tetap berjalan, dan membuat kekacauan terasa
-                    sedikit lebih terkendali.
+                    Orang-orang yang berbeda.
+                    Cara yang berbeda dalam menjalani semuanya.
+                    Entah bagaimana, semua perbedaan itu menjadi bagian
+                    dari cerita yang sama.
 
                 </p>
 
+                <div class="header-line"></div>
 
-                <div class="known-for">
+            </header>
 
-                    <div class="known-label">
-                        <span class="lang en">KNOWN FOR</span>
 
-                        <span
-                            class="lang id"
-                            style="display:none;">
-                            DIKENAL KARENA
-                        </span>
-                    </div>
+            <!-- =================================================
+                 INTRODUCTION
+            ================================================== -->
 
-                    <div class="known-text lang en">
-                        Big sister energy · quiet care · Pisces instincts
-                    </div>
+            <section class="people-intro">
 
-                    <div
-                        class="known-text lang id"
-                        style="display:none;">
-                        Energi kakak · perhatian diam-diam · insting Pisces
-                    </div>
-
+                <div class="people-intro-label lang en">
+                    THE PEOPLE BEHIND THE ARCHIVE
                 </div>
 
-
-                <div class="person-note">
-
-                    <span class="lang en">
-                        “Somehow, every group needs someone
-                        who feels a little like home.”
-                    </span>
-
-                    <span
-                        class="lang id"
-                        style="display:none;">
-
-                        “Entah bagaimana, setiap kelompok memang
-                        butuh seseorang yang terasa seperti rumah.”
-
-                    </span>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             SHANI
-        ================================================== -->
-
-        <section class="person">
-
-            <div class="person-info">
-
-                <div class="person-number">
-                    PERSON 02
-                </div>
-
-                <div class="person-role">
-                    THE LOVELY ONE
-                </div>
-
-                <h2 class="person-name">
-                    GENE MESHANI
-                </h2>
-
-                <div class="person-zodiac">
-                    PISCES
-                </div>
-
-
-                <p class="person-description lang en">
-
-                    The middle child who somehow became the group's
-                    lovely youngest. Feminine energy, pink obsession,
-                    and a kind of weirdness that somehow feels familiar.
-                    Maybe that is why being on the same wavelength
-                    with her never felt particularly strange.
-
-                </p>
-
-                <p
-                    class="person-description lang id"
+                <div
+                    class="people-intro-label lang id"
                     style="display:none;">
 
-                    Anak tengah yang entah bagaimana berubah menjadi
-                    si bungsu lovely di dalam kelompok.
-                    Punya energi feminin, kecintaan pada warna pink,
-                    dan sisi weird yang entah kenapa terasa familiar.
-                    Mungkin itu sebabnya berada di frekuensi yang sama
-                    dengannya nggak pernah terasa aneh.
-
-                </p>
-
-
-                <div class="known-for">
-
-                    <div class="known-label">
-                        <span class="lang en">KNOWN FOR</span>
-
-                        <span
-                            class="lang id"
-                            style="display:none;">
-                            DIKENAL KARENA
-                        </span>
-                    </div>
-
-                    <div class="known-text lang en">
-                        Pink everything · feminine energy · beautifully weird
-                    </div>
-
-                    <div
-                        class="known-text lang id"
-                        style="display:none;">
-                        Serba pink · energi feminin · weird dengan caranya sendiri
-                    </div>
+                    ORANG-ORANG DI BALIK ARSIP
 
                 </div>
 
 
-                <div class="person-note">
-
-                    <span class="lang en">
-                        “Some people are weird.
-                        Some people just happen to be weird
-                        in the same frequency.”
-                    </span>
-
-                    <span
-                        class="lang id"
-                        style="display:none;">
-
-                        “Ada orang yang memang weird.
-                        Ada juga yang kebetulan weird
-                        di frekuensi yang sama.”
-
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="person-photo">
-
-                <img
-                    src="shani.jpg"
-                    alt="Gene Meshani"
-                    loading="lazy">
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             GALANG
-        ================================================== -->
-
-        <section class="person">
-
-            <div class="person-photo">
-
-                <img
-                    src="galang.jpg"
-                    alt="Galang Putra Yudha Pradana"
-                    loading="lazy">
-
-            </div>
-
-
-            <div class="person-info">
-
-                <div class="person-number">
-                    PERSON 03
-                </div>
-
-                <div class="person-role">
-                    THE NAVIGATOR
-                </div>
-
-                <h2 class="person-name">
-                    GALANG PUTRA YUDHA PRADANA
+                <h2 class="lang en">
+                    DIFFERENT WAYS TO BE HERE.
                 </h2>
 
-                <div class="person-zodiac">
-                    TAURUS
-                </div>
-
-
-                <p class="person-description lang en">
-
-                    The only guy in the group, and somehow also
-                    the navigator. He has a way of figuring out
-                    where everyone should go next, occasionally
-                    making him feel less like a friend and more
-                    like the unofficial teacher of the group.
-
-                </p>
-
-                <p
-                    class="person-description lang id"
+                <h2
+                    class="lang id"
                     style="display:none;">
 
-                    Satu-satunya cowok di kelompok, dan entah bagaimana
-                    juga jadi navigator. Punya cara sendiri untuk menentukan
-                    harus ke mana dan melakukan apa selanjutnya, sampai kadang
-                    terasa lebih seperti pengajar tidak resmi daripada teman.
+                    CARA YANG BERBEDA UNTUK ADA DI SINI.
 
-                </p>
-
-
-                <div class="known-for">
-
-                    <div class="known-label">
-                        <span class="lang en">KNOWN FOR</span>
-
-                        <span
-                            class="lang id"
-                            style="display:none;">
-                            DIKENAL KARENA
-                        </span>
-                    </div>
-
-                    <div class="known-text lang en">
-                        The navigator · Taurus patience · unofficial teacher
-                    </div>
-
-                    <div
-                        class="known-text lang id"
-                        style="display:none;">
-                        Sang navigator · kesabaran Taurus · pengajar tidak resmi
-                    </div>
-
-                </div>
-
-
-                <div class="person-note">
-
-                    <span class="lang en">
-                        “Every group has someone who somehow knows
-                        where everyone is supposed to go.”
-                    </span>
-
-                    <span
-                        class="lang id"
-                        style="display:none;">
-
-                        “Setiap kelompok pasti punya satu orang
-                        yang entah bagaimana tahu harus membawa
-                        semuanya ke mana.”
-
-                    </span>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             DENIS
-        ================================================== -->
-
-        <section class="person">
-
-            <div class="person-info">
-
-                <div class="person-number">
-                    PERSON 04
-                </div>
-
-                <div class="person-role">
-                    THE QUIET STRANGER
-                </div>
-
-                <h2 class="person-name">
-                    DENIS NATALIA SIBURIAN
                 </h2>
 
-                <div class="person-zodiac">
-                    SAGITTARIUS
-                </div>
 
+                <p class="lang en">
 
-                <p class="person-description lang en">
-
-                    The quiet one. Probably a little strange.
-                    Usually somewhere inside her own thoughts,
-                    observing more than she says.
+                    We were never exactly the same.
+                    Different personalities, different habits,
+                    different ways of dealing with everything.
 
                     <br><br>
 
-                    She may not always know how the others see her,
-                    but somehow she ended up here too —
-                    right in the middle of this story.
+                    Somehow, those differences worked.
+                    Maybe that was part of what made this story ours.
 
                 </p>
 
+
                 <p
-                    class="person-description lang id"
+                    class="lang id"
                     style="display:none;">
 
-                    Yang pendiam. Mungkin sedikit aneh.
-                    Sering berada di dalam pikirannya sendiri,
-                    lebih banyak mengamati daripada berbicara.
+                    Kami tidak pernah benar-benar sama.
+                    Kepribadian berbeda, kebiasaan berbeda,
+                    dan cara yang berbeda dalam menghadapi semuanya.
 
                     <br><br>
 
-                    Mungkin dia sendiri nggak pernah benar-benar tahu
-                    bagaimana orang lain melihatnya, tapi entah bagaimana
-                    dia juga akhirnya ada di sini —
-                    tepat di tengah cerita ini.
+                    Entah bagaimana, semua perbedaan itu bisa berjalan bersama.
+                    Mungkin justru itu yang membuat cerita ini menjadi milik kita.
 
                 </p>
 
 
-                <div class="known-for">
+                <div class="intro-line"></div>
 
-                    <div class="known-label">
+            </section>
+
+
+            <!-- =================================================
+                 ADELIA
+            ================================================== -->
+
+            <section class="person">
+
+                <div class="person-photo">
+
+                    <img
+                        src="adelia.jpg"
+                        alt="Adelia Melenia Munthe"
+                        loading="lazy">
+
+                </div>
+
+
+                <div class="person-info">
+
+                    <div class="person-number">
+                        PERSON 01
+                    </div>
+
+                    <div class="person-role">
+                        THE OLDER SISTER
+                    </div>
+
+                    <h2 class="person-name">
+                        ADELIA MELENIA MUNTHE
+                    </h2>
+
+                    <div class="person-zodiac">
+                        PISCES
+                    </div>
+
+
+                    <p class="person-description lang en">
+
+                        The only girl in the family and the youngest at home,
+                        somehow she became the older sister of the group.
+                        The one who carries a quiet sense of care,
+                        keeps things together, and makes the chaos
+                        feel a little more manageable.
+
+                    </p>
+
+
+                    <p
+                        class="person-description lang id"
+                        style="display:none;">
+
+                        Anak bungsu sekaligus satu-satunya perempuan
+                        di keluarganya, tapi entah bagaimana justru
+                        menjadi sosok kakak perempuan di dalam kelompok.
+                        Punya cara sendiri untuk peduli, menjaga semuanya
+                        tetap berjalan, dan membuat kekacauan terasa
+                        sedikit lebih terkendali.
+
+                    </p>
+
+
+                    <div class="known-for">
+
+                        <div class="known-label">
+
+                            <span class="lang en">
+                                KNOWN FOR
+                            </span>
+
+                            <span
+                                class="lang id"
+                                style="display:none;">
+                                DIKENAL KARENA
+                            </span>
+
+                        </div>
+
+
+                        <div class="known-text lang en">
+                            Big sister energy · quiet care · Pisces instincts
+                        </div>
+
+                        <div
+                            class="known-text lang id"
+                            style="display:none;">
+                            Energi kakak · perhatian diam-diam · insting Pisces
+                        </div>
+
+                    </div>
+
+
+                    <div class="person-note">
 
                         <span class="lang en">
-                            KNOWN FOR
+                            “Somehow, every group needs someone
+                            who feels a little like home.”
                         </span>
 
                         <span
                             class="lang id"
                             style="display:none;">
 
-                            DIKENAL KARENA
+                            “Entah bagaimana, setiap kelompok memang
+                            butuh seseorang yang terasa seperti rumah.”
 
                         </span>
 
                     </div>
 
+                </div>
 
-                    <div class="known-text lang en">
-                        Quiet observations · questionable thoughts · Sagittarius energy
+            </section>
+
+
+            <!-- =================================================
+                 SHANI
+            ================================================== -->
+
+            <section class="person">
+
+                <div class="person-info">
+
+                    <div class="person-number">
+                        PERSON 02
                     </div>
 
-                    <div
-                        class="known-text lang id"
+                    <div class="person-role">
+                        THE LOVELY ONE
+                    </div>
+
+                    <h2 class="person-name">
+                        GENE MESHANI
+                    </h2>
+
+                    <div class="person-zodiac">
+                        PISCES
+                    </div>
+
+
+                    <p class="person-description lang en">
+
+                        The middle child who somehow became
+                        the group's lovely youngest.
+                        Feminine energy, pink obsession,
+                        and a kind of weirdness that somehow
+                        feels familiar.
+
+                        <br><br>
+
+                        Maybe that is why being on the same wavelength
+                        with her never felt particularly strange.
+
+                    </p>
+
+
+                    <p
+                        class="person-description lang id"
                         style="display:none;">
 
-                        Pengamatan diam-diam · pikiran yang dipertanyakan · energi Sagittarius
+                        Anak tengah yang entah bagaimana berubah menjadi
+                        si bungsu lovely di dalam kelompok.
+                        Punya energi feminin, kecintaan pada warna pink,
+                        dan sisi weird yang entah kenapa terasa familiar.
+
+                        <br><br>
+
+                        Mungkin itu sebabnya berada di frekuensi yang sama
+                        dengannya nggak pernah terasa aneh.
+
+                    </p>
+
+
+                    <div class="known-for">
+
+                        <div class="known-label">
+
+                            <span class="lang en">
+                                KNOWN FOR
+                            </span>
+
+                            <span
+                                class="lang id"
+                                style="display:none;">
+                                DIKENAL KARENA
+                            </span>
+
+                        </div>
+
+
+                        <div class="known-text lang en">
+                            Pink everything · feminine energy · beautifully weird
+                        </div>
+
+                        <div
+                            class="known-text lang id"
+                            style="display:none;">
+                            Serba pink · energi feminin · weird dengan caranya sendiri
+                        </div>
+
+                    </div>
+
+
+                    <div class="person-note">
+
+                        <span class="lang en">
+                            “Some people are weird.
+                            Some people just happen to be weird
+                            in the same frequency.”
+                        </span>
+
+                        <span
+                            class="lang id"
+                            style="display:none;">
+
+                            “Ada orang yang memang weird.
+                            Ada juga yang kebetulan weird
+                            di frekuensi yang sama.”
+
+                        </span>
 
                     </div>
 
                 </div>
 
 
-                <div class="person-note">
+                <div class="person-photo">
 
-                    <span class="lang en">
+                    <img
+                        src="shani.jpg"
+                        alt="Gene Meshani"
+                        loading="lazy">
 
-                        “Maybe I was never the loudest person in the room.
-                        I was just there, in my own strange way.”
+                </div>
 
-                    </span>
+            </section>
 
-                    <span
+
+            <!-- =================================================
+                 GALANG
+            ================================================== -->
+
+            <section class="person">
+
+                <div class="person-photo">
+
+                    <img
+                        src="galang.jpg"
+                        alt="Galang Putra Yudha Pradana"
+                        loading="lazy">
+
+                </div>
+
+
+                <div class="person-info">
+
+                    <div class="person-number">
+                        PERSON 03
+                    </div>
+
+                    <div class="person-role">
+                        THE NAVIGATOR
+                    </div>
+
+                    <h2 class="person-name">
+                        GALANG PUTRA YUDHA PRADANA
+                    </h2>
+
+                    <div class="person-zodiac">
+                        TAURUS
+                    </div>
+
+
+                    <p class="person-description lang en">
+
+                        The only guy in the group, and somehow also
+                        the navigator. He has a way of figuring out
+                        where everyone should go next, occasionally
+                        making him feel less like a friend and more
+                        like the unofficial teacher of the group.
+
+                    </p>
+
+
+                    <p
+                        class="person-description lang id"
+                        style="display:none;">
+
+                        Satu-satunya cowok di kelompok, dan entah bagaimana
+                        juga jadi navigator. Punya cara sendiri untuk menentukan
+                        harus ke mana dan melakukan apa selanjutnya, sampai kadang
+                        terasa lebih seperti pengajar tidak resmi daripada teman.
+
+                    </p>
+
+
+                    <div class="known-for">
+
+                        <div class="known-label">
+
+                            <span class="lang en">
+                                KNOWN FOR
+                            </span>
+
+                            <span
+                                class="lang id"
+                                style="display:none;">
+                                DIKENAL KARENA
+                            </span>
+
+                        </div>
+
+
+                        <div class="known-text lang en">
+                            The navigator · grounded energy · unofficial teacher
+                        </div>
+
+                        <div
+                            class="known-text lang id"
+                            style="display:none;">
+                            Sang navigator · energi yang membumi · pengajar tidak resmi
+                        </div>
+
+                    </div>
+
+
+                    <div class="person-note">
+
+                        <span class="lang en">
+                            “Every group has someone who somehow knows
+                            where everyone is supposed to go.”
+                        </span>
+
+                        <span
+                            class="lang id"
+                            style="display:none;">
+
+                            “Setiap kelompok pasti punya satu orang
+                            yang entah bagaimana tahu harus membawa
+                            semuanya ke mana.”
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 DENIS
+            ================================================== -->
+
+            <section class="person">
+
+                <div class="person-info">
+
+                    <div class="person-number">
+                        PERSON 04
+                    </div>
+
+                    <div class="person-role">
+                        THE QUIET STRANGER
+                    </div>
+
+                    <h2 class="person-name">
+                        DENIS NATALIA SIBURIAN
+                    </h2>
+
+                    <div class="person-zodiac">
+                        SAGITTARIUS
+                    </div>
+
+
+                    <p class="person-description lang en">
+
+                        The quiet one. Probably a little strange.
+                        Usually somewhere inside her own thoughts,
+                        observing more than she says.
+
+                        <br><br>
+
+                        She may not always know how the others see her,
+                        but somehow she ended up here too —
+                        right in the middle of this story.
+
+                    </p>
+
+
+                    <p
+                        class="person-description lang id"
+                        style="display:none;">
+
+                        Yang pendiam. Mungkin sedikit aneh.
+                        Sering berada di dalam pikirannya sendiri,
+                        lebih banyak mengamati daripada berbicara.
+
+                        <br><br>
+
+                        Mungkin dia sendiri nggak pernah benar-benar tahu
+                        bagaimana orang lain melihatnya, tapi entah bagaimana
+                        dia juga akhirnya ada di sini —
+                        tepat di tengah cerita ini.
+
+                    </p>
+
+
+                    <div class="known-for">
+
+                        <div class="known-label">
+
+                            <span class="lang en">
+                                KNOWN FOR
+                            </span>
+
+                            <span
+                                class="lang id"
+                                style="display:none;">
+                                DIKENAL KARENA
+                            </span>
+
+                        </div>
+
+
+                        <div class="known-text lang en">
+                            Quiet observations · questionable thoughts · Sagittarius energy
+                        </div>
+
+                        <div
+                            class="known-text lang id"
+                            style="display:none;">
+                            Pengamatan diam-diam · pikiran yang dipertanyakan · energi Sagittarius
+                        </div>
+
+                    </div>
+
+
+                    <div class="person-note">
+
+                        <span class="lang en">
+
+                            “Maybe I was never the loudest person in the room.
+                            I was just there, in my own strange way.”
+
+                        </span>
+
+                        <span
+                            class="lang id"
+                            style="display:none;">
+
+                            “Mungkin aku memang nggak pernah jadi orang
+                            paling berisik di ruangan. Aku cuma ada di sana,
+                            dengan caraku yang sedikit aneh.”
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="person-photo">
+
+                    <img
+                        src="denis.jpg"
+                        alt="Denis Natalia Siburian"
+                        loading="lazy">
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 THE PHOTO THAT BECAME AN ARCHIVE
+            ================================================== -->
+
+            <section class="full-photo-section">
+
+                <div class="full-photo-label lang en">
+                    ONE FRAME, WHOLE AGAIN
+                </div>
+
+                <div
+                    class="full-photo-label lang id"
+                    style="display:none;">
+                    SATU BINGKAI, UTUH KEMBALI
+                </div>
+
+
+                <h2 class="full-photo-title lang en">
+                    THE PHOTO BEHIND THE PEOPLE
+                </h2>
+
+                <h2
+                    class="full-photo-title lang id"
+                    style="display:none;">
+                    FOTO DI BALIK POTONGAN-POTONGAN ITU
+                </h2>
+
+
+                <p class="full-photo-intro lang en">
+
+                    The portraits above are pieces of this one photograph.
+                    Separated into fragments, each one became its own little
+                    part of the archive.
+
+                </p>
+
+                <p
+                    class="full-photo-intro lang id"
+                    style="display:none;">
+
+                    Foto-foto profil di atas sebenarnya adalah potongan
+                    dari satu foto ini.
+                    Dipisahkan menjadi beberapa bagian,
+                    lalu masing-masing menjadi bagian kecil dari arsip.
+
+                </p>
+
+
+                <div class="full-photo-frame">
+
+                    <!--
+                        GANTI NAMA FILE FOTO DI BAWAH INI
+                        jika nama foto aslinya berbeda.
+
+                        Contoh:
+                        class-photo-full.jpg
+                    -->
+
+                    <img
+                        src="class-photo-full.jpg"
+                        alt="The original group photograph"
+                        loading="lazy">
+
+                </div>
+
+
+                <div class="full-photo-caption">
+
+                    <p class="lang en">
+
+                        Maybe this isn't the best photo of us.
+                        Maybe it's not even the kind of photo
+                        we'd normally choose to keep.
+
+                        <br><br>
+
+                        But somehow, I think that's exactly why I like it.
+                        It looks a little ridiculous,
+                        a little imperfect,
+                        and very much like us.
+
+                        <br><br>
+
+                        So I kept it.
+
+                    </p>
+
+
+                    <p
                         class="lang id"
                         style="display:none;">
 
-                        “Mungkin aku memang nggak pernah jadi orang
-                        paling berisik di ruangan. Aku cuma ada di sana,
-                        dengan caraku yang sedikit aneh.”
+                        Mungkin ini bukan foto terbaik kita.
+                        Bahkan mungkin bukan foto yang biasanya
+                        akan kita pilih untuk disimpan.
 
-                    </span>
+                        <br><br>
+
+                        Tapi entah kenapa, justru itu yang membuatku menyukainya.
+                        Sedikit konyol, sedikit nggak sempurna,
+                        dan terasa sangat seperti kita.
+
+                        <br><br>
+
+                        Jadi, aku simpan.
+
+                    </p>
+
+
+                    <div class="signature">
+
+                        <span class="lang en">
+                            — FROM THE ARCHIVE
+                        </span>
+
+                        <span
+                            class="lang id"
+                            style="display:none;">
+                            — DARI ARSIP
+                        </span>
+
+                    </div>
 
                 </div>
 
-            </div>
+            </section>
 
 
-            <div class="person-photo">
+            <!-- =================================================
+                 CLOSING
+            ================================================== -->
 
-                <img
-                    src="denis.jpg"
-                    alt="Denis Natalia Siburian"
-                    loading="lazy">
+            <section class="people-closing">
 
-            </div>
+                <div class="closing-label lang en">
+                    ARCHIVE NOTE
+                </div>
 
-        </section>
+                <div
+                    class="closing-label lang id"
+                    style="display:none;">
 
+                    CATATAN ARSIP
 
-        <!-- =================================================
-             CLOSING
-        ================================================== -->
-
-        <section class="people-closing">
-
-            <div class="closing-label lang en">
-                ARCHIVE NOTE
-            </div>
-
-            <div
-                class="closing-label lang id"
-                style="display:none;">
-
-                CATATAN ARSIP
-
-            </div>
+                </div>
 
 
-            <p class="lang en">
+                <p class="lang en">
 
-                Four people who probably would not have
-                written the same story alone.
+                    Different people who probably would not have
+                    written the same story alone.
 
-                <br>
+                    <br>
 
-                Somehow, they ended up writing one together.
+                    Somehow, they ended up writing one together.
 
-            </p>
-
-
-            <p
-                class="lang id"
-                style="display:none;">
-
-                Empat orang yang mungkin tidak akan
-                menulis cerita yang sama jika sendirian.
-
-                <br>
-
-                Entah bagaimana, mereka akhirnya
-                menulis satu cerita bersama.
-
-            </p>
-
-        </section>
+                </p>
 
 
-        <!-- =================================================
-             NAVIGATION
-        ================================================== -->
+                <p
+                    class="lang id"
+                    style="display:none;">
 
-        <nav class="people-navigation">
+                    Orang-orang yang mungkin tidak akan
+                    menulis cerita yang sama jika sendirian.
 
-            <a
-                href="group-memories.html"
-                class="people-nav-btn">
+                    <br>
 
-                ← BACK TO GROUP MEMORIES
+                    Entah bagaimana, mereka akhirnya
+                    menulis satu cerita bersama.
 
-            </a>
+                </p>
 
-
-            <a
-                href="final-chapter.html"
-                class="people-nav-btn">
-
-                CONTINUE TO FINAL CHAPTER →
-
-            </a>
-
-        </nav>
+            </section>
 
 
-        <!-- =================================================
-             FOOTER
-        ================================================== -->
+            <!-- =================================================
+                 NAVIGATION
+            ================================================== -->
 
-        <footer class="people-footer">
+            <nav class="people-navigation">
 
-            THE LAST ARCHIVE · EST. 2026
+                <a
+                    href="group-memories.html"
+                    class="people-nav-btn">
 
-        </footer>
+                    ← BACK TO GROUP MEMORIES
 
-    </div>
-
-</main>
-
-
-<script>
-
-    /* =========================================================
-       LANGUAGE SYSTEM
-    ========================================================= */
-
-    function setLanguage(language) {
-
-        const englishElements =
-            document.querySelectorAll(".lang.en");
-
-        const indonesianElements =
-            document.querySelectorAll(".lang.id");
+                </a>
 
 
-        if (language === "en") {
+                <a
+                    href="final-chapter.html"
+                    class="people-nav-btn">
 
-            englishElements.forEach(element => {
-                element.style.display = "";
-            });
+                    CONTINUE TO FINAL CHAPTER →
 
-            indonesianElements.forEach(element => {
-                element.style.display = "none";
-            });
+                </a>
 
-
-            document
-                .getElementById("enBtn")
-                .classList
-                .add("active");
-
-            document
-                .getElementById("idBtn")
-                .classList
-                .remove("active");
+            </nav>
 
 
-            document.documentElement.lang = "en";
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="people-footer">
+
+                THE LAST ARCHIVE · EST. 2026
+
+            </footer>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        /* =========================================================
+           LANGUAGE SYSTEM
+        ========================================================= */
+
+        function setLanguage(language) {
+
+            const englishElements =
+                document.querySelectorAll(".lang.en");
+
+            const indonesianElements =
+                document.querySelectorAll(".lang.id");
+
+
+            if (language === "en") {
+
+                englishElements.forEach(element => {
+                    element.style.display = "";
+                });
+
+                indonesianElements.forEach(element => {
+                    element.style.display = "none";
+                });
+
+
+                document
+                    .getElementById("enBtn")
+                    .classList
+                    .add("active");
+
+                document
+                    .getElementById("idBtn")
+                    .classList
+                    .remove("active");
+
+
+                document.documentElement.lang = "en";
+
+            }
+
+
+            if (language === "id") {
+
+                englishElements.forEach(element => {
+                    element.style.display = "none";
+                });
+
+                indonesianElements.forEach(element => {
+                    element.style.display = "";
+                });
+
+
+                document
+                    .getElementById("idBtn")
+                    .classList
+                    .add("active");
+
+                document
+                    .getElementById("enBtn")
+                    .classList
+                    .remove("active");
+
+
+                document.documentElement.lang = "id";
+
+            }
 
         }
 
 
-        if (language === "id") {
+        /* =========================================================
+           INITIALIZE
+        ========================================================= */
 
-            englishElements.forEach(element => {
-                element.style.display = "none";
-            });
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
 
-            indonesianElements.forEach(element => {
-                element.style.display = "";
-            });
+                setLanguage("en");
 
+            }
+        );
 
-            document
-                .getElementById("idBtn")
-                .classList
-                .add("active");
-
-            document
-                .getElementById("enBtn")
-                .classList
-                .remove("active");
-
-
-            document.documentElement.lang = "id";
-
-        }
-
-    }
-
-
-    /* =========================================================
-       INITIALIZE
-    ========================================================= */
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function () {
-
-            setLanguage("en");
-
-        }
-    );
-
-</script>
+    </script>
 
 </body>
 
